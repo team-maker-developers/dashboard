@@ -1,0 +1,27 @@
+{
+  "name": "team-maker-admin",
+  "version": "1.0.0",
+  "description": "team-maker for admins",
+  "author": "team-maker-developers",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@nuxtjs/apollo": "^4.0.0-rc13.1",
+    "graphql-tag": "^2.10.1",
+    "nuxt": "^2.9.2"
+  },
+  "devDependencies": {
+    "@nuxt/typescript-build": "^0.2.9",
+    "@nuxtjs/vuetify": "^1.8.5",
+    "@vue/test-utils": "^1.0.0-beta.29",
+    "babel-jest": "^24.9.0",
+    "jest": "^24.9.0",
+    "vue-jest": "^3.0.5"
+  }
+}
