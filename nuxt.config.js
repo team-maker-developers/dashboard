@@ -35,13 +35,23 @@ export default {
   ** Nuxt.js dev-modules
   */
   buildModules: [
-    '@nuxtjs/vuetify',
+    '@nuxt/typescript-build',
+    '@nuxtjs/vuetify'
   ],
   /*
   ** Nuxt.js modules
   */
   modules: [
+    '@nuxtjs/apollo',
   ],
+  apollo: {
+    clientConfigs: {
+      default: {
+        // TODO: エンドポイントを切り替えられるようにする
+        httpEndpoint: 'http://localhost:8888',
+      }
+    }
+  },
   /*
   ** vuetify module configuration
   ** https://github.com/nuxt-community/vuetify-module
