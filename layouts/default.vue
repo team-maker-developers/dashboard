@@ -14,12 +14,12 @@
   </v-app>
 </template>
 
-<script>
-import { mapState } from 'vuex'
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator'
+import { State } from 'vuex-class'
 
-export default {
-  computed: {
-    ...mapState(['isLoggedIn'])
-  }
+@Component
+export default class DefaultLayout extends Vue {
+  @State('isLoggedIn') isLoggedIn: boolean
 }
 </script>

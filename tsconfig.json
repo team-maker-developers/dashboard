@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "experimentalDecorators": true,
     "target": "esnext",
     "module": "esnext",
     "moduleResolution": "node",
@@ -12,6 +13,7 @@
     "allowJs": true,
     "sourceMap": true,
     "strict": true,
+    "strictPropertyInitialization": false,
     "noEmit": true,
     "baseUrl": ".",
     "paths": {
