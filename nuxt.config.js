@@ -1,5 +1,3 @@
-import colors from 'vuetify/es5/util/colors'
-
 export default {
   mode: 'universal',
   /*
@@ -59,20 +57,34 @@ export default {
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
     theme: {
-      dark: true,
+      dark: false,
       themes: {
         dark: {
-          primary: colors.blue.darken2,
-          accent: colors.grey.darken3,
-          secondary: colors.amber.darken3,
-          info: colors.teal.lighten1,
-          warning: colors.amber.base,
-          error: colors.deepOrange.accent4,
-          success: colors.green.accent3
+          primary: '#21cff3',
+          accent: '#FF4081',
+          secondary: '#ffe18d',
+          success: '#4CAF50',
+          info: '#2196F3',
+          warning: '#FB8C00',
+          error: '#FF5252'
+        },
+        light: {
+          primary: '#FB86C1',
+          accent: '#BC78C8',
+          secondary: '#31ACD6',
+          success: '#78E07D',
+          info: '#84C6FA',
+          warning: '#D8E704',
+          error: '#F51212'
         }
       }
     }
   },
+
+  router: {
+    middleware: ['is-logged-in']
+  },
+
   /*
    ** Build configuration
    */
