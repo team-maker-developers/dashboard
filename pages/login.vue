@@ -34,7 +34,7 @@ import LineLoginBtn from '@/components/login/line-login-btn.vue'
 export default class loginVue extends Vue {
   asyncData(context: Context): Object {
     const { query } = context
-    return { account: 'account' in query ? query.account : null }
+    return { account: 'cliend_id' in query ? query.cliend_id : null }
   }
 }
 </script>
