@@ -1,3 +1,6 @@
+const environment = process.env.NODE_ENV || 'development'
+const { envValues } = require(`./configs/config.${environment}.js`)
+
 export default {
   mode: 'universal',
   /*
@@ -41,15 +44,19 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: ['@nuxtjs/apollo', '@nuxtjs/pwa'],
+  modules: ['@nuxtjs/apollo', '@nuxtjs/axios', '@nuxtjs/pwa'],
   apollo: {
     clientConfigs: {
       default: {
-        // TODO: エンドポイントを切り替えられるようにする
-        httpEndpoint: 'http://localhost:8888'
+        httpEndpoint: `${envValues.apiDomain}/graphql`
       }
     }
   },
+
+  axios: {
+    baseURL: `${envValues.apiDomain}/api`
+  },
+
   /*
    ** vuetify module configuration
    ** https://github.com/nuxt-community/vuetify-module
@@ -85,6 +92,7 @@ export default {
     middleware: ['is-logged-in']
   },
 
+  env: envValues,
   /*
    ** Build configuration
    */
