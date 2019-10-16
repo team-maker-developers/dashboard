@@ -2,7 +2,7 @@
   <v-form>
     <v-text-field v-model="email" label="メールアドレス" />
     <v-text-field v-model="password" label="パスワード" type="password" />
-    <v-btn width="100%">ログイン</v-btn>
+    <nuxt-link to="/"><v-btn width="100%">ログイン</v-btn></nuxt-link>
   </v-form>
 </template>
 
