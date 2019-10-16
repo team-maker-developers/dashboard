@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-container>
-      <v-text-field v-model="account" label="会社番号" />
+      <v-text-field v-model="cliendId" label="会社番号" />
     </v-container>
     <v-divider />
     <v-container>
@@ -15,7 +15,7 @@
     <v-container>
       <v-row>
         <v-col>
-          <line-login-btn />
+          <line-login-btn :api-domain="apiDomain" />
         </v-col>
       </v-row>
     </v-container>
@@ -23,18 +23,24 @@
 </template>
 
 <script lang="ts">
-import { Context } from '@nuxt/types'
 import { Vue, Component } from 'nuxt-property-decorator'
+import { Context } from '@nuxt/types'
+import { LoginStore } from '@/store'
 import EmailLoginForm from '@/components/login/email-login-form.vue'
 import LineLoginBtn from '@/components/login/line-login-btn.vue'
 
 @Component({
-  components: { EmailLoginForm, LineLoginBtn }
+  components: { EmailLoginForm, LineLoginBtn },
+  middleware: ['fetch-client-id']
 })
 export default class loginVue extends Vue {
-  asyncData(context: Context): Object {
-    const { query } = context
-    return { account: 'cliend_id' in query ? query.cliend_id : null }
+  asyncData({ env }: Context) {
+    const apiDomain: string = env.apiDomain
+    return { apiDomain }
+  }
+
+  get cliendId(): string {
+    return LoginStore.clientId
   }
 }
 </script>
