@@ -6,10 +6,13 @@
   "private": true,
   "scripts": {
     "dev": "nuxt",
+    "mock": "cross-env NODE_ENV=\"mock\" nuxt",
     "stage": "cross-env NODE_ENV=\"staging\" nuxt",
-    "build": "cross-env nuxt build",
-    "start": "cross-env nuxt start",
-    "generate": "cross-env nuxt generate",
+    "build": "nuxt build",
+    "build:mock": "cross-env NODE_ENV=\"mock\" nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "generate:mock": "cross-env NODE_ENV=\"mock\" nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "test": "jest"
   },
