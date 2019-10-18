@@ -6,6 +6,7 @@
   "private": true,
   "scripts": {
     "dev": "nuxt",
+    "mock": "cross-env NODE_ENV=\"mock\" nuxt",
     "stage": "cross-env NODE_ENV=\"staging\" nuxt",
     "build": "cross-env nuxt build",
     "start": "cross-env nuxt start",
