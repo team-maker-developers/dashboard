@@ -1,5 +1,5 @@
 <template>
-  <v-btn :href="lineLoginUrl" tile color="green" width="100%">
+  <v-btn :href="lineLoginRedirectUrl" tile color="green" width="100%">
     LINEでログイン
   </v-btn>
 </template>
@@ -10,11 +10,10 @@ import { Vue, Component, Prop } from 'nuxt-property-decorator'
 @Component
 export default class lineLoginButton extends Vue {
   @Prop({ type: String, required: true })
-  apiDomain: string
+  loginUrl: string
 
-  get lineLoginUrl(): string {
-    // TODO: LINEのログイン画面へのリダイレクトURLに変換する
-    return this.apiDomain
+  get lineLoginRedirectUrl(): string {
+    return `${this.loginUrl}/line/redirect`
   }
 }
 </script>
