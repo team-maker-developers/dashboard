@@ -15,7 +15,7 @@
     <v-container>
       <v-row>
         <v-col>
-          <line-login-btn :api-domain="apiDomain" />
+          <line-login-btn :login-url="loginUrl" />
         </v-col>
       </v-row>
     </v-container>
@@ -39,8 +39,14 @@ export default class loginVue extends Vue {
     return { apiDomain }
   }
 
+  apiDomain: string
+
   get cliendId(): string {
     return LoginStore.clientId
+  }
+
+  get loginUrl(): string {
+    return `${this.apiDomain}/login/${this.cliendId}`
   }
 }
 </script>
