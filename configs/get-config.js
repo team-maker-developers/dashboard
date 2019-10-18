@@ -1,3 +1,4 @@
+// 以下がデフォルト値になる
 const baseValues = {
   apiDomain: 'http://localhost:8888',
   isMock: false
