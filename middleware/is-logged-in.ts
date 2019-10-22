@@ -12,7 +12,7 @@ const isLoggedIn: Middleware = (context: Context) => {
   }
 
   // ログイン画面では、リダイレクトさせない
-  if (route.name !== 'login') {
+  if (!String(route.name).startsWith('login')) {
     redirect('/login')
   }
 }
