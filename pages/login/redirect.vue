@@ -16,16 +16,18 @@ export default class RedirectLoginVue extends Vue {
     return {
       apiDomain: env.apiDomain,
       clientId: query.client_id,
+      provider: query.provider,
       code: query.code
     }
   }
 
   code: string
   clientId: string
+  provider: string
   apiDomain: string
 
   get loginUrl(): string {
-    return `${this.apiDomain}/api/login/${this.clientId}/line`
+    return `${this.apiDomain}/api/login/${this.clientId}/${this.provider}`
   }
 
   mounted() {
