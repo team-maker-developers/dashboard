@@ -1,13 +1,13 @@
 <template>
   <v-container>
     <v-container>
-      <v-text-field v-model="cliendId" label="会社番号" />
+      <v-text-field v-model="clientId" label="会社番号" />
     </v-container>
     <v-divider />
     <v-container>
       <v-row>
         <v-col>
-          <email-login-form />
+          <email-login-form :login-url="emailLoginUrl" />
         </v-col>
       </v-row>
     </v-container>
@@ -15,7 +15,7 @@
     <v-container>
       <v-row>
         <v-col>
-          <line-login-btn :login-url="loginUrl" />
+          <line-login-btn :login-url="LineloginUrl" />
         </v-col>
       </v-row>
     </v-container>
@@ -31,9 +31,9 @@ import LineLoginBtn from '@/components/login/line-login-btn.vue'
 
 @Component({
   components: { EmailLoginForm, LineLoginBtn },
-  middleware: ['fetch-client-id']
+  middleware: ['fetch-client-id', 'initial-form-data']
 })
-export default class loginVue extends Vue {
+export default class LoginVue extends Vue {
   asyncData({ env }: Context) {
     const apiDomain: string = env.apiDomain
     return { apiDomain }
@@ -41,12 +41,16 @@ export default class loginVue extends Vue {
 
   apiDomain: string
 
-  get cliendId(): string {
+  get clientId(): string {
     return LoginStore.clientId
   }
 
-  get loginUrl(): string {
-    return `${this.apiDomain}/login/${this.cliendId}`
+  get emailLoginUrl(): string {
+    return `${this.apiDomain}/api/login/${this.clientId}/email`
+  }
+
+  get LineloginUrl(): string {
+    return `${this.apiDomain}/login/${this.clientId}`
   }
 }
 </script>
