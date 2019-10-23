@@ -1,6 +1,28 @@
 <template>
   <v-app>
-    <v-app-bar app color="primary">
+    <v-navigation-drawer app clipped>
+      <v-list-item to="/" nuxt>
+        <v-list-item-content>
+          <v-list-item-title>ホーム</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+      <v-list-item to="/" nuxt>
+        <v-list-item-content>
+          <v-list-item-title>応募者管理</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+      <v-list-item to="/" nuxt>
+        <v-list-item-content>
+          <v-list-item-title>求人募集</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+      <v-list-item to="/" nuxt>
+        <v-list-item-content>
+          <v-list-item-title>社員管理</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+    </v-navigation-drawer>
+    <v-app-bar color="primary" app clipped-left>
       <v-app-bar-nav-icon v-if="isLoggedIn" />
       <v-toolbar-title>Team Maker</v-toolbar-title>
       <div class="flex-grow-1"></div>
