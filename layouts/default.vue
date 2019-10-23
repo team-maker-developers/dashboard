@@ -17,7 +17,14 @@
     <v-app-bar color="primary" app clipped-left dark>
       <v-app-bar-nav-icon v-if="isLoggedIn" />
       <v-toolbar-title>Team Maker</v-toolbar-title>
-      <div class="flex-grow-1"></div>
+      <v-spacer></v-spacer>
+      <v-spacer></v-spacer>
+      <div class="d-flex align-center">
+        <v-btn icon>
+          <v-icon>mdi-account</v-icon>
+        </v-btn>
+        <p class="mb-0 pb-0">齊藤 大介</p>
+      </div>
       <v-toolbar-items v-if="isLoggedIn">
         <v-btn text>Link 1</v-btn>
       </v-toolbar-items>
