@@ -23,7 +23,7 @@
         <v-btn icon>
           <v-icon>mdi-account</v-icon>
         </v-btn>
-        <p class="mb-0 pb-0">齊藤 大介</p>
+        <div class="text-no-wrap">齊藤 大介</div>
       </div>
       <v-toolbar-items v-if="isLoggedIn">
         <v-btn text>Link 1</v-btn>
