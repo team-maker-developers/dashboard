@@ -22,7 +22,7 @@
         </v-list-item-content>
       </v-list-item>
     </v-navigation-drawer>
-    <v-app-bar color="primary" app clipped-left>
+    <v-app-bar color="primary" app clipped-left dark>
       <v-app-bar-nav-icon v-if="isLoggedIn" />
       <v-toolbar-title>Team Maker</v-toolbar-title>
       <div class="flex-grow-1"></div>
