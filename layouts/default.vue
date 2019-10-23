@@ -2,21 +2,33 @@
   <v-app>
     <v-navigation-drawer app clipped>
       <v-list-item to="/" nuxt>
+        <v-list-item-icon>
+          <v-icon>mdi-home</v-icon>
+        </v-list-item-icon>
         <v-list-item-content>
           <v-list-item-title>ホーム</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
       <v-list-item to="/" nuxt>
+        <v-list-item-icon>
+          <v-icon>mdi-account</v-icon>
+        </v-list-item-icon>
         <v-list-item-content>
           <v-list-item-title>応募者管理</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
       <v-list-item to="/" nuxt>
+        <v-list-item-icon>
+          <v-icon>mdi-email</v-icon>
+        </v-list-item-icon>
         <v-list-item-content>
           <v-list-item-title>求人募集</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
       <v-list-item to="/" nuxt>
+        <v-list-item-icon>
+          <v-icon>mdi-account-box</v-icon>
+        </v-list-item-icon>
         <v-list-item-content>
           <v-list-item-title>社員管理</v-list-item-title>
         </v-list-item-content>
