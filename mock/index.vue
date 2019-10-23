@@ -1,14 +1,21 @@
 <template>
   <div>
-    <v-alert type="info" dense class="mb-1">
-      10/21 山田 太郎 さんが 求人を拡散しました
-    </v-alert>
-    <v-alert type="info" dense class="mb-1">
-      10/19 布村 花子 さんが 求人を拡散しました
-    </v-alert>
-    <v-alert type="info" dense class="mb-1">
-      10/28 會田 朋也さんが 求人を拡散しました
-    </v-alert>
+    <v-container fluid>
+      <v-alert type="info" dense class="mb-1">
+        10/21 山田 太郎 さんが 求人を拡散しました
+      </v-alert>
+      <v-alert type="info" dense class="mb-1">
+        10/19 布村 花子 さんが 求人を拡散しました
+      </v-alert>
+      <v-alert type="info" dense class="mb-1">
+        10/28 會田 朋也さんが 求人を拡散しました
+      </v-alert>
+    </v-container>
+    <v-container fluid class="d-flex flex-row-reverse">
+      <v-btn class="ma-2" color="indigo" dark right>
+        CSVファイル出力
+      </v-btn>
+    </v-container>
     <v-container fluid>
       <v-row>
         <v-col cols="12">
