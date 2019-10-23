@@ -1,40 +1,18 @@
 <template>
   <v-app>
     <v-navigation-drawer app clipped>
-      <v-list-item-group mandatory>
-        <v-list-item to="/" nuxt>
-          <v-list-item-icon>
-            <v-icon>mdi-home</v-icon>
-          </v-list-item-icon>
-          <v-list-item-content>
-            <v-list-item-title>ホーム</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-        <v-list-item to="/" nuxt>
-          <v-list-item-icon>
-            <v-icon>mdi-account</v-icon>
-          </v-list-item-icon>
-          <v-list-item-content>
-            <v-list-item-title>応募者管理</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-        <v-list-item to="/" nuxt>
-          <v-list-item-icon>
-            <v-icon>mdi-email</v-icon>
-          </v-list-item-icon>
-          <v-list-item-content>
-            <v-list-item-title>求人募集</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-        <v-list-item to="/" nuxt>
-          <v-list-item-icon>
-            <v-icon>mdi-account-box</v-icon>
-          </v-list-item-icon>
-          <v-list-item-content>
-            <v-list-item-title>社員管理</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list-item-group>
+      <v-list>
+        <v-list-item-group v-model="model">
+          <v-list-item v-for="(item, i) in items" :key="i">
+            <v-list-item-icon>
+              <v-icon v-text="item.icon"></v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title v-text="item.text"></v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list-item-group>
+      </v-list>
     </v-navigation-drawer>
     <v-app-bar color="primary" app clipped-left dark>
       <v-app-bar-nav-icon v-if="isLoggedIn" />
@@ -57,5 +35,28 @@ import { State } from 'vuex-class'
 @Component
 export default class DefaultLayout extends Vue {
   @State('isLoggedIn') isLoggedIn: boolean
+  data() {
+    return {
+      items: [
+        {
+          icon: 'mdi-home',
+          text: 'ホーム'
+        },
+        {
+          icon: 'mdi-account',
+          text: '応募者管理'
+        },
+        {
+          icon: 'mdi-email',
+          text: '求人募集'
+        },
+        {
+          icon: 'mdi-account-box',
+          text: '社員管理'
+        }
+      ],
+      model: 0
+    }
+  }
 }
 </script>
