@@ -18,8 +18,32 @@
             class="grey lighten-5"
             style="height: 200px;"
           >
-            <v-card v-for="n in 3" :key="n" class="ma-3 pa-6" outlined tile>
-              Column
+            <v-card
+              class="ma-3 pa-6"
+              style="height: 200px; width: 200px;"
+              outlined
+              tile
+            >
+              <v-card-title>50人</v-card-title>
+              <v-card-subtitle>応募者用<br />LINE登録数</v-card-subtitle>
+            </v-card>
+            <v-card
+              class="ma-3 pa-6"
+              style="height: 200px; width: 200px;"
+              outlined
+              tile
+            >
+              <v-card-title>10人</v-card-title>
+              <v-card-subtitle>応募数</v-card-subtitle>
+            </v-card>
+            <v-card
+              class="ma-3 pa-6"
+              style="height: 200px; width: 200px;"
+              outlined
+              tile
+            >
+              <v-card-title>5人</v-card-title>
+              <v-card-subtitle>内定数</v-card-subtitle>
             </v-card>
           </v-row>
         </v-col>
@@ -32,8 +56,32 @@
             class="grey lighten-5"
             style="height: 200px;"
           >
-            <v-card v-for="n in 3" :key="n" class="ma-3 pa-6" outlined tile>
-              Column
+            <v-card
+              class="ma-3 pa-6"
+              style="height: 200px; width: 200px;"
+              outlined
+              tile
+            >
+              <v-card-title>30人</v-card-title>
+              <v-card-subtitle>社内公報<br />LINE登録数</v-card-subtitle>
+            </v-card>
+            <v-card
+              class="ma-3 pa-6"
+              style="height: 200px; width: 200px;"
+              outlined
+              tile
+            >
+              <v-card-title>100PV</v-card-title>
+              <v-card-subtitle>求人ページ<br />PV数</v-card-subtitle>
+            </v-card>
+            <v-card
+              class="ma-3 pa-6"
+              style="height: 200px; width: 200px;"
+              outlined
+              tile
+            >
+              <v-card-title></v-card-title>
+              <v-card-subtitle></v-card-subtitle>
             </v-card>
           </v-row>
         </v-col>
