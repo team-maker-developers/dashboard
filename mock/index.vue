@@ -1,13 +1,13 @@
 <template>
   <div>
     <v-container fluid>
-      <v-alert type="info" dense class="mb-1">
+      <v-alert type="info" dense class="mb-1" color="orange">
         10/21 山田 太郎 さんが 求人を拡散しました
       </v-alert>
-      <v-alert type="info" dense class="mb-1">
+      <v-alert type="info" dense class="mb-1" color="orange">
         10/19 布村 花子 さんが 求人を拡散しました
       </v-alert>
-      <v-alert type="info" dense class="mb-1">
+      <v-alert type="info" dense class="mb-1" color="orange">
         10/28 會田 朋也さんが 求人を拡散しました
       </v-alert>
     </v-container>
