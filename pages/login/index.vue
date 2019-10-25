@@ -15,7 +15,7 @@
     <v-container>
       <v-row>
         <v-col>
-          <line-login-btn :login-url="LineloginUrl" />
+          <line-login-btn :login-url="loginUrl" />
         </v-col>
       </v-row>
     </v-container>
@@ -31,7 +31,7 @@ import LineLoginBtn from '@/components/login/line-login-btn.vue'
 
 @Component({
   components: { EmailLoginForm, LineLoginBtn },
-  middleware: ['fetch-client-id', 'initial-form-data']
+  middleware: ['fetch-client-id', 'initialize-form-data']
 })
 export default class LoginVue extends Vue {
   asyncData({ env }: Context) {
@@ -49,7 +49,7 @@ export default class LoginVue extends Vue {
     return `${this.apiDomain}/api/login/${this.clientId}/email`
   }
 
-  get LineloginUrl(): string {
+  get loginUrl(): string {
     return `${this.apiDomain}/login/${this.clientId}`
   }
 }
