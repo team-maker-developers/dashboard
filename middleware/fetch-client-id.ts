@@ -1,10 +1,8 @@
 import { Context, Middleware } from '@nuxt/types'
-import { LoginStore } from '@/store'
 
-const fetchCliendId: Middleware = (context: Context) => {
-  const { query } = context
+const fetchCliendId: Middleware = ({ store, query }: Context) => {
   const clientId: string = query.client_id as string
-  LoginStore.setClientId(clientId)
+  store.commit('login/setClientId', clientId)
 }
 
 export default fetchCliendId
