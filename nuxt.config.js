@@ -78,9 +78,9 @@ export default {
           error: '#FF5252'
         },
         light: {
-          primary: '#FB86C1',
-          accent: '#BC78C8',
-          secondary: '#31ACD6',
+          primary: '#EC6D81',
+          accent: '#3578AF',
+          secondary: '#B365A7',
           success: '#78E07D',
           info: '#84C6FA',
           warning: '#D8E704',
