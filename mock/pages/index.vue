@@ -12,7 +12,7 @@
       </v-alert>
     </v-container>
     <v-container fluid class="d-flex flex-row-reverse">
-      <v-btn class="ma-2" color="indigo" dark right>
+      <v-btn class="ma-2" color="accent" dark right>
         CSVファイル出力
       </v-btn>
     </v-container>
