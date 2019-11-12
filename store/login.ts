@@ -8,7 +8,7 @@ export interface LoginState {
   
 @Module({ stateFactory: true, namespaced: true, name: 'login' })
 export default class Login extends VuexModule implements LoginState {
-  isLoggedIn: boolean = false
+  isLoggedIn: boolean = process.env.isMock ? true : false
   clientId: string = ''
   apiClientId: string = ''
   apiClinetSecret: string = ''

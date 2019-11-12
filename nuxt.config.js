@@ -97,8 +97,7 @@ export default {
   env: envValues,
 
   dir: {
-    pages: envValues.isMock ? 'mock/pages' : 'pages',
-    layouts: envValues.isMock ? 'mock/layouts' : 'layouts'
+    pages: envValues.isMock ? 'mock' : 'pages'
   },
   /*
    ** Build configuration
