@@ -15,7 +15,11 @@
       </v-list>
     </v-navigation-drawer>
     <v-app-bar color="primary" app clipped-left dark>
-      <v-app-bar-nav-icon v-if="isLoggedIn" @click.stop="drawer = !drawer" />
+      <v-app-bar-nav-icon
+        v-if="isLoggedIn"
+        class="hidden-lg-and-up"
+        @click.stop="drawer = !drawer"
+      />
       <v-toolbar-title>Team Maker</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-spacer></v-spacer>
