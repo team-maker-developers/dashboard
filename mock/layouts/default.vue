@@ -2,7 +2,7 @@
   <v-app>
     <v-navigation-drawer v-model="drawer" app clipped>
       <v-list>
-        <v-list-item-group v-model="model">
+        <v-list-item-group>
           <v-list-item v-for="(item, i) in items" :key="i">
             <v-list-item-icon>
               <v-icon v-text="item.icon"></v-icon>
@@ -15,7 +15,6 @@
       </v-list>
     </v-navigation-drawer>
     <v-app-bar color="primary" app clipped-left dark>
-      <v-app-bar-nav-icon v-if="isLoggedIn" />
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title>Team Maker</v-toolbar-title>
       <v-spacer></v-spacer>
@@ -32,9 +31,6 @@
         </v-btn>
         <div class="text-no-wrap">齊藤 大介</div>
       </div>
-      <v-toolbar-items v-if="isLoggedIn">
-        <v-btn text>Link 1</v-btn>
-      </v-toolbar-items>
     </v-app-bar>
     <v-content>
       <nuxt />
@@ -44,11 +40,9 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { State } from 'vuex-class'
 
 @Component
 export default class DefaultLayout extends Vue {
-  @State('isLoggedIn') isLoggedIn: boolean
   data() {
     return {
       drawer: true,
@@ -69,8 +63,7 @@ export default class DefaultLayout extends Vue {
           icon: 'mdi-share-circle',
           text: 'その他公報'
         }
-      ],
-      model: 0
+      ]
     }
   }
 }
