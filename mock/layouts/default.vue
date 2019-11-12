@@ -29,7 +29,6 @@
         <v-btn icon>
           <v-icon>mdi-account</v-icon>
         </v-btn>
-        <div class="text-no-wrap">齊藤 大介</div>
       </div>
     </v-app-bar>
     <v-content>
