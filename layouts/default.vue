@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-navigation-drawer v-model="drawer" app clipped>
+    <v-navigation-drawer v-if="isLoggedIn" v-model="drawer" app clipped>
       <v-list>
         <v-list-item-group>
           <v-list-item v-for="(item, i) in items" :key="i">
@@ -15,11 +15,11 @@
       </v-list>
     </v-navigation-drawer>
     <v-app-bar color="primary" app clipped-left dark>
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+      <v-app-bar-nav-icon v-if="isLoggedIn" @click.stop="drawer = !drawer" />
       <v-toolbar-title>Team Maker</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-spacer></v-spacer>
-      <div class="d-flex align-center">
+      <div v-if="isLoggedIn" class="d-flex align-center">
         <v-btn icon>
           <v-icon>mdi-settings</v-icon>
         </v-btn>
