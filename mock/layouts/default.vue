@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-navigation-drawer app clipped>
+    <v-navigation-drawer v-model="drawer" app clipped>
       <v-list>
         <v-list-item-group v-model="model">
           <v-list-item v-for="(item, i) in items" :key="i">
@@ -16,6 +16,7 @@
     </v-navigation-drawer>
     <v-app-bar color="primary" app clipped-left dark>
       <v-app-bar-nav-icon v-if="isLoggedIn" />
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title>Team Maker</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-spacer></v-spacer>
@@ -50,6 +51,7 @@ export default class DefaultLayout extends Vue {
   @State('isLoggedIn') isLoggedIn: boolean
   data() {
     return {
+      drawer: true,
       items: [
         {
           icon: 'mdi-home',
