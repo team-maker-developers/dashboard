@@ -8,7 +8,7 @@ export interface LoginState {
   
 @Module({ stateFactory: true, namespaced: true, name: 'login' })
 export default class Login extends VuexModule implements LoginState {
-  isLoggedIn: boolean = process.env.isMock ? true : false
+  isLoggedIn: boolean = false
   clientId: string = ''
   apiClientId: string = ''
   apiClinetSecret: string = ''
@@ -22,6 +22,13 @@ export default class Login extends VuexModule implements LoginState {
   setClientData({ apiClientId, apiClinetSecret }: any) {
     this.apiClientId = apiClientId
     this.apiClinetSecret = apiClinetSecret
+  }
+
+  // TODO:ログイン判定をブールではなく、トークンが存在するかどうかにする
+  // middleware: is-logged-inのmutationもあわせて、修正する
+  @Mutation
+  setIsLoggedIn(isLoggedIn: boolean) {
+    this.isLoggedIn = isLoggedIn
   }
 
   get baseFormData(): FormData {
