@@ -9,7 +9,21 @@
               <v-btn outlined small color="secondary">{{ item.edit }}</v-btn>
             </template>
             <template v-slot:item.ext="{ item }">
-              <v-btn outlined small color="secondary">{{ item.ext }}</v-btn>
+              <v-menu top offset-y>
+                <template v-slot:activator="{ on }">
+                  <v-btn color="secondary" small outlined v-on="on">
+                    {{ item.ext }}
+                  </v-btn>
+                </template>
+                <v-list>
+                  <v-list-item
+                    v-for="(listitem, index) in listitems"
+                    :key="index"
+                  >
+                    <v-list-item-title>{{ listitem.title }}</v-list-item-title>
+                  </v-list-item>
+                </v-list>
+              </v-menu>
             </template>
           </v-data-table>
         </v-col>
@@ -21,6 +35,12 @@
 export default {
   data() {
     return {
+      listitems: [
+        { title: 'LINEでシェア' },
+        { title: '下書きに戻す' },
+        { title: '削除' }
+      ],
+      dialog: false,
       headers: [
         {
           text: 'No',
