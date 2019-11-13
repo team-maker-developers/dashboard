@@ -19,6 +19,7 @@
                   <v-list-item
                     v-for="(listitem, index) in listitems"
                     :key="index"
+                    :to="listitem.link"
                   >
                     <v-list-item-title>{{ listitem.title }}</v-list-item-title>
                   </v-list-item>
@@ -36,7 +37,10 @@ export default {
   data() {
     return {
       listitems: [
-        { title: 'LINEでシェア' },
+        {
+          title: 'LINEでシェア',
+          link: '/job/share'
+        },
         { title: '下書きに戻す' },
         { title: '削除' }
       ],
