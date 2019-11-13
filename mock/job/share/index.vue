@@ -2,19 +2,18 @@
   <div>
     <v-container>
       <h2>LINEで求人をシェア</h2>
-      <v-stepper v-model="e1">
+      <v-stepper v-model="stepper">
         <v-stepper-header>
           <v-divider></v-divider>
-          <v-stepper-step :complete="e1 > 1" step="1"
-            >リード文を入力する</v-stepper-step
-          >
+          <v-stepper-step :complete="stepper > 1" step="1">
+            リード文を入力する
+          </v-stepper-step>
           <v-divider></v-divider>
-          <v-stepper-step :complete="e1 > 2" step="2"
-            >LINEでシェアする</v-stepper-step
-          >
+          <v-stepper-step :complete="stepper > 2" step="2">
+            LINEでシェアする
+          </v-stepper-step>
           <v-divider></v-divider>
         </v-stepper-header>
-
         <v-stepper-items>
           <v-stepper-content step="1">
             <h3 class="py-3">社員へ送信するリード文を入力しましょう。</h3>
@@ -56,10 +55,9 @@
                 ></v-data-table>
               </v-col>
             </v-row>
-
             <div class="text-right">
               <v-btn text justify-end>キャンセル</v-btn>
-              <v-btn color="primary" justify-end @click="e1 = 2">
+              <v-btn color="primary" justify-end @click="stepper = 2">
                 次へ
               </v-btn>
             </div>
@@ -96,14 +94,13 @@
               </v-col>
             </v-row>
             <div class="text-right">
-              <v-btn text @click="e1 = 1">キャンセル</v-btn>
+              <v-btn text @click="stepper = 1">キャンセル</v-btn>
               <v-dialog v-model="dialog" width="500">
                 <template v-slot:activator="{ on }">
                   <v-btn color="primary" dark v-on="on">
                     LINEでシェア
                   </v-btn>
                 </template>
-
                 <v-card class="py-8">
                   <v-card-title class="headline py-8" primary-title>
                     LINEでシェアに成功しました
@@ -127,7 +124,7 @@
 export default {
   data() {
     return {
-      e1: 0,
+      stepper: 0,
       headers: [
         {
           text: 'No',

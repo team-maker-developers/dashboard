@@ -15,11 +15,11 @@
             <template v-slot:item.edit="{ item }">
               <v-btn outlined small color="secondary">{{ item.edit }}</v-btn>
             </template>
-            <template v-slot:item.ext="{ item }">
+            <template v-slot:item.others="{ item }">
               <v-menu top offset-y>
                 <template v-slot:activator="{ on }">
                   <v-btn color="secondary" small outlined v-on="on">
-                    {{ item.ext }}
+                    {{ item.others }}
                   </v-btn>
                 </template>
                 <v-list>
@@ -62,7 +62,7 @@ export default {
         { text: '公開ステータス', value: 'status' },
         { text: '前回シェア日', value: 'share' },
         { text: '', value: 'edit' },
-        { text: '', value: 'ext' }
+        { text: '', value: 'others' }
       ],
       jobs: [
         {
@@ -71,7 +71,7 @@ export default {
           status: '公開中',
           share: '2019/11/13',
           edit: '編集',
-          ext: '・・・'
+          others: '・・・'
         },
         {
           no: 2,
@@ -79,7 +79,7 @@ export default {
           status: '下書き',
           share: '-',
           edit: '編集',
-          ext: '・・・'
+          others: '・・・'
         },
         {
           no: 3,
@@ -87,7 +87,7 @@ export default {
           status: '公開中',
           share: '2019/11/13',
           edit: '編集',
-          ext: '・・・'
+          others: '・・・'
         },
         {
           no: 4,
@@ -95,7 +95,7 @@ export default {
           status: '公開中',
           share: '2019/11/13',
           edit: '編集',
-          ext: '・・・'
+          others: '・・・'
         },
         {
           no: 5,
@@ -103,7 +103,7 @@ export default {
           status: '公開中',
           share: '2019/11/13',
           edit: '編集',
-          ext: '・・・'
+          others: '・・・'
         }
       ]
     }
