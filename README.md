@@ -6,7 +6,7 @@
 - [![Netlify Status](https://api.netlify.com/api/v1/badges/4abb0641-6c64-4a32-b5e8-03d761a7fcff/deploy-status)](https://app.netlify.com/sites/tender-poitras-265ea2/deploys)
 
 ### url
-- https://5da971adc25792ceaa0219b5--tender-poitras-265ea2.netlify.com/
+- https://tender-poitras-265ea2.netlify.com/
 
 ## Build Setup
 
