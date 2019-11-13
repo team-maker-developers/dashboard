@@ -97,9 +97,25 @@
             </v-row>
             <div class="text-right">
               <v-btn text @click="e1 = 1">キャンセル</v-btn>
-              <v-btn color="primary" @click="e1 = 2">
-                LINEでシェア
-              </v-btn>
+              <v-dialog v-model="dialog" width="500">
+                <template v-slot:activator="{ on }">
+                  <v-btn color="primary" dark v-on="on">
+                    LINEでシェア
+                  </v-btn>
+                </template>
+
+                <v-card class="py-8">
+                  <v-card-title class="headline py-8" primary-title>
+                    LINEでシェアに成功しました
+                  </v-card-title>
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn color="primary" @click="dialog = false">
+                      OK
+                    </v-btn>
+                  </v-card-actions>
+                </v-card>
+              </v-dialog>
             </div>
           </v-stepper-content>
         </v-stepper-items>
@@ -129,7 +145,8 @@ export default {
           status: '公開中',
           share: '2019/11/13'
         }
-      ]
+      ],
+      dialog: false
     }
   }
 }
