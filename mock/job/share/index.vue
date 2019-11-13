@@ -17,7 +17,7 @@
 
         <v-stepper-items>
           <v-stepper-content step="1">
-            <h3 class="py-3">社員へ送信するリード文を入力します</h3>
+            <h3 class="py-3">社員へ送信するリード文の入力</h3>
             <v-row justify="center">
               <v-col :lg="9">
                 <p>
