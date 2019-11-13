@@ -3,7 +3,7 @@
     <v-navigation-drawer v-if="isLoggedIn" v-model="drawer" app clipped>
       <v-list>
         <v-list-item-group>
-          <v-list-item v-for="(item, i) in items" :key="i">
+          <v-list-item v-for="(item, i) in items" :key="i" :to="item.link">
             <v-list-item-icon>
               <v-icon v-text="item.icon"></v-icon>
             </v-list-item-icon>
@@ -55,19 +55,23 @@ export default class DefaultLayout extends Vue {
       items: [
         {
           icon: 'mdi-home',
-          text: 'ホーム'
+          text: 'ホーム',
+          link: '/'
         },
         {
           icon: 'mdi-account-search',
-          text: '求人管理'
+          text: '求人管理',
+          link: '/job'
         },
         {
           icon: 'mdi-account-badge-horizontal',
-          text: '応募者管理'
+          text: '応募者管理',
+          link: '/application'
         },
         {
           icon: 'mdi-share-circle',
-          text: 'その他公報'
+          text: 'その他公報',
+          link: '/gazette'
         }
       ]
     }
