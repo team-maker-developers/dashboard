@@ -17,7 +17,7 @@
 
         <v-stepper-items>
           <v-stepper-content step="1">
-            <h3 class="py-3">社員へ送信するリード文の入力</h3>
+            <h3 class="py-3">社員へ送信するリード文を入力しましょう。</h3>
             <v-row justify="center">
               <v-col :lg="9">
                 <p>
@@ -46,7 +46,7 @@
                 </v-textarea>
               </v-col>
             </v-row>
-            <h2>シェアする求人</h2>
+            <h4 class="py-1">シェアする求人</h4>
             <v-row justify="center">
               <v-col :lg="9">
                 <v-data-table
@@ -65,11 +65,36 @@
             </div>
           </v-stepper-content>
           <v-stepper-content step="2">
-            <v-card
-              class="mb-12"
-              color="grey lighten-1"
-              height="200px"
-            ></v-card>
+            <h3 class="py-5">
+              以下の内容をLINEでシェアします。よろしいですか？
+            </h3>
+            <h4 class="py-1">リード文</h4>
+            <v-row justify="center">
+              <v-col :lg="9">
+                <p>
+                  〇〇を探しているご友人はいませんか？<br />
+                  あなたの紹介でご友人が入社された場合、紹介料の報酬をいたします。<br />
+                  一緒に働きたいと思える友人が居ましたら、ぜひシェアをお願いします。<br />
+                  https://team-maker.com/8555/3333
+                </p>
+              </v-col>
+            </v-row>
+            <h4 class="py-1">求人サイト</h4>
+            <v-row justify="center">
+              <v-col :lg="9">
+                <p>https://team-maker.com/3455/1222</p>
+              </v-col>
+            </v-row>
+            <h4 class="py-1">シェアする求人</h4>
+            <v-row justify="center">
+              <v-col :lg="9">
+                <v-data-table
+                  :headers="headers"
+                  :items="jobs"
+                  hide-default-footer
+                ></v-data-table>
+              </v-col>
+            </v-row>
             <div class="text-right">
               <v-btn text @click="e1 = 1">キャンセル</v-btn>
               <v-btn color="primary" @click="e1 = 2">
