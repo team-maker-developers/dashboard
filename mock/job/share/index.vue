@@ -17,11 +17,42 @@
 
         <v-stepper-items>
           <v-stepper-content step="1">
-            <v-card
-              class="mb-12"
-              color="grey lighten-1"
-              height="200px"
-            ></v-card>
+            <h3 class="py-3">社員へ送信するリード文を入力します</h3>
+            <p>
+              社員へ求人の拡散要望を配信します。<br />社員が拡散したくなるようなリード文を入力しましょう。
+            </p>
+            <p
+              class="
+              text-right
+              caption
+              font-weight-thin
+              mb-1"
+              style="text-decoration-line: underline;"
+            >
+              デフォルト文を編集する
+            </p>
+            <v-textarea
+              filled
+              auto-grow
+              label="リード文"
+              rows="7"
+              row-height="30"
+              value="〇〇を探しているご友人はいませんか？
+あなたの紹介でご友人が入社された場合、紹介料の報酬をいたします。
+一緒に働きたいと思える友人が居ましたら、ぜひシェアをお願いします。"
+            >
+            </v-textarea>
+            <h2>シェアする求人</h2>
+            <v-row justify="center">
+              <v-col :lg="9">
+                <v-data-table
+                  :headers="headers"
+                  :items="jobs"
+                  hide-default-footer
+                ></v-data-table>
+              </v-col>
+            </v-row>
+
             <div class="text-right">
               <v-btn text justify-end>キャンセル</v-btn>
               <v-btn color="primary" justify-end @click="e1 = 2">
@@ -51,7 +82,25 @@
 export default {
   data() {
     return {
-      e1: 0
+      e1: 0,
+      headers: [
+        {
+          text: 'No',
+          align: 'left',
+          value: 'no'
+        },
+        { text: '求人', value: 'job' },
+        { text: '公開ステータス', value: 'status' },
+        { text: '前回シェア日', value: 'share' }
+      ],
+      jobs: [
+        {
+          no: 1,
+          job: '港区・渋谷区で働く訪問看護師',
+          status: '公開中',
+          share: '2019/11/13'
+        }
+      ]
     }
   }
 }
