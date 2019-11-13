@@ -15,11 +15,12 @@
       </v-list>
     </v-navigation-drawer>
     <v-app-bar color="primary" app clipped-left dark>
-      <v-app-bar-nav-icon
-        v-if="isLoggedIn"
-        v-show="$vuetify.breakpoint.mdAndDown"
-        @click.stop="drawer = !drawer"
-      />
+      <template v-if="isLoggedIn">
+        <v-app-bar-nav-icon
+          v-show="$vuetify.breakpoint.mdAndDown"
+          @click.stop="drawer = !drawer"
+        />
+      </template>
       <v-toolbar-title>Team Maker</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-spacer></v-spacer>
