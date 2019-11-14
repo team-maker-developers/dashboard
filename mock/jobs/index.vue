@@ -46,7 +46,7 @@ export default {
       listitems: [
         {
           title: 'LINEでシェア',
-          link: '/job/share'
+          link: '/jobs/shares/create'
         },
         { title: '下書きに戻す' },
         { title: '削除' }

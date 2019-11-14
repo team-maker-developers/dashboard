@@ -62,17 +62,17 @@ export default class DefaultLayout extends Vue {
         {
           icon: 'mdi-account-search',
           text: '求人管理',
-          link: '/job'
+          link: '/jobs'
         },
         {
           icon: 'mdi-account-badge-horizontal',
           text: '応募者管理',
-          link: '/application'
+          link: '/applications'
         },
         {
           icon: 'mdi-share-circle',
           text: 'その他公報',
-          link: '/gazette'
+          link: '/gazettes'
         }
       ]
     }
