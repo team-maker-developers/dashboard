@@ -10,7 +10,7 @@
 import { Vue, Component } from 'nuxt-property-decorator'
 import { Context } from '@nuxt/types'
 
-@Component({ middleware: ['initial-form-data'] })
+@Component({ middleware: ['initialize-form-data'] })
 export default class RedirectLoginVue extends Vue {
   asyncData({ env, query }: Context) {
     return {
