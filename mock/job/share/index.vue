@@ -2,14 +2,14 @@
   <div>
     <v-container>
       <h2>LINEで求人をシェア</h2>
-      <v-stepper v-model="stepper">
+      <v-stepper v-model="current_step">
         <v-stepper-header>
           <v-divider></v-divider>
-          <v-stepper-step :complete="stepper > 1" step="1">
+          <v-stepper-step :complete="current_step > 1" step="1">
             リード文を入力する
           </v-stepper-step>
           <v-divider></v-divider>
-          <v-stepper-step :complete="stepper > 2" step="2">
+          <v-stepper-step :complete="current_step > 2" step="2">
             LINEでシェアする
           </v-stepper-step>
           <v-divider></v-divider>
@@ -57,7 +57,7 @@
             </v-row>
             <div class="text-right">
               <v-btn text justify-end>キャンセル</v-btn>
-              <v-btn color="primary" justify-end @click="stepper = 2">
+              <v-btn color="primary" justify-end @click="current_step = 2">
                 次へ
               </v-btn>
             </div>
@@ -94,7 +94,7 @@
               </v-col>
             </v-row>
             <div class="text-right">
-              <v-btn text @click="stepper = 1">キャンセル</v-btn>
+              <v-btn text @click="current_step = 1">キャンセル</v-btn>
               <v-dialog v-model="dialog" width="500">
                 <template v-slot:activator="{ on }">
                   <v-btn color="primary" dark v-on="on">
@@ -124,7 +124,7 @@
 export default {
   data() {
     return {
-      stepper: 0,
+      current_step: 0,
       headers: [
         {
           text: 'No',
