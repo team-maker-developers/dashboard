@@ -55,18 +55,12 @@ export default class Login extends VuexModule implements LoginState {
     formData.append('grant_type', 'password')
     formData.append('username', payload.email)
     formData.append('password', payload.password)
-    return await axios.post(payload.url, formData).then((ret)=>{
-      console.log("postEmailLogin then")
-      console.log(ret)
-      if(ret.status == 200){
-        console.log("login successed");
-        this.setLoggedIn(ret.data.access_token)
+    return await axios.post(payload.url, formData).then((loginResult)=>{
+      const { status, data } = loginResult
+      if(status == 200){
+        this.setLoggedIn(data.access_token)
       }
-      else{
-        console.log("login failed");
-      }
-
-      return ret
+      return loginResult
     })
   }
 
