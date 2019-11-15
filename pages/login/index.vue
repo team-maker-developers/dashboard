@@ -45,6 +45,10 @@ export default class LoginVue extends Vue {
     return LoginStore.clientId
   }
 
+  set clientId(clientId) {
+    LoginStore.setClientId(clientId)
+  }
+
   get emailLoginUrl(): string {
     return `${this.apiDomain}/api/login/${this.clientId}/email`
   }
