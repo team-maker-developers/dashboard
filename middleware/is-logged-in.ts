@@ -4,7 +4,7 @@ const isLoggedIn: Middleware = (context: Context) => {
   const { store, redirect, route, env } = context
   
   if (env.isMock) {
-    store.commit('login/setIsLoggedIn', true)
+    store.commit('login/setLoggedIn', 'dummy_token')
     return
   }
 

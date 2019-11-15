@@ -4,11 +4,13 @@ import { Action, Module, Mutation, VuexModule } from 'vuex-module-decorators'
 export interface LoginState {
   clientId: string
   isLoggedIn: boolean
+  accessToken: string
 }
   
 @Module({ stateFactory: true, namespaced: true, name: 'login' })
 export default class Login extends VuexModule implements LoginState {
   isLoggedIn: boolean = false
+  accessToken: string = ''
   clientId: string = ''
   apiClientId: string = ''
   apiClinetSecret: string = ''
@@ -27,8 +29,16 @@ export default class Login extends VuexModule implements LoginState {
   // TODO:ログイン判定をブールではなく、トークンが存在するかどうかにする
   // middleware: is-logged-inのmutationもあわせて、修正する
   @Mutation
-  setIsLoggedIn(isLoggedIn: boolean) {
-    this.isLoggedIn = isLoggedIn
+  setLoggedIn( accessToken: string ) {
+    console.log(accessToken);
+    this.accessToken = accessToken
+    this.isLoggedIn = true;
+  }
+
+  @Mutation
+  setLoggedOut() {
+    this.accessToken = '';
+    this.isLoggedIn = false;
   }
 
   get baseFormData(): FormData {
@@ -45,8 +55,19 @@ export default class Login extends VuexModule implements LoginState {
     formData.append('grant_type', 'password')
     formData.append('username', payload.email)
     formData.append('password', payload.password)
+    return await axios.post(payload.url, formData).then((ret)=>{
+      console.log("postEmailLogin then")
+      console.log(ret)
+      if(ret.status == 200){
+        console.log("login successed");
+        this.setLoggedIn(ret.data.access_token)
+      }
+      else{
+        console.log("login failed");
+      }
 
-    return await axios.post(payload.url, formData)
+      return ret
+    })
   }
 
   @Action
