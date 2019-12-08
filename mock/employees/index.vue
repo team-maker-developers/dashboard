@@ -10,7 +10,7 @@
             class="elevation-1"
           >
             <template v-slot:item.toggleValid="{ item }">
-              <v-btn outlined small color="secondary">{{
+              <v-btn outlined small :color="getColor(item.status)">{{
                 item.toggleValid
               }}</v-btn>
             </template>
@@ -117,6 +117,12 @@ export default {
           toggleValid: '有効にする'
         }
       ]
+    }
+  },
+  methods: {
+    getColor(status) {
+      if (status === '有効') return 'secoundary'
+      else return 'primary'
     }
   }
 }
