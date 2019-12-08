@@ -14,23 +14,8 @@
                 item.toggleValid
               }}</v-btn>
             </template>
-            <template v-slot:item.others="{ item }">
-              <v-menu top offset-y>
-                <template v-slot:activator="{ on }">
-                  <v-btn color="secondary" small outlined v-on="on">
-                    {{ item.others }}
-                  </v-btn>
-                </template>
-                <v-list>
-                  <v-list-item
-                    v-for="(listitem, index) in listitems"
-                    :key="index"
-                    :to="listitem.link"
-                  >
-                    <v-list-item-title>{{ listitem.title }}</v-list-item-title>
-                  </v-list-item>
-                </v-list>
-              </v-menu>
+            <template v-slot:item.image="{ item }">
+              <v-img :src="item.image" aspect-ratio="2" contain></v-img>
             </template>
           </v-data-table>
         </v-col>
@@ -42,15 +27,6 @@
 export default {
   data() {
     return {
-      listitems: [
-        {
-          title: 'LINEでシェア',
-          link: '/jobs/shares/create'
-        },
-        { title: '下書きに戻す' },
-        { title: '削除' }
-      ],
-      dialog: false,
       headers: [
         {
           text: 'No',
@@ -58,6 +34,7 @@ export default {
           value: 'no'
         },
         { text: '名前', value: 'name' },
+        { text: 'アイコン', value: 'image' },
         { text: 'ステータス', value: 'status' },
         { text: '権限', value: 'role' },
         { text: '登録日', value: 'created_at' },
@@ -68,6 +45,7 @@ export default {
         {
           no: 1,
           name: '會田 朋也',
+          image: 'https://picsum.photos/510/300?random',
           status: '有効',
           role: '人事担当者',
           created_at: '2019/12/05 12:00:00',
@@ -77,6 +55,7 @@ export default {
         {
           no: 2,
           name: '布村',
+          image: 'https://picsum.photos/510/300?random',
           status: '有効',
           role: '社員',
           created_at: '2019/12/05 12:00:00',
@@ -86,6 +65,7 @@ export default {
         {
           no: 3,
           name: 'だいすけ',
+          image: 'https://picsum.photos/510/300?random',
           status: '無効',
           role: '社員',
           created_at: '2019/12/05 12:00:00',
@@ -95,6 +75,7 @@ export default {
         {
           no: 4,
           name: 'ごとう',
+          image: 'https://picsum.photos/510/300?random',
           status: '無効',
           role: '社員',
           created_at: '2019/12/05 12:00:00',
@@ -104,6 +85,7 @@ export default {
         {
           no: 5,
           name: 'さとう',
+          image: 'https://picsum.photos/510/300?random',
           status: '無効',
           role: '社員',
           created_at: '2019/12/05 12:00:00',
@@ -113,6 +95,7 @@ export default {
         {
           no: 6,
           name: 'ふじわら',
+          image: 'https://picsum.photos/510/300?random',
           status: '無効',
           role: '社員',
           created_at: '2019/12/05 12:00:00',
