@@ -9,8 +9,10 @@
             :items="employees"
             class="elevation-1"
           >
-            <template v-slot:item.edit="{ item }">
-              <v-btn outlined small color="secondary">{{ item.edit }}</v-btn>
+            <template v-slot:item.toggleValid="{ item }">
+              <v-btn outlined small color="secondary">{{
+                item.toggleValid
+              }}</v-btn>
             </template>
             <template v-slot:item.others="{ item }">
               <v-menu top offset-y>
@@ -60,8 +62,7 @@ export default {
         { text: '権限', value: 'role' },
         { text: '登録日', value: 'created_at' },
         { text: '更新日', value: 'updated_at' },
-        { text: '', value: 'edit' },
-        { text: '', value: 'others' }
+        { text: '', value: 'toggleValid' }
       ],
       employees: [
         {
@@ -71,8 +72,52 @@ export default {
           role: '人事担当者',
           created_at: '2019/12/05 12:00:00',
           updated_at: '2019/12/05 12:00:00',
-          edit: '編集',
-          others: '・・・'
+          toggleValid: '-'
+        },
+        {
+          no: 2,
+          name: '布村',
+          status: '有効',
+          role: '社員',
+          created_at: '2019/12/05 12:00:00',
+          updated_at: '2019/12/05 12:00:00',
+          toggleValid: '無効にする'
+        },
+        {
+          no: 3,
+          name: 'だいすけ',
+          status: '無効',
+          role: '社員',
+          created_at: '2019/12/05 12:00:00',
+          updated_at: '2019/12/05 12:00:00',
+          toggleValid: '有効にする'
+        },
+        {
+          no: 4,
+          name: 'ごとう',
+          status: '無効',
+          role: '社員',
+          created_at: '2019/12/05 12:00:00',
+          updated_at: '2019/12/05 12:00:00',
+          toggleValid: '有効にする'
+        },
+        {
+          no: 5,
+          name: 'さとう',
+          status: '無効',
+          role: '社員',
+          created_at: '2019/12/05 12:00:00',
+          updated_at: '2019/12/05 12:00:00',
+          toggleValid: '有効にする'
+        },
+        {
+          no: 6,
+          name: 'ふじわら',
+          status: '無効',
+          role: '社員',
+          created_at: '2019/12/05 12:00:00',
+          updated_at: '2019/12/05 12:00:00',
+          toggleValid: '有効にする'
         }
       ]
     }
