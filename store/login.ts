@@ -26,11 +26,8 @@ export default class Login extends VuexModule implements LoginState {
     this.apiClinetSecret = apiClinetSecret
   }
 
-  // TODO:ログイン判定をブールではなく、トークンが存在するかどうかにする
-  // middleware: is-logged-inのmutationもあわせて、修正する
   @Mutation
   setLoggedIn( accessToken: string ) {
-    console.log(accessToken);
     this.accessToken = accessToken
     this.isLoggedIn = true;
   }
