@@ -25,9 +25,24 @@
       <v-spacer></v-spacer>
       <v-spacer></v-spacer>
       <div v-if="isLoggedIn" class="d-flex align-center">
-        <v-btn icon>
-          <v-icon>mdi-settings</v-icon>
-        </v-btn>
+        <div class="text-center">
+          <v-menu offset-y>
+            <template v-slot:activator="{ on }">
+              <v-btn icon v-on="on">
+                <v-icon>mdi-settings</v-icon>
+              </v-btn>
+            </template>
+            <v-list>
+              <v-list-item
+                v-for="(item, index) in settings"
+                :key="index"
+                :to="item.link"
+              >
+                <v-list-item-title>{{ item.title }}</v-list-item-title>
+              </v-list-item>
+            </v-list>
+          </v-menu>
+        </div>
         <v-btn icon>
           <v-icon>mdi-bell</v-icon>
         </v-btn>
@@ -74,6 +89,11 @@ export default class DefaultLayout extends Vue {
           text: 'その他公報',
           link: '/gazettes'
         }
+      ],
+      settings: [
+        { title: '社員管理', link: '/employees' },
+        { title: 'LINE設定', link: '/lines' },
+        { title: 'パスワード変更', link: '/password' }
       ]
     }
   }
