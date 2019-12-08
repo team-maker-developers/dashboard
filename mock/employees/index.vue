@@ -3,7 +3,7 @@
     <v-container>
       <h2>社員一覧</h2>
       <v-row justify="center">
-        <v-col :lg="9">
+        <v-col>
           <v-data-table
             :headers="headers"
             :items="employees"
@@ -35,6 +35,8 @@ export default {
         },
         { text: '名前', value: 'name' },
         { text: 'アイコン', value: 'image' },
+        { text: 'メッセージ', value: 'message' },
+        { text: 'ユーザーID', value: 'userId' },
         { text: 'ステータス', value: 'status' },
         { text: '権限', value: 'role' },
         { text: '登録日', value: 'created_at' },
@@ -46,6 +48,8 @@ export default {
           no: 1,
           name: '會田 朋也',
           image: 'https://picsum.photos/510/300?random',
+          message: 'こんにちは',
+          userId: '123456789',
           status: '有効',
           role: '人事担当者',
           created_at: '2019/12/05 12:00:00',
@@ -56,6 +60,8 @@ export default {
           no: 2,
           name: '布村',
           image: 'https://picsum.photos/510/300?random',
+          message: 'こんにちは',
+          userId: '123456789',
           status: '有効',
           role: '社員',
           created_at: '2019/12/05 12:00:00',
@@ -66,6 +72,8 @@ export default {
           no: 3,
           name: 'だいすけ',
           image: 'https://picsum.photos/510/300?random',
+          message: 'こんにちは',
+          userId: '123456789',
           status: '無効',
           role: '社員',
           created_at: '2019/12/05 12:00:00',
@@ -76,6 +84,8 @@ export default {
           no: 4,
           name: 'ごとう',
           image: 'https://picsum.photos/510/300?random',
+          message: 'こんにちは',
+          userId: '123456789',
           status: '無効',
           role: '社員',
           created_at: '2019/12/05 12:00:00',
@@ -86,6 +96,8 @@ export default {
           no: 5,
           name: 'さとう',
           image: 'https://picsum.photos/510/300?random',
+          message: 'こんにちは',
+          userId: '123456789',
           status: '無効',
           role: '社員',
           created_at: '2019/12/05 12:00:00',
@@ -96,6 +108,8 @@ export default {
           no: 6,
           name: 'ふじわら',
           image: 'https://picsum.photos/510/300?random',
+          message: 'こんにちは',
+          userId: '123456789',
           status: '無効',
           role: '社員',
           created_at: '2019/12/05 12:00:00',
