@@ -37,10 +37,10 @@ export default {
         { text: 'アイコン', value: 'image' },
         { text: 'メッセージ', value: 'message' },
         { text: 'ユーザーID', value: 'userId' },
-        { text: 'ステータス', value: 'status' },
         { text: '権限', value: 'role' },
         { text: '登録日', value: 'created_at' },
         { text: '更新日', value: 'updated_at' },
+        { text: 'ステータス', value: 'status' },
         { text: '', value: 'toggleValid' }
       ],
       employees: [
