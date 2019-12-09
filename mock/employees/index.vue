@@ -38,8 +38,6 @@ export default {
         { text: 'メッセージ', value: 'message' },
         { text: 'ユーザーID', value: 'userId' },
         { text: '権限', value: 'role' },
-        { text: '登録日', value: 'created_at' },
-        { text: '更新日', value: 'updated_at' },
         { text: 'ステータス', value: 'status' },
         { text: '', value: 'toggleValid' }
       ],
@@ -52,8 +50,6 @@ export default {
           userId: '123456789',
           status: '有効',
           role: '人事担当者',
-          created_at: '2019/12/05 12:00:00',
-          updated_at: '2019/12/05 12:00:00',
           toggleValid: '-'
         },
         {
@@ -64,8 +60,6 @@ export default {
           userId: '123456789',
           status: '有効',
           role: '社員',
-          created_at: '2019/12/05 12:00:00',
-          updated_at: '2019/12/05 12:00:00',
           toggleValid: '無効にする'
         },
         {
@@ -76,8 +70,6 @@ export default {
           userId: '123456789',
           status: '無効',
           role: '社員',
-          created_at: '2019/12/05 12:00:00',
-          updated_at: '2019/12/05 12:00:00',
           toggleValid: '有効にする'
         },
         {
@@ -88,8 +80,6 @@ export default {
           userId: '123456789',
           status: '無効',
           role: '社員',
-          created_at: '2019/12/05 12:00:00',
-          updated_at: '2019/12/05 12:00:00',
           toggleValid: '有効にする'
         },
         {
@@ -100,8 +90,6 @@ export default {
           userId: '123456789',
           status: '無効',
           role: '社員',
-          created_at: '2019/12/05 12:00:00',
-          updated_at: '2019/12/05 12:00:00',
           toggleValid: '有効にする'
         },
         {
@@ -112,8 +100,6 @@ export default {
           userId: '123456789',
           status: '無効',
           role: '社員',
-          created_at: '2019/12/05 12:00:00',
-          updated_at: '2019/12/05 12:00:00',
           toggleValid: '有効にする'
         }
       ]
