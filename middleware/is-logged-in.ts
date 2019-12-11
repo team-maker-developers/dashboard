@@ -1,5 +1,5 @@
 import { Context, Middleware } from '@nuxt/types'
-
+import { LoginStore } from '@/store'
 const isLoggedIn: Middleware = (context: Context) => {
   const { store, redirect, route, env } = context
   
@@ -8,7 +8,8 @@ const isLoggedIn: Middleware = (context: Context) => {
     return
   }
 
-  if (store.state.login.isLoggedIn) {
+  console.log(LoginStore.isLoggedIn)
+  if (LoginStore.isLoggedIn) {
     return
   }
 
