@@ -24,7 +24,7 @@ export default class Login extends VuexModule implements LoginState {
     this.apiClinetSecret = apiClinetSecret
   }
 
-  get isLoggedIn(): boolean{
+  get isLoggedIn(): boolean {
     return this.accessToken === '' ? false : true;
   }
 

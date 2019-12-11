@@ -1,14 +1,13 @@
 import { Context, Middleware } from '@nuxt/types'
 import { LoginStore } from '@/store'
 const isLoggedIn: Middleware = (context: Context) => {
-  const { store, redirect, route, env } = context
+  const { redirect, route, env } = context
   
   if (env.isMock) {
-    store.commit('login/setLoggedIn', 'dummy_token')
+    LoginStore.setAccessToken('dummy_token');
     return
   }
 
-  console.log(LoginStore.isLoggedIn)
   if (LoginStore.isLoggedIn) {
     return
   }
