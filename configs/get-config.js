@@ -1,8 +1,8 @@
 require('dotenv').config()
 
 const nodeEnvValues = {
-  apiClinetId: process.env.API_CLIENT_ID || '',
-  apiClinetSecret: process.env.API_CLIENT_SECRET || ''
+  apiClientId: process.env.API_CLIENT_ID || '',
+  apiClientSecret: process.env.API_CLIENT_SECRET || ''
 }
 
 // 以下がデフォルト値になる
