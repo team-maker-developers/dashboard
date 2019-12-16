@@ -41,27 +41,38 @@ export default class Login extends VuexModule implements LoginState {
     return formData
   }
 
-  @Action
+  @Action({ rawError: true })
+  async fetchAccessToken({ url, formData }: any) {
+    const response = await axios.post(url, formData)
+    const { data } = response
+    this.setAccessToken(data.access_token)
+    return data.access_token
+  }
+
+  @Action({ rawError: true })
   async postEmailLogin(payload: any) {
     const formData = this.baseFormData
     formData.append('grant_type', 'password')
     formData.append('username', payload.email)
     formData.append('password', payload.password)
-    return await axios.post(payload.url, formData).then((loginResult)=>{
-      const { status, data } = loginResult
-      if(status == 200){
-        this.setAccessToken(data.access_token)
+    return await this.fetchAccessToken(
+      {
+        url: payload.url,
+        formData: formData
       }
-      return loginResult
-    })
+    )
   }
 
-  @Action
+  @Action({ rawError: true })
   async postSocialLogin(payload: any) {
     const formData = this.baseFormData
     formData.append('grant_type', 'socialite')
     formData.append('code', payload.code)
-
-    return await axios.post(payload.url, formData)
+    return await this.fetchAccessToken(
+      {
+        url: payload.url,
+        formData: formData
+      }
+    )
   }
 }
