@@ -6,15 +6,54 @@ export interface LoginState {
   accessToken: string
 }
 
-class EmailLoginPostParam {
-  email: string
-  password: string
+abstract class BasedLoginPost implements PostParam {
   url: string
+  apiClientId: string
+  apiClientSecret: string
+
+  get formData(): FormData {
+    const formData = new FormData()
+    formData.append('client_id', this.apiClientId)
+    formData.append('client_secret', this.apiClientSecret)
+    formData.append('scope', '*')
+    return formData
+  }
+
+  async getAccessToken() {
+    const response = await axios.post(this.url, this.formData)
+    const { data } = response
+    return data.access_token
+  }
+
 }
 
-class SocialLoginPostParam {
+class EmailLoginPost extends BasedLoginPost{
+  email: string
+  password: string
+
+  constructor(init: Partial<EmailLoginPost>) {
+    super()
+    Object.assign(this, init)
+  }
+
+  get formData(): FormData {
+    const formData = super.formData
+    formData.append('grant_type', 'password')
+    formData.append('username', this.email)
+    formData.append('password', this.password)
+    return formData
+  }
+}
+
+class SocialLoginPost extends BasedLoginPost{
   code: string
-  url: string
+
+  get formData(): FormData {
+    const formData = super.formData
+    formData.append('grant_type', 'socialite')
+    formData.append('code', this.code)
+    return formData
+  }
 }
 
 interface ClientData {
@@ -45,6 +84,13 @@ export default class Login extends VuexModule implements LoginState {
     this.apiClientSecret = apiClientSecret
   }
 
+  get clientData(): ClientData{
+    return {
+      apiClientId: this.apiClientId,
+      apiClientSecret: this.apiClientSecret
+    }
+  }
+
   get isLoggedIn(): boolean {
     return this.accessToken === '' ? false : true;
   }
@@ -71,21 +117,15 @@ export default class Login extends VuexModule implements LoginState {
   }
 
   @Action
-  async postEmailLogin(payload: EmailLoginPostParam) {
-    const formData = this.baseFormData
-    formData.append('grant_type', 'password')
-    formData.append('username', payload.email)
-    formData.append('password', payload.password)
-    return await this.fetchAccessToken(
-      {
-        url: payload.url,
-        formData: formData
-      }
-    )
+  async postEmailLogin(param: EmailLoginPost) {
+    const emailLoginPost = new EmailLoginPost(
+        { ...this.clientData, ...param }
+      )
+    this.setAccessToken( await emailLoginPost.getAccessToken() )
   }
 
   @Action
-  async postSocialLogin(payload: SocialLoginPostParam) {
+  async postSocialLogin(payload: SocialLoginPost) {
     const formData = this.baseFormData
     formData.append('grant_type', 'socialite')
     formData.append('code', payload.code)
