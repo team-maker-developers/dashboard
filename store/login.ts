@@ -6,13 +6,13 @@ export interface LoginState {
   accessToken: string
 }
 
-interface EmailLoginParam {
+class EmailLoginPostParam {
   email: string
   password: string
   url: string
 }
 
-interface SocialLoginParam {
+class SocialLoginPostParam {
   code: string
   url: string
 }
@@ -71,7 +71,7 @@ export default class Login extends VuexModule implements LoginState {
   }
 
   @Action
-  async postEmailLogin(payload: EmailLoginParam) {
+  async postEmailLogin(payload: EmailLoginPostParam) {
     const formData = this.baseFormData
     formData.append('grant_type', 'password')
     formData.append('username', payload.email)
@@ -85,7 +85,7 @@ export default class Login extends VuexModule implements LoginState {
   }
 
   @Action
-  async postSocialLogin(payload: SocialLoginParam) {
+  async postSocialLogin(payload: SocialLoginPostParam) {
     const formData = this.baseFormData
     formData.append('grant_type', 'socialite')
     formData.append('code', payload.code)
