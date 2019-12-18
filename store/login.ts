@@ -6,7 +6,7 @@ export interface LoginState {
   accessToken: string
 }
 
-abstract class BasedLoginPost implements PostParam {
+abstract class BasedLoginPost {
   url: string
   apiClientId: string
   apiClientSecret: string
@@ -48,6 +48,11 @@ class EmailLoginPost extends BasedLoginPost{
 class SocialLoginPost extends BasedLoginPost{
   code: string
 
+  constructor(init: Partial<SocialLoginPost>) {
+    super()
+    Object.assign(this, init)
+  }
+
   get formData(): FormData {
     const formData = super.formData
     formData.append('grant_type', 'socialite')
@@ -59,11 +64,6 @@ class SocialLoginPost extends BasedLoginPost{
 interface ClientData {
   apiClientId: string
   apiClientSecret: string
-}
-
-interface PostParam {
-  url: string
-  formData: FormData
 }
   
 @Module({ stateFactory: true, namespaced: true, name: 'login' })
@@ -100,22 +100,6 @@ export default class Login extends VuexModule implements LoginState {
     this.accessToken = accessToken
   }
 
-  get baseFormData(): FormData {
-    const formData = new FormData()
-    formData.append('client_id', this.apiClientId)
-    formData.append('client_secret', this.apiClientSecret)
-    formData.append('scope', '*')
-    return formData
-  }
-
-  @Action
-  async fetchAccessToken({ url, formData }: PostParam) {
-    const response = await axios.post(url, formData)
-    const { data } = response
-    this.setAccessToken(data.access_token)
-    return data.access_token
-  }
-
   @Action
   async postEmailLogin(param: EmailLoginPost) {
     const emailLoginPost = new EmailLoginPost(
@@ -125,15 +109,10 @@ export default class Login extends VuexModule implements LoginState {
   }
 
   @Action
-  async postSocialLogin(payload: SocialLoginPost) {
-    const formData = this.baseFormData
-    formData.append('grant_type', 'socialite')
-    formData.append('code', payload.code)
-    return await this.fetchAccessToken(
-      {
-        url: payload.url,
-        formData: formData
-      }
-    )
+  async postSocialLogin(param: SocialLoginPost) {
+    const socialLoginPost = new SocialLoginPost(
+        { ...this.clientData, ...param }
+      )
+    this.setAccessToken( await socialLoginPost.getAccessToken() )
   }
 }
