@@ -25,16 +25,16 @@ abstract class BasedLoginPost {
     return data.access_token
   }
 
+  set apiClientData({ apiClientId, apiClientSecret }: apiClientData) {
+    this.apiClientId = apiClientId
+    this.apiClientSecret = apiClientSecret
+  }
+
 }
 
-class EmailLoginPost extends BasedLoginPost {
+export class EmailLoginPost extends BasedLoginPost {
   email: string
   password: string
-
-  constructor(init: Partial<EmailLoginPost>) {
-    super()
-    Object.assign(this, init)
-  }
 
   get formData(): FormData {
     const formData = super.formData
@@ -45,13 +45,8 @@ class EmailLoginPost extends BasedLoginPost {
   }
 }
 
-class SocialLoginPost extends BasedLoginPost {
+export class SocialLoginPost extends BasedLoginPost {
   code: string
-
-  constructor(init: Partial<SocialLoginPost>) {
-    super()
-    Object.assign(this, init)
-  }
 
   get formData(): FormData {
     const formData = super.formData
@@ -101,18 +96,16 @@ export default class Login extends VuexModule implements LoginState {
   }
 
   @Action
-  async postEmailLogin(param: EmailLoginPost) {
-    const emailLoginPost = new EmailLoginPost(
-        { ...this.clientData, ...param }
-      )
+  async postEmailLogin(emailLoginPost: EmailLoginPost) {
+    emailLoginPost.apiClientData = this.clientData
+
     this.setAccessToken( await emailLoginPost.getAccessToken() )
   }
 
   @Action
-  async postSocialLogin(param: SocialLoginPost) {
-    const socialLoginPost = new SocialLoginPost(
-        { ...this.clientData, ...param }
-      )
+  async postSocialLogin(socialLoginPost: SocialLoginPost) {
+    socialLoginPost.apiClientData = this.clientData
+
     this.setAccessToken( await socialLoginPost.getAccessToken() )
   }
 }
