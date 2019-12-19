@@ -27,7 +27,7 @@ abstract class BasedLoginPost {
 
 }
 
-class EmailLoginPost extends BasedLoginPost{
+class EmailLoginPost extends BasedLoginPost {
   email: string
   password: string
 
@@ -45,7 +45,7 @@ class EmailLoginPost extends BasedLoginPost{
   }
 }
 
-class SocialLoginPost extends BasedLoginPost{
+class SocialLoginPost extends BasedLoginPost {
   code: string
 
   constructor(init: Partial<SocialLoginPost>) {
@@ -61,7 +61,7 @@ class SocialLoginPost extends BasedLoginPost{
   }
 }
 
-interface ClientData {
+interface apiClientData {
   apiClientId: string
   apiClientSecret: string
 }
@@ -79,12 +79,12 @@ export default class Login extends VuexModule implements LoginState {
   }
 
   @Mutation
-  setClientData({ apiClientId, apiClientSecret }: ClientData) {
+  setClientData({ apiClientId, apiClientSecret }: apiClientData) {
     this.apiClientId = apiClientId
     this.apiClientSecret = apiClientSecret
   }
 
-  get clientData(): ClientData{
+  get clientData(): apiClientData {
     return {
       apiClientId: this.apiClientId,
       apiClientSecret: this.apiClientSecret
