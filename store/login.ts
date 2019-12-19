@@ -19,12 +19,6 @@ abstract class BasedLoginPost {
     return formData
   }
 
-  async getAccessToken() {
-    const response = await axios.post(this.url, this.formData)
-    const { data } = response
-    return data.access_token
-  }
-
   set apiClientData({ apiClientId, apiClientSecret }: apiClientData) {
     this.apiClientId = apiClientId
     this.apiClientSecret = apiClientSecret
@@ -96,16 +90,22 @@ export default class Login extends VuexModule implements LoginState {
   }
 
   @Action
+  async getAccessToken(loginPost: BasedLoginPost) {
+    const response = await axios.post(loginPost.url, loginPost.formData)
+    const { data } = response
+    this.setAccessToken(data.access_token)
+    return data.access_token
+  }
+
+  @Action
   async postEmailLogin(emailLoginPost: EmailLoginPost) {
     emailLoginPost.apiClientData = this.clientData
-
-    this.setAccessToken( await emailLoginPost.getAccessToken() )
+    await this.getAccessToken(emailLoginPost)
   }
 
   @Action
   async postSocialLogin(socialLoginPost: SocialLoginPost) {
     socialLoginPost.apiClientData = this.clientData
-
-    this.setAccessToken( await socialLoginPost.getAccessToken() )
+    await this.getAccessToken(socialLoginPost)
   }
 }
