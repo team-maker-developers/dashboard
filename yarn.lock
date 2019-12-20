@@ -1254,7 +1254,7 @@
     webpack-node-externals "^1.7.2"
     webpackbar "^4.0.0"
 
-"@nuxtjs/apollo@^4.0.0-rc13.1":
+"@nuxtjs/apollo@^4.0.0-rc19":
   version "4.0.0-rc19"
   resolved "https://registry.yarnpkg.com/@nuxtjs/apollo/-/apollo-4.0.0-rc19.tgz#145b50c8e0185dac83c37f48ab685861f9005850"
   integrity sha512-OCUxdhz09vTA7jq4KrhdYw23PRXS4yHWST99Ohc1oSUiZUyNrmQc+VUNAz9bhSVjfHABrP1NP2FzKnBE1iEZhA==
@@ -8508,7 +8508,7 @@ number-is-nan@^1.0.0:
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
   integrity sha1-CXtgK1NCKlIsGvuHkDGDNpQaAR0=
 
-nuxt-property-decorator@^2.4.0:
+nuxt-property-decorator@^2.5.0:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/nuxt-property-decorator/-/nuxt-property-decorator-2.5.0.tgz#abb4311480044ac7c2a2aecfd11911b4a5a4832c"
   integrity sha512-Hxnq/wt/y4xJ0FcDDa1EclA7GqeYfhUZvDqCQoxzkm6eP/qo+IYKc02mJHI+KfTxby4St1npCK0rQgkWq1BO3g==
@@ -8518,7 +8518,7 @@ nuxt-property-decorator@^2.4.0:
     vuex "^3.1.1"
     vuex-class "^0.3.2"
 
-nuxt@^2.9.2:
+nuxt@^2.11.0:
   version "2.11.0"
   resolved "https://registry.yarnpkg.com/nuxt/-/nuxt-2.11.0.tgz#654664fe1a95af2014fd55c38ba2c732bfa5edc5"
   integrity sha512-Y7lastjYWIOppja0FaWozPfkvlmJ8uZSqWx0VbK7l5djbHls5jgUGag0iu6GsNNwCFTKpoAtptNHiWOsyMxStA==
