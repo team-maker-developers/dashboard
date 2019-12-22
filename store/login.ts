@@ -7,6 +7,11 @@ interface apiClientData {
   secret: string
 }
 
+interface loginToken {
+  accessToken: string
+  refreshToken: string
+}
+
 export interface LoginState {
   clientId: string
   accessToken: string
@@ -16,6 +21,7 @@ export interface LoginState {
 @Module({ stateFactory: true, namespaced: true, name: 'login' })
 export default class Login extends VuexModule implements LoginState {
   accessToken: string = ''
+  refreshToken: string = ''
   clientId: string = ''
   apiClientData: apiClientData|null = null
 
@@ -47,8 +53,9 @@ export default class Login extends VuexModule implements LoginState {
   }
 
   @Mutation
-  setAccessToken( accessToken: string ) {
-    this.accessToken = accessToken
+  setAccessToken( token: loginToken ) {
+    this.accessToken = token.accessToken
+    this.refreshToken = token.refreshToken
   }
 
   @Action
@@ -57,7 +64,7 @@ export default class Login extends VuexModule implements LoginState {
     const response = await axios.post(loginPost.url, formData)
     const { data } = response
 
-    this.setAccessToken(data.access_token)
+    this.setAccessToken(data)
     return data.access_token
   }
 

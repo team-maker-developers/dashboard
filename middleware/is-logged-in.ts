@@ -6,7 +6,10 @@ const isLoggedIn: Middleware = (context: Context) => {
   // 本来はアクセストークンを設定せず、モックの時だけisLoggedInの戻り値をTRUEにしたい。
   // しかし、envがisLoggedIn内で参照できないので、暫定的にアクセストークンを設定している
   if (env.isMock) {
-    loginStore.setAccessToken('dummy_token');
+    loginStore.setAccessToken({ 
+      accessToken: 'dummy_token',
+      refreshToken: 'dummy_token'
+    });
     return
   }
 
