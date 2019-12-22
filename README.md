@@ -22,3 +22,12 @@ $ yarn mock
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+
+## login設定
+- backendの環境構築を完了させる
+    - `php artisan migrate:fresh --seed` を実行
+    - `oauth_clinets` にデータができていることを確認する
+- adminのenvを設定する
+    - `oauth_clinets`.`password_client`がtrueのレコードの値を入力する
+        - API_CLIENT_ID = `oauth_clinets`.`id`
+        - API_CLIENT_SECRET = `oauth_clinets`.`secret`
