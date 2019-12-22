@@ -1,14 +1,16 @@
 import { Context, Middleware } from '@nuxt/types'
-
+import { loginStore } from '@/store'
 const isLoggedIn: Middleware = (context: Context) => {
-  const { store, redirect, route, env } = context
+  const { redirect, route, env } = context
   
+  // 本来はアクセストークンを設定せず、モックの時だけisLoggedInの戻り値をTRUEにしたい。
+  // しかし、envがisLoggedIn内で参照できないので、暫定的にアクセストークンを設定している
   if (env.isMock) {
-    store.commit('login/setIsLoggedIn', true)
+    loginStore.setAccessToken('dummy_token');
     return
   }
 
-  if (store.state.login.isLoggedIn) {
+  if (loginStore.isLoggedIn) {
     return
   }
 

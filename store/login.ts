@@ -1,17 +1,23 @@
 import axios from 'axios'
 import { Action, Module, Mutation, VuexModule } from 'vuex-module-decorators'
+import { LoginPost, EmailLoginPost, SocialLoginPost } from '~/models/login-post'
+
+interface apiClientData {
+  id: string
+  secret: string
+}
 
 export interface LoginState {
   clientId: string
-  isLoggedIn: boolean
+  accessToken: string
+  apiClientData: apiClientData|null
 }
-  
+
 @Module({ stateFactory: true, namespaced: true, name: 'login' })
 export default class Login extends VuexModule implements LoginState {
-  isLoggedIn: boolean = false
+  accessToken: string = ''
   clientId: string = ''
-  apiClientId: string = ''
-  apiClinetSecret: string = ''
+  apiClientData: apiClientData|null = null
 
   @Mutation
   setClientId(clientId: string) {
@@ -19,42 +25,49 @@ export default class Login extends VuexModule implements LoginState {
   }
 
   @Mutation
-  setClientData({ apiClientId, apiClinetSecret }: any) {
-    this.apiClientId = apiClientId
-    this.apiClinetSecret = apiClinetSecret
+  setClientData(apiClientData: apiClientData) {
+    this.apiClientData = apiClientData
   }
 
-  // TODO:ログイン判定をブールではなく、トークンが存在するかどうかにする
-  // middleware: is-logged-inのmutationもあわせて、修正する
+  get isLoggedIn(): boolean {
+    return this.accessToken !== ''
+  }
+
+  get getApiFormData(): (formData: FormData) => FormData {
+    return (formData: FormData) => {
+      if (!this.apiClientData) {
+        throw new Error('環境変数が登録されていません。')
+      }
+  
+      formData.append('client_id', this.apiClientData.id)
+      formData.append('client_secret', this.apiClientData.secret)
+      formData.append('scope', '*')
+      return formData
+    }
+  }
+
   @Mutation
-  setIsLoggedIn(isLoggedIn: boolean) {
-    this.isLoggedIn = isLoggedIn
-  }
-
-  get baseFormData(): FormData {
-    const formData = new FormData()
-    formData.append('client_id', this.apiClientId)
-    formData.append('client_secret', this.apiClinetSecret)
-    formData.append('scope', '*')
-    return formData
+  setAccessToken( accessToken: string ) {
+    this.accessToken = accessToken
   }
 
   @Action
-  async postEmailLogin(payload: any) {
-    const formData = this.baseFormData
-    formData.append('grant_type', 'password')
-    formData.append('username', payload.email)
-    formData.append('password', payload.password)
+  async getAccessToken(loginPost: LoginPost) {
+    const formData = this.getApiFormData(loginPost.formData)
+    const response = await axios.post(loginPost.url, formData)
+    const { data } = response
 
-    return await axios.post(payload.url, formData)
+    this.setAccessToken(data.access_token)
+    return data.access_token
   }
 
   @Action
-  async postSocialLogin(payload: any) {
-    const formData = this.baseFormData
-    formData.append('grant_type', 'socialite')
-    formData.append('code', payload.code)
+  async postEmailLogin(emailLoginPost: EmailLoginPost) {
+    await this.getAccessToken(emailLoginPost)
+  }
 
-    return await axios.post(payload.url, formData)
+  @Action
+  async postSocialLogin(socialLoginPost: SocialLoginPost) {
+    await this.getAccessToken(socialLoginPost)
   }
 }

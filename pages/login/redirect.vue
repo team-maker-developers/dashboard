@@ -9,6 +9,8 @@
 <script lang="ts">
 import { Vue, Component } from 'nuxt-property-decorator'
 import { Context } from '@nuxt/types'
+import { loginStore } from '@/store'
+import { SocialLoginPost } from '@/models/login-post'
 
 @Component({ middleware: ['initialize-form-data'] })
 export default class RedirectLoginVue extends Vue {
@@ -31,10 +33,7 @@ export default class RedirectLoginVue extends Vue {
   }
 
   mounted() {
-    this.$store.dispatch('login/postSocialLogin', {
-      code: this.code,
-      url: this.loginUrl
-    })
+    loginStore.postSocialLogin(new SocialLoginPost(this.loginUrl, this.code))
   }
 }
 </script>

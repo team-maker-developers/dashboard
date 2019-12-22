@@ -25,7 +25,7 @@
 <script lang="ts">
 import { Vue, Component } from 'nuxt-property-decorator'
 import { Context } from '@nuxt/types'
-import { LoginStore } from '@/store'
+import { loginStore } from '@/store'
 import EmailLoginForm from '@/components/login/email-login-form.vue'
 import LineLoginBtn from '@/components/login/line-login-btn.vue'
 
@@ -42,11 +42,11 @@ export default class LoginVue extends Vue {
   apiDomain: string
 
   get clientId(): string {
-    return LoginStore.clientId
+    return loginStore.clientId
   }
 
   set clientId(clientId) {
-    LoginStore.setClientId(clientId)
+    loginStore.setClientId(clientId)
   }
 
   get emailLoginUrl(): string {

@@ -8,19 +8,19 @@
 
 <script lang="ts">
 import { Vue, Component, Prop, Provide } from 'nuxt-property-decorator'
+import { loginStore } from '@/store'
+import { EmailLoginPost } from '@/models/login-post.ts'
 
 @Component
 export default class EmailLoginForm extends Vue {
   @Prop(String) loginUrl: string
-  @Provide() email = null
-  @Provide() password = null
+  @Provide() email: string = ''
+  @Provide() password: string = ''
 
   async postLogin() {
-    await this.$store.dispatch('login/postEmailLogin', {
-      url: this.loginUrl,
-      email: this.email,
-      password: this.password
-    })
+    await loginStore.postEmailLogin(
+      new EmailLoginPost(this.loginUrl, this.email, this.password)
+    )
   }
 }
 </script>

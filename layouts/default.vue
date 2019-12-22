@@ -59,12 +59,14 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { LoginStore } from '@/store'
+import { loginStore } from '@/store'
+
 @Component
 export default class DefaultLayout extends Vue {
   get isLoggedIn(): boolean {
-    return LoginStore.isLoggedIn
+    return loginStore.isLoggedIn
   }
+
   data() {
     return {
       drawer: true,
