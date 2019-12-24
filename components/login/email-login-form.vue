@@ -21,6 +21,10 @@ export default class EmailLoginForm extends Vue {
     await loginStore.postEmailLogin(
       new EmailLoginPost(this.loginUrl, this.email, this.password)
     )
+
+    if (loginStore.isLoggedIn) {
+      this.$router.push('index')
+    }
   }
 }
 </script>
