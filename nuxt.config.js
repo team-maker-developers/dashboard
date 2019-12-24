@@ -4,7 +4,7 @@ const environment = process.env.NODE_ENV || 'development'
 const envValues = getConfig(environment)
 
 export default {
-  mode: 'universal',
+  mode: 'spa',
   /*
    ** Headers of the page
    */
@@ -52,7 +52,8 @@ export default {
       default: {
         httpEndpoint: `${envValues.apiDomain}/graphql`
       }
-    }
+    },
+    errorHandler: '@/plugins/apollo/error-handler.js'
   },
 
   axios: {
