@@ -61,7 +61,7 @@
 import { Component, Vue } from 'vue-property-decorator'
 import { loginStore } from '@/store'
 
-@Component
+@Component({ middleware: ['fetch-client-id'] })
 export default class DefaultLayout extends Vue {
   get isLoggedIn(): boolean {
     return loginStore.isLoggedIn

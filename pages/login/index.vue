@@ -24,14 +24,14 @@
 
 <script lang="ts">
 import { Vue, Component } from 'nuxt-property-decorator'
-import { Context } from '@nuxt/types'
+import { Context } from '@nuxt/types' // eslint-disable-line no-unused-vars
 import { loginStore } from '@/store'
 import EmailLoginForm from '@/components/login/email-login-form.vue'
 import LineLoginBtn from '@/components/login/line-login-btn.vue'
 
 @Component({
   components: { EmailLoginForm, LineLoginBtn },
-  middleware: ['fetch-client-id', 'initialize-form-data']
+  middleware: ['initialize-form-data']
 })
 export default class LoginVue extends Vue {
   asyncData({ env }: Context) {
