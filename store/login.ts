@@ -8,8 +8,8 @@ interface apiClientData {
 }
 
 interface loginToken {
-  accessToken: string
-  refreshToken: string
+  access_token: string
+  refresh_token: string
 }
 
 export interface LoginState {
@@ -54,8 +54,15 @@ export default class Login extends VuexModule implements LoginState {
 
   @Mutation
   setAccessToken( token: loginToken ) {
-    this.accessToken = token.accessToken
-    this.refreshToken = token.refreshToken
+    this.accessToken = token.access_token
+    this.refreshToken = token.refresh_token
+  }
+
+  @Mutation
+  logout() {
+    this.accessToken = ''
+    this.refreshToken = ''
+    this.clientId = ''
   }
 
   @Action
