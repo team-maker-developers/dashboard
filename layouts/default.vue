@@ -69,7 +69,7 @@ export default class DefaultLayout extends Vue {
 
   data() {
     return {
-      drawer: true,
+      drawer: null,
       items: [
         {
           icon: 'mdi-home',
