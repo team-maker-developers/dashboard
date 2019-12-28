@@ -1,21 +1,21 @@
 import { Context, Middleware } from '@nuxt/types'
 import { loginStore } from '@/store'
 
-const fetchCliendId: Middleware = (context: Context) => {
+const fetchUniqueId: Middleware = (context: Context) => {
   const { app, query, route, redirect } = context
   // クライアントIDが存在しない場合は処理なし
-  if (!('client_id' in query && typeof query.client_id === 'string')) {
+  if (!('unique_id' in query && typeof query.unique_id === 'string')) {
     return
   }
 
   // 全く同一の場合は処理なし
-  if ( loginStore.clientId === query.client_id) {
+  if (loginStore.uniqueId === query.unique_id) {
     return
   }
 
   // ログイン画面もしくは、空の場合のみ、セットする
-  if (loginStore.clientId === '' ||　String(route.name).startsWith('login')) {
-    loginStore.setClientId(query.client_id)
+  if (loginStore.uniqueId === '' ||　String(route.name).startsWith('login')) {
+    loginStore.setUniqueId(query.unique_id)
     return
   }
 
@@ -24,4 +24,4 @@ const fetchCliendId: Middleware = (context: Context) => {
   redirect('/login')
 }
 
-export default fetchCliendId
+export default fetchUniqueId
