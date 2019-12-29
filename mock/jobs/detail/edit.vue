@@ -3,31 +3,31 @@
   <div>
     <v-container>
       <v-row justify="center">
-        <v-col :lg="9">
+        <v-col cols="12" :lg="9">
           <v-card outlined>
             <v-card-title class="headline">公開設定</v-card-title>
             <v-card-text>
               <v-row>
-                <v-col cols="2">
+                <v-col cols="4" :sm="2">
                   ステータス
                 </v-col>
-                <v-col cols="10">
+                <v-col cols="8" :sm="10">
                   作成中
                 </v-col>
               </v-row>
               <v-row>
-                <v-col cols="2">
+                <v-col cols="4" :sm="2">
                   URL
                 </v-col>
-                <v-col cols="10">
+                <v-col cols="8" :sm="10">
                   https://team-maker/111/222
                 </v-col>
               </v-row>
               <v-row>
-                <v-col cols="2">
+                <v-col cols="4" :sm="2">
                   掲載開始日
                 </v-col>
-                <v-col cols="10">
+                <v-col cols="8" :sm="10">
                   <v-menu
                     v-model="published_at"
                     :close-on-content-click="false"
@@ -53,10 +53,10 @@
                 </v-col>
               </v-row>
               <v-row>
-                <v-col cols="2">
+                <v-col cols="4" :sm="2">
                   有効期限
                 </v-col>
-                <v-col cols="10">
+                <v-col cols="8" :sm="10">
                   <v-menu
                     v-model="expired_at"
                     :close-on-content-click="false"
@@ -84,15 +84,15 @@
             </v-card-text>
           </v-card>
         </v-col>
-        <v-col :lg="9">
+        <v-col cols="12" :lg="9">
           <v-card outlined>
             <v-card-title class="headline">求人情報</v-card-title>
             <v-card-text>
               <v-row>
-                <v-col cols="2">
+                <v-col cols="4" :sm="2">
                   求人のタイトル
                 </v-col>
-                <v-col cols="10">
+                <v-col cols="8" :sm="10">
                   <v-text-field
                     v-model="name"
                     label="求人のタイトル"
@@ -103,10 +103,10 @@
                 </v-col>
               </v-row>
               <v-row>
-                <v-col cols="2">
+                <v-col cols="4" :sm="2">
                   就業形態
                 </v-col>
-                <v-col cols="10">
+                <v-col cols="8" :sm="10">
                   <v-select
                     :items="employment_categories"
                     label="就業形態"
@@ -114,10 +114,10 @@
                 </v-col>
               </v-row>
               <v-row>
-                <v-col cols="2">
+                <v-col cols="4" :sm="2">
                   契約期間
                 </v-col>
-                <v-col cols="10">
+                <v-col cols="8" :sm="10">
                   <v-text-field
                     v-model="contract_period"
                     label="契約期間"
@@ -128,10 +128,10 @@
                 </v-col>
               </v-row>
               <v-row>
-                <v-col cols="2">
+                <v-col cols="4" :sm="2">
                   業務内容
                 </v-col>
-                <v-col cols="10">
+                <v-col cols="8" :sm="10">
                   <!-- eslint-disable-next-line -->
                   <v-textarea
                     name="content"
@@ -159,10 +159,10 @@
               </v-row>
               <v-row>
                 <!-- TODO : 階層構造にも対応するため、複数選択も可能にする。 -->
-                <v-col cols="2">
+                <v-col cols="4" :sm="2">
                   業界、業種、職種
                 </v-col>
-                <v-col cols="10">
+                <v-col cols="8" :sm="10">
                   <v-text-field
                     v-model="industry"
                     label="業界、業種、職種"
@@ -173,10 +173,10 @@
                 </v-col>
               </v-row>
               <v-row>
-                <v-col cols="2">
+                <v-col cols="4" :sm="2">
                   給与
                 </v-col>
-                <v-col cols="10">
+                <v-col cols="8" :sm="10">
                   <!-- eslint-disable-next-line -->
                   <v-textarea
                     name="salary"
@@ -188,10 +188,10 @@
                 </v-col>
               </v-row>
               <v-row>
-                <v-col cols="2">
+                <v-col cols="4" :sm="2">
                   勤務地
                 </v-col>
-                <v-col cols="10">
+                <v-col cols="8" :sm="10">
                   <v-text-field
                     v-model="place"
                     label="勤務地"
@@ -202,10 +202,10 @@
                 </v-col>
               </v-row>
               <v-row>
-                <v-col cols="2">
+                <v-col cols="4" :sm="2">
                   勤務時間や休日など
                 </v-col>
-                <v-col cols="10">
+                <v-col cols="8" :sm="10">
                   <!-- eslint-disable-next-line -->
                   <v-textarea
                     name="work_datetime"
@@ -223,10 +223,10 @@
                 </v-col>
               </v-row>
               <v-row>
-                <v-col cols="2">
+                <v-col cols="4" :sm="2">
                   福利厚生
                 </v-col>
-                <v-col cols="10">
+                <v-col cols="8" :sm="10">
                   <!-- eslint-disable-next-line -->
                   <v-textarea
                     name="welfare"
@@ -241,15 +241,15 @@
             </v-card-text>
           </v-card>
         </v-col>
-        <v-col :lg="9">
+        <v-col cols="12" :lg="9">
           <v-card outlined>
             <v-card-title class="headline">その他情報</v-card-title>
             <v-card-text>
               <v-row>
-                <v-col cols="2">
+                <v-col cols="4" :sm="2">
                   その他
                 </v-col>
-                <v-col cols="10">
+                <v-col cols="8" :sm="10">
                   <!-- eslint-disable-next-line -->
                   <v-textarea
                     name="welfare"
