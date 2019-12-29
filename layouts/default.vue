@@ -94,7 +94,7 @@ export default class DefaultLayout extends Vue {
       ],
       settings: [
         { title: '社員管理', link: '/employees' },
-        { title: 'LINE設定', link: '/lines' },
+        { title: 'LINE設定', link: '/line' },
         { title: 'パスワード変更', link: '/password' }
       ]
     }
