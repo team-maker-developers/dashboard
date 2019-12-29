@@ -14,7 +14,16 @@
                     v-model="unique_id"
                     label="チャネルID"
                     required
+                    v-if="status === 'edit'"
                   ></v-text-field>
+                  <v-row v-if="status === 'save'">
+                    <v-col cols="4" :sm="2">
+                      チャネルID
+                    </v-col>
+                    <v-col cols="8" :sm="10">
+                      {{unique_id}}
+                    </v-col>
+                  </v-row>
                 </v-col>
               </v-row>
               <v-row>
@@ -128,7 +137,7 @@ export default {
   data() {
     return {
       status: 'save',
-      unique_id: '',
+      unique_id: '未設定',
       client_secret: '',
       redirect: '',
       internal_channel_access_token: '',
