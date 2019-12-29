@@ -84,7 +84,7 @@ export default class DefaultLayout extends Vue {
         {
           icon: 'mdi-account-badge-horizontal',
           text: '応募者管理',
-          link: '/applications'
+          link: '/applicants'
         },
         {
           icon: 'mdi-share-circle',
