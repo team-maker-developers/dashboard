@@ -13,7 +13,7 @@ interface loginToken {
 }
 
 export interface LoginState {
-  clientId: string
+  uniqueId: string
   accessToken: string
   apiClientData: apiClientData|null
 }
@@ -22,12 +22,12 @@ export interface LoginState {
 export default class Login extends VuexModule implements LoginState {
   accessToken: string = ''
   refreshToken: string = ''
-  clientId: string = ''
+  uniqueId: string = ''
   apiClientData: apiClientData|null = null
 
   @Mutation
-  setClientId(clientId: string) {
-    this.clientId = clientId
+  setUniqueId(uniqueId: string) {
+    this.uniqueId = uniqueId
   }
 
   @Mutation
@@ -62,7 +62,7 @@ export default class Login extends VuexModule implements LoginState {
   logout() {
     this.accessToken = ''
     this.refreshToken = ''
-    this.clientId = ''
+    this.uniqueId = ''
   }
 
   @Action
