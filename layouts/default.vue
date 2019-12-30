@@ -42,7 +42,7 @@
                 :key="settingIndex"
                 :to="item.link"
               >
-                <v-list-item-title>{{ item.title }}</v-list-item-title>
+                <v-list-item-title>{{ item.text }}</v-list-item-title>
               </v-list-item>
             </v-list>
           </v-menu>
@@ -63,7 +63,7 @@
                 :key="accountIndex"
                 :to="item.link"
               >
-                <v-list-item-title>{{ item.title }}</v-list-item-title>
+                <v-list-item-title>{{ item.text }}</v-list-item-title>
               </v-list-item>
             </v-list>
           </v-menu>
