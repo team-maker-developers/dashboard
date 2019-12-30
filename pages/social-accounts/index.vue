@@ -48,6 +48,7 @@ import {
 const getSocialAccountsQuery = gql`
   query getSocialAccounts {
     socialAccounts {
+      id
       image
       name
       profile
