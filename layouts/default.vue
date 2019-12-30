@@ -58,6 +58,7 @@
                 v-for="(item, index) in accounts"
                 :key="index"
                 :to="item.link"
+                @click.stop.prevent="accountsAction(item.method)"
               >
                 <v-list-item-title>{{ item.title }}</v-list-item-title>
               </v-list-item>
@@ -80,6 +81,17 @@ import { loginStore } from '@/store'
 export default class DefaultLayout extends Vue {
   get isLoggedIn(): boolean {
     return loginStore.isLoggedIn
+  }
+
+  logout() {
+    loginStore.logout()
+    this.$router.push('/')
+  }
+
+  accountsAction(method) {
+    if (typeof method !== 'undefined') {
+      this[method]()
+    }
   }
 
   data() {
@@ -112,8 +124,8 @@ export default class DefaultLayout extends Vue {
         { title: 'LINE設定', link: '/line' }
       ],
       accounts: [
-        { title: 'ログアウト', link: '/logout' },
-        { title: 'パスワード変更', link: '/password' }
+        { title: 'パスワード変更', link: '/password' },
+        { title: 'ログアウト', method: 'logout' }
       ]
     }
   }
