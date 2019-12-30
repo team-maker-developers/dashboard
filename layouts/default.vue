@@ -46,9 +46,24 @@
         <v-btn icon>
           <v-icon>mdi-bell</v-icon>
         </v-btn>
-        <v-btn icon>
-          <v-icon>mdi-account</v-icon>
-        </v-btn>
+        <div class="text-center">
+          <v-menu offset-y>
+            <template v-slot:activator="{ on }">
+              <v-btn icon v-on="on">
+                <v-icon>mdi-account</v-icon>
+              </v-btn>
+            </template>
+            <v-list>
+              <v-list-item
+                v-for="(item, index) in accounts"
+                :key="index"
+                :to="item.link"
+              >
+                <v-list-item-title>{{ item.title }}</v-list-item-title>
+              </v-list-item>
+            </v-list>
+          </v-menu>
+        </div>
       </div>
     </v-app-bar>
     <v-content>
@@ -94,7 +109,10 @@ export default class DefaultLayout extends Vue {
       ],
       settings: [
         { title: '社員管理', link: '/employees' },
-        { title: 'LINE設定', link: '/line' },
+        { title: 'LINE設定', link: '/line' }
+      ],
+      accounts: [
+        { title: 'ログアウト', link: '/logout' },
         { title: 'パスワード変更', link: '/password' }
       ]
     }
