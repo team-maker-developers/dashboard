@@ -29,6 +29,7 @@
       "@nuxt/types",
       "@nuxtjs/apollo",
       "@nuxtjs/axios",
+      "vue-apollo",
       "vue-cli-plugin-apollo"
     ]
   },
