@@ -50,9 +50,24 @@
         <v-btn icon>
           <v-icon>mdi-bell</v-icon>
         </v-btn>
-        <v-btn icon>
-          <v-icon>mdi-account</v-icon>
-        </v-btn>
+        <div class="text-center">
+          <v-menu offset-y>
+            <template v-slot:activator="{ on }">
+              <v-btn icon v-on="on">
+                <v-icon>mdi-account</v-icon>
+              </v-btn>
+            </template>
+            <v-list>
+              <v-list-item
+                v-for="(item, accountIndex) in accountItems"
+                :key="accountIndex"
+                :to="item.link"
+              >
+                <v-list-item-title>{{ item.title }}</v-list-item-title>
+              </v-list-item>
+            </v-list>
+          </v-menu>
+        </div>
       </div>
     </v-app-bar>
     <v-content>
@@ -67,8 +82,8 @@ import { loginStore } from '@/store'
 import {
   MenuItem, // eslint-disable-line no-unused-vars
   menuItems,
-  SettingItem, // eslint-disable-line no-unused-vars
-  settingItems
+  settingItems,
+  accountItems
 } from '@/components/constants/menu-items'
 
 @Component({ middleware: ['fetch-client-id'] })
@@ -80,6 +95,7 @@ export default class DefaultLayout extends Vue {
   // SPの場合、メニューを非表示にする
   drawer: Boolean | null = null
   menuItens: MenuItem[] = menuItems
-  settingItems: SettingItem[] = settingItems
+  settingItems: MenuItem[] = settingItems
+  accountItems: MenuItem[] = accountItems
 }
 </script>

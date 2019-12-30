@@ -21,19 +21,20 @@ export const menuItems: MenuItem[] = [
   }
 ]
 
-export const settingItems: SettingItem[]  = [
-  { title: 'ログイン申請', link: '/social-accounts' },
-  { title: 'LINE設定', link: '/line' },
-  { title: 'パスワード変更', link: '/password' }
+export const settingItems: MenuItem[]  = [
+  { text: 'ログイン申請', link: '/social-accounts' },
+  { text: 'LINE設定', link: '/line' },
+  { text: 'パスワード変更', link: '/password' }
+]
+
+
+export const accountItems: MenuItem[] = [
+  { text: 'ログアウト', link: '/logout' },
+  { text: 'パスワード変更', link: '/password' }
 ]
 
 export interface MenuItem {
-  icon: string
+  icon?: string
   text: string
-  link: string
-}
-
-export interface SettingItem {
-  title: string
   link: string
 }
