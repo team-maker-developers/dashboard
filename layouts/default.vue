@@ -3,7 +3,11 @@
     <v-navigation-drawer v-if="isLoggedIn" v-model="drawer" app clipped>
       <v-list>
         <v-list-item-group>
-          <v-list-item v-for="(item, i) in items" :key="i" :to="item.link">
+          <v-list-item
+            v-for="(item, menuIndex) in menuItens"
+            :key="menuIndex"
+            :to="item.link"
+          >
             <v-list-item-icon>
               <v-icon v-text="item.icon"></v-icon>
             </v-list-item-icon>
@@ -34,8 +38,8 @@
             </template>
             <v-list>
               <v-list-item
-                v-for="(item, index) in settings"
-                :key="index"
+                v-for="(item, settingIndex) in settingItems"
+                :key="settingIndex"
                 :to="item.link"
               >
                 <v-list-item-title>{{ item.title }}</v-list-item-title>
@@ -55,8 +59,8 @@
             </template>
             <v-list>
               <v-list-item
-                v-for="(item, index) in accounts"
-                :key="index"
+                v-for="(item, accountIndex) in accountItems"
+                :key="accountIndex"
                 :to="item.link"
               >
                 <v-list-item-title>{{ item.title }}</v-list-item-title>
@@ -75,6 +79,12 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { loginStore } from '@/store'
+import {
+  MenuItem, // eslint-disable-line no-unused-vars
+  menuItems,
+  settingItems,
+  accountItems
+} from '@/components/constants/menu-items'
 
 @Component({ middleware: ['fetch-client-id'] })
 export default class DefaultLayout extends Vue {
@@ -82,40 +92,10 @@ export default class DefaultLayout extends Vue {
     return loginStore.isLoggedIn
   }
 
-  data() {
-    return {
-      drawer: null,
-      items: [
-        {
-          icon: 'mdi-home',
-          text: 'ホーム',
-          link: '/'
-        },
-        {
-          icon: 'mdi-account-search',
-          text: '求人管理',
-          link: '/jobs'
-        },
-        {
-          icon: 'mdi-account-badge-horizontal',
-          text: '応募者管理',
-          link: '/applicants'
-        },
-        {
-          icon: 'mdi-share-circle',
-          text: 'その他公報',
-          link: '/gazettes'
-        }
-      ],
-      settings: [
-        { title: '社員管理', link: '/employees' },
-        { title: 'LINE設定', link: '/line' }
-      ],
-      accounts: [
-        { title: 'ログアウト', link: '/logout' },
-        { title: 'パスワード変更', link: '/password' }
-      ]
-    }
-  }
+  // SPの場合、メニューを非表示にする
+  drawer: Boolean | null = null
+  menuItens: MenuItem[] = menuItems
+  settingItems: MenuItem[] = settingItems
+  accountItems: MenuItem[] = accountItems
 }
 </script>
