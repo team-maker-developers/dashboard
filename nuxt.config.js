@@ -70,13 +70,13 @@ export default {
       dark: false,
       themes: {
         dark: {
-          primary: '#21cff3',
-          accent: '#FF4081',
-          secondary: '#ffe18d',
-          success: '#4CAF50',
-          info: '#2196F3',
-          warning: '#FB8C00',
-          error: '#FF5252'
+          primary: '#EC6D81',
+          accent: '#3578AF',
+          secondary: '#B365A7',
+          success: '#78E07D',
+          info: '#84C6FA',
+          warning: '#D8E704',
+          error: '#F51212'
         },
         light: {
           primary: '#EC6D81',

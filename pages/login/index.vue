@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-container>
-      <v-text-field v-model="clientId" label="会社番号" />
+      <v-text-field v-model="uniqueId" label="会社番号" />
     </v-container>
     <v-divider />
     <v-container>
@@ -41,20 +41,20 @@ export default class LoginVue extends Vue {
 
   apiDomain: string
 
-  get clientId(): string {
-    return loginStore.clientId
+  get uniqueId(): string {
+    return loginStore.uniqueId
   }
 
-  set clientId(clientId) {
-    loginStore.setClientId(clientId)
+  set uniqueId(uniqueId) {
+    loginStore.setUniqueId(uniqueId)
   }
 
   get emailLoginUrl(): string {
-    return `${this.apiDomain}/api/login/${this.clientId}/email`
+    return `${this.apiDomain}/api/login/${this.uniqueId}/email`
   }
 
   get loginUrl(): string {
-    return `${this.apiDomain}/login/${this.clientId}`
+    return `${this.apiDomain}/login/${this.uniqueId}`
   }
 }
 </script>

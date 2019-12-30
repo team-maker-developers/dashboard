@@ -17,19 +17,19 @@ export default class RedirectLoginVue extends Vue {
   asyncData({ env, query }: Context) {
     return {
       apiDomain: env.apiDomain,
-      clientId: query.client_id,
+      uniqueId: query.unique_id,
       provider: query.provider,
       code: query.code
     }
   }
 
   code: string
-  clientId: string
+  uniqueId: string
   provider: string
   apiDomain: string
 
   get loginUrl(): string {
-    return `${this.apiDomain}/api/login/${this.clientId}/${this.provider}`
+    return `${this.apiDomain}/api/login/${this.uniqueId}/${this.provider}`
   }
 
   async mounted() {
@@ -39,7 +39,7 @@ export default class RedirectLoginVue extends Vue {
     )
 
     if (loginStore.isLoggedIn) {
-      this.$router.push('index')
+      this.$router.push('/')
     }
   }
 }

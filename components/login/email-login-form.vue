@@ -23,7 +23,7 @@ export default class EmailLoginForm extends Vue {
     )
 
     if (loginStore.isLoggedIn) {
-      this.$router.push('index')
+      this.$router.push('/')
     }
   }
 }
