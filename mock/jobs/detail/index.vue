@@ -24,10 +24,7 @@
                 </v-col>
               </v-row>
               <v-row>
-                <v-col cols="4" :sm="2">
-                  掲載開始日
-                </v-col>
-                <v-col cols="8" :sm="10">
+                <v-col cols="12">
                   <v-menu
                     v-model="published_at"
                     :close-on-content-click="false"
@@ -53,10 +50,7 @@
                 </v-col>
               </v-row>
               <v-row>
-                <v-col cols="4" :sm="2">
-                  有効期限
-                </v-col>
-                <v-col cols="8" :sm="10">
+                <v-col cols="12">
                   <v-menu
                     v-model="expired_at"
                     :close-on-content-click="false"
@@ -89,10 +83,7 @@
             <v-card-title class="headline">求人情報</v-card-title>
             <v-card-text>
               <v-row>
-                <v-col cols="4" :sm="2">
-                  求人のタイトル
-                </v-col>
-                <v-col cols="8" :sm="10">
+                <v-col cols="12">
                   <v-text-field
                     v-model="name"
                     label="求人のタイトル"
@@ -103,10 +94,7 @@
                 </v-col>
               </v-row>
               <v-row>
-                <v-col cols="4" :sm="2">
-                  就業形態
-                </v-col>
-                <v-col cols="8" :sm="10">
+                <v-col cols="12">
                   <v-select
                     :items="employment_categories"
                     label="就業形態"
@@ -114,10 +102,7 @@
                 </v-col>
               </v-row>
               <v-row>
-                <v-col cols="4" :sm="2">
-                  契約期間
-                </v-col>
-                <v-col cols="8" :sm="10">
+                <v-col cols="12">
                   <v-text-field
                     v-model="contract_period"
                     label="契約期間"
@@ -128,10 +113,7 @@
                 </v-col>
               </v-row>
               <v-row>
-                <v-col cols="4" :sm="2">
-                  業務内容
-                </v-col>
-                <v-col cols="8" :sm="10">
+                <v-col cols="12">
                   <!-- eslint-disable-next-line -->
                   <v-textarea
                     name="content"
@@ -159,10 +141,7 @@
               </v-row>
               <v-row>
                 <!-- TODO : 階層構造にも対応するため、複数選択も可能にする。 -->
-                <v-col cols="4" :sm="2">
-                  業界、業種、職種
-                </v-col>
-                <v-col cols="8" :sm="10">
+                <v-col cols="12">
                   <v-text-field
                     v-model="industry"
                     label="業界、業種、職種"
@@ -173,10 +152,7 @@
                 </v-col>
               </v-row>
               <v-row>
-                <v-col cols="4" :sm="2">
-                  給与
-                </v-col>
-                <v-col cols="8" :sm="10">
+                <v-col cols="12">
                   <!-- eslint-disable-next-line -->
                   <v-textarea
                     name="salary"
@@ -188,10 +164,7 @@
                 </v-col>
               </v-row>
               <v-row>
-                <v-col cols="4" :sm="2">
-                  勤務地
-                </v-col>
-                <v-col cols="8" :sm="10">
+                <v-col cols="12">
                   <v-text-field
                     v-model="place"
                     label="勤務地"
@@ -202,11 +175,8 @@
                 </v-col>
               </v-row>
               <v-row>
-                <v-col cols="4" :sm="2">
-                  勤務時間や休日など
-                </v-col>
-                <v-col cols="8" :sm="10">
-                  <!-- eslint-disable-next-line -->
+                <v-col cols="12">
+                <!-- eslint-disable-next-line -->
                   <v-textarea
                     name="work_datetime"
                     label="勤務時間や休日など"
@@ -223,11 +193,8 @@
                 </v-col>
               </v-row>
               <v-row>
-                <v-col cols="4" :sm="2">
-                  福利厚生
-                </v-col>
-                <v-col cols="8" :sm="10">
-                  <!-- eslint-disable-next-line -->
+                <v-col cols="12">
+                <!-- eslint-disable-next-line -->
                   <v-textarea
                     name="welfare"
                     label="福利厚生"
@@ -246,11 +213,8 @@
             <v-card-title class="headline">その他情報</v-card-title>
             <v-card-text>
               <v-row>
-                <v-col cols="4" :sm="2">
-                  その他
-                </v-col>
-                <v-col cols="8" :sm="10">
-                  <!-- eslint-disable-next-line -->
+                <v-col cols="12">
+                <!-- eslint-disable-next-line -->
                   <v-textarea
                     name="welfare"
                     label="その他"
@@ -267,22 +231,19 @@
     <v-card flat tile width="100%" class="blue-grey lighten-5">
       <v-card-text>
         <div class="d-flex justify-end pb-5">
-          <v-btn x-large color="secondary mx-2" dark to="form"
-            >キャンセル</v-btn
-          >
+          <v-btn x-large color="secondary mx-2" dark to="form">キャンセル</v-btn>
           <v-btn x-large color="primary mx-2" dark to="form">保存する</v-btn>
         </div>
       </v-card-text>
     </v-card>
     <!-- 最上位に表示するフッターで求人情報が見えなくなるのを防ぐ -->
-    <v-footer fixed="true" padless="true">
+    <v-footer fixed padless>
       <v-card flat tile width="100%" class="blue-grey lighten-5">
         <v-card-text>
           <div class="d-flex justify-end pb-5">
-            <v-btn large color="secondary" outlined class="mx-2" dark to=".."
-              >キャンセル</v-btn
-            >
-            <v-btn x-large color="primary" class="mx-2" dark to="draft">保存する</v-btn>
+            <v-btn x-large color="primary" outlined class="mx-2" to="..">キャンセル</v-btn>
+            <v-btn x-large color="primary" outlined class="mx-2" to="..">保存する</v-btn>
+            <v-btn x-large color="primary" class="mx-2">公開する</v-btn>
           </div>
         </v-card-text>
       </v-card>

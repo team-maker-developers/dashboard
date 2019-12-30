@@ -6,7 +6,7 @@
       <v-row justify="center">
         <v-col :lg="9">
           <div class="text-right">
-            <v-btn outlined small color="secondary" to="jobs/detail/edit" >新規作成</v-btn>
+            <v-btn outlined small color="primary" to="jobs/detail/" >新規作成</v-btn>
           </div>
         </v-col>
       </v-row>
@@ -14,12 +14,12 @@
         <v-col :lg="9">
           <v-data-table :headers="headers" :items="jobs" class="elevation-1">
             <template v-slot:item.edit="{ item }">
-              <v-btn outlined small color="secondary" to="jobs/detail/edit" >{{ item.edit }}</v-btn>
+              <v-btn outlined small color="primary" to="jobs/detail/" >{{ item.edit }}</v-btn>
             </template>
             <template v-slot:item.others="{ item }">
               <v-menu top offset-y>
                 <template v-slot:activator="{ on }">
-                  <v-btn color="secondary" small outlined v-on="on">
+                  <v-btn color="primary" small outlined v-on="on">
                     {{ item.others }}
                   </v-btn>
                 </template>

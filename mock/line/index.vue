@@ -125,7 +125,7 @@
       <v-card flat tile width="100%" class="blue-grey lighten-5">
         <v-card-text>
           <div class="d-flex justify-end pb-5">
-            <v-btn large outlined color="primary" class="mx-2" dark >キャンセル</v-btn>
+            <v-btn large outlined color="primary" class="mx-2" dark to="..">キャンセル</v-btn>
             <v-btn large color="primary" class="mx-2" dark >反映する</v-btn>
           </div>
         </v-card-text>
