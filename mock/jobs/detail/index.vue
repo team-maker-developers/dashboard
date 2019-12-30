@@ -85,6 +85,16 @@
               <v-row>
                 <v-col cols="12">
                   <v-text-field
+                    v-model="job_code"
+                    label="求人コード"
+                    placeholder="【例】111111"
+                    required
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="12">
+                  <v-text-field
                     v-model="name"
                     label="求人のタイトル"
                     placeholder="【例】港区・渋谷区で働く訪問看護師"
@@ -118,7 +128,7 @@
                   <v-textarea
                     name="content"
                     label="業務内容"
-                    placeholder="ご利用者様の自宅に訪問し、訪問看護業務を行っていただきます。
+                    placeholder="【例】ご利用者様の自宅に訪問し、訪問看護業務を行っていただきます。
 保険内、保険外のサービスを組み合わせて、ご利用者様の満足度の高いケアを提供します。
 できるかどうか不安な方もまずはお気軽にご相談ください。（フリーダイヤル：0120-XXX-XXX）
 ＜保険内＞
@@ -157,7 +167,7 @@
                   <v-textarea
                     name="salary"
                     label="給与"
-                    placeholder="年収 3,600,000円 ～ 7,200,000円（※想定月給 300,000円 ～600,000円）
+                    placeholder="【例】年収 3,600,000円 ～ 7,200,000円（※想定月給 300,000円 ～600,000円）
 ※ 経験・能力を考慮の上、決定します。
 週3日から常勤採用してます。"
                   ></v-textarea>
@@ -168,7 +178,7 @@
                   <v-text-field
                     v-model="place"
                     label="勤務地"
-                    placeholder="東京都●●区●●● X-XX-X XXビル2F（最寄駅：渋谷）"
+                    placeholder="【例】東京都●●区●●● X-XX-X XXビル2F（最寄駅：渋谷）"
                     :counter="255"
                     required
                   ></v-text-field>                  
@@ -180,7 +190,7 @@
                   <v-textarea
                     name="work_datetime"
                     label="勤務時間や休日など"
-                    placeholder="9:00 ～ 18:00(フレックスタイム制)
+                    placeholder="【例】9:00 ～ 18:00(フレックスタイム制)
 ※ライフスタイルに合わせて相談可能です。
 最短30分からの依頼もあります。
 夜間の依頼等もあるためお気軽にご相談下さい。
@@ -198,7 +208,7 @@
                   <v-textarea
                     name="welfare"
                     label="福利厚生"
-                    placeholder="◇ 労災保険
+                    placeholder="【例】◇ 労災保険
 ◇ 健康保険
 ◇ 厚生年金
 ◇ 雇用保険"
@@ -218,7 +228,7 @@
                   <v-textarea
                     name="welfare"
                     label="その他"
-                    placeholder="その他"
+                    placeholder="【例】その他"
                   ></v-textarea>
                 </v-col>
               </v-row>
@@ -231,8 +241,9 @@
     <v-card flat tile width="100%" class="blue-grey lighten-5">
       <v-card-text>
         <div class="d-flex justify-end pb-5">
-          <v-btn x-large color="secondary mx-2" dark to="form">キャンセル</v-btn>
-          <v-btn x-large color="primary mx-2" dark to="form">保存する</v-btn>
+            <v-btn x-large color="primary" outlined class="mx-2" to="..">キャンセル</v-btn>
+            <v-btn x-large color="primary" outlined class="mx-2" to="..">保存する</v-btn>
+            <v-btn x-large color="primary" class="mx-2">公開する</v-btn>
         </div>
       </v-card-text>
     </v-card>
