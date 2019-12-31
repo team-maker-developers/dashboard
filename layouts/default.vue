@@ -63,7 +63,7 @@
                 v-for="(item, accountIndex) in accountItems"
                 :key="accountIndex"
                 :to="item.link"
-                @click.stop.prevent="item.method"
+                @click="item.action"
               >
                 <v-list-item-title>{{ item.text }}</v-list-item-title>
               </v-list-item>
@@ -92,11 +92,6 @@ import {
 export default class DefaultLayout extends Vue {
   get isLoggedIn(): boolean {
     return loginStore.isLoggedIn
-  }
-
-  logout() {
-    loginStore.logout()
-    this.$router.push('/login')
   }
 
   // SPの場合、メニューを非表示にする
