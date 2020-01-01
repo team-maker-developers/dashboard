@@ -10,7 +10,7 @@ export const socialAccountHeaders: SocialAccountHeader[] = [
   { text: 'プロフィール', value: 'profile' },
   { text: 'ユーザーID', value: 'unique_id' },
   { text: 'ステータス', value: 'status' },
-  { text: 'アクション', value: 'chaneValid' }
+  { text: 'アクション', value: 'changeValid' }
 ]
 
 export interface SocialAccountHeader {

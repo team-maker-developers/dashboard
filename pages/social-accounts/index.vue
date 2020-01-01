@@ -15,7 +15,7 @@
             <template v-slot:item.status="{ item }">
               {{ item.user.is_valid ? '有効' : '無効' }}
             </template>
-            <template v-slot:item.chaneValid="{ item }">
+            <template v-slot:item.changeValid="{ item }">
               <v-btn
                 outlined
                 small

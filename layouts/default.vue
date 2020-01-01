@@ -58,10 +58,12 @@
               </v-btn>
             </template>
             <v-list>
+              <!-- TODO : ログアウト時にitem.method is not a function というエラーがでる-->
               <v-list-item
                 v-for="(item, accountIndex) in accountItems"
                 :key="accountIndex"
                 :to="item.link"
+                @click="item.action"
               >
                 <v-list-item-title>{{ item.text }}</v-list-item-title>
               </v-list-item>
