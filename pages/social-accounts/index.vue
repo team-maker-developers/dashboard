@@ -24,7 +24,7 @@
                   updateUserIsValid(
                     item.user.id,
                     // 変更するため、boolを反転させる
-                    !item.user.id_valid
+                    !item.user.is_valid
                   )
                 "
                 >{{ item.user.is_valid ? '無効にする' : '有効にする' }}
