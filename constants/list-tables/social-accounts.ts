@@ -1,4 +1,4 @@
-export const socialAccountHeaders: SocialAccountHeader[] = [
+export const socialAccountHeaders: TableHeader[] = [
   {
     text: 'ID',
     align: 'left',
@@ -12,9 +12,3 @@ export const socialAccountHeaders: SocialAccountHeader[] = [
   { text: 'ステータス', value: 'status' },
   { text: 'アクション', value: 'changeValid' }
 ]
-
-export interface SocialAccountHeader {
-  text: string
-  value: string
-  align?: string
-}

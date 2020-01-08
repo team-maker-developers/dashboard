@@ -1,4 +1,4 @@
-import { loginStore } from '@/store'
+import { loginStore } from './node_modules/@/store'
 
 export const menuItems: MenuItem[] = [
   {
@@ -63,10 +63,3 @@ export const accountItems: MenuItem[] = [
     action: (): void => {}
   }
 ]
-
-export interface MenuItem {
-  text: string
-  icon?: string
-  link?: string
-  action: () => any
-}
