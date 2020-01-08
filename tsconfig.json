@@ -31,6 +31,9 @@
       "@nuxtjs/axios",
       "vue-apollo",
       "vue-cli-plugin-apollo"
+    ],
+    "typeRoots": [
+      "types"
     ]
   },
   "exclude": [
