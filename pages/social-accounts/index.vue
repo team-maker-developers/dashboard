@@ -40,10 +40,7 @@
 <script lang="ts">
 import { Vue, Component } from 'nuxt-property-decorator'
 import gql from 'graphql-tag'
-import {
-  SocialAccountHeader, // eslint-disable-line no-unused-vars
-  socialAccountHeaders
-} from '@/components/constants/social-accounts-headers'
+import { socialAccountHeaders } from '@/components/constants/list-tables/social-accounts/headers'
 
 const getSocialAccountsQuery = gql`
   query getSocialAccounts {
@@ -71,8 +68,8 @@ const getSocialAccountsQuery = gql`
     }
   }
 } as any)
-export default class IndexVue extends Vue {
-  headers: SocialAccountHeader[] = socialAccountHeaders
+export default class ScialAccountsIndexVue extends Vue {
+  headers: TableHeader[] = socialAccountHeaders
 
   async updateUserIsValid(userId: string, changedIsValid: boolean) {
     // TODO: #39 エラー処理の方法を検討する

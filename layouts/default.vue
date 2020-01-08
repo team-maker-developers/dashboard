@@ -82,11 +82,10 @@
 import { Component, Vue } from 'vue-property-decorator'
 import { loginStore } from '@/store'
 import {
-  MenuItem, // eslint-disable-line no-unused-vars
   menuItems,
   settingItems,
   accountItems
-} from '@/components/constants/menu-items'
+} from '@/components/constants/header-menu-items'
 
 @Component({ middleware: ['fetch-client-id'] })
 export default class DefaultLayout extends Vue {
