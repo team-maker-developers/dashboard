@@ -85,7 +85,7 @@ import {
   menuItems,
   settingItems,
   accountItems
-} from '@/components/constants/header-menu-items'
+} from '@/constants/header-menu-items'
 
 @Component({ middleware: ['fetch-client-id'] })
 export default class DefaultLayout extends Vue {

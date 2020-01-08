@@ -40,7 +40,7 @@
 <script lang="ts">
 import { Vue, Component } from 'nuxt-property-decorator'
 import gql from 'graphql-tag'
-import { socialAccountHeaders } from '@/components/constants/list-tables/social-accounts/headers'
+import { socialAccountHeaders } from '@/constants/list-tables/social-accounts'
 
 const getSocialAccountsQuery = gql`
   query getSocialAccounts {
