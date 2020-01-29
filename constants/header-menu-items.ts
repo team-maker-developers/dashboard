@@ -50,11 +50,6 @@ export const accountItems: MenuItem[] = [
     text: 'ログアウト',
     action: (): void => {
       loginStore.logout()
-
-      // ログイン画面に遷移させる
-      // 　苦肉の策のため、より良い方法があれば、修正する
-      const windowObject: any = window
-      windowObject.$nuxt.$router.push('/login')
     }
   },
   {
