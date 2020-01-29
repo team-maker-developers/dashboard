@@ -4,9 +4,14 @@ declare interface TableHeader {
   align?: string
 }
 
+declare interface TableAction {
+  text: string
+  action: (id: number) => void
+}
+
 declare interface MenuItem {
   text: string
   icon?: string
   link?: string
-  action: () => any
+  action: () => void
 }
