@@ -39,27 +39,11 @@
 
 <script lang="ts">
 import { Vue, Component } from 'nuxt-property-decorator'
-import gql from 'graphql-tag'
-import { socialAccountHeaders } from '@/constants/list-tables/social-accounts'
-
-const getSocialAccountsQuery = gql`
-  query getSocialAccounts {
-    socialAccounts {
-      id
-      image
-      name
-      profile
-      unique_id
-      user {
-        id
-        is_valid
-      }
-      service {
-        name
-      }
-    }
-  }
-`
+import {
+  socialAccountHeaders,
+  getSocialAccountsQuery,
+  getUpdateUserMutation
+} from '@/constants/list-tables/social-accounts'
 
 @Component({
   apollo: {
@@ -72,22 +56,9 @@ export default class ScialAccountsIndexVue extends Vue {
   headers: TableHeader[] = socialAccountHeaders
 
   async updateUserIsValid(userId: string, changedIsValid: boolean) {
+    const updateUserMutation = getUpdateUserMutation(userId, changedIsValid)
     // TODO: #39 エラー処理の方法を検討する
-    await this.$apollo.mutate({
-      mutation: gql`
-        mutation($id: ID!, $isValid: Boolean) {
-          updateUser(id: $id, is_valid: $isValid) {
-            id
-            is_valid
-          }
-        }
-      `,
-      variables: {
-        id: userId,
-        isValid: changedIsValid
-      },
-      refetchQueries: [{ query: getSocialAccountsQuery }]
-    })
+    await this.$apollo.mutate(updateUserMutation)
   }
 }
 </script>
