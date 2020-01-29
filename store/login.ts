@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { rootState } from '@/store'
 import { Action, Module, Mutation, VuexModule } from 'vuex-module-decorators'
 import { LoginPost, EmailLoginPost, SocialLoginPost } from '~/models/login-post'
 
@@ -56,6 +57,7 @@ export default class Login extends VuexModule implements LoginState {
   setAccessToken( token: loginToken ) {
     this.accessToken = token.access_token
     this.refreshToken = token.refresh_token
+    rootState.app.$apolloHelpers.onLogin(this.accessToken)
   }
 
   @Mutation
@@ -63,6 +65,9 @@ export default class Login extends VuexModule implements LoginState {
     this.accessToken = ''
     this.refreshToken = ''
     this.uniqueId = ''
+
+    rootState.app.$apolloHelpers.onLogout()
+    rootState.$router.push('/login')
   }
 
   @Action
