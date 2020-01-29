@@ -14,15 +14,7 @@ const isLoggedIn: Middleware = (context: Context) => {
     return
   }
 
-  // ログインしているかどうかで、apolloにtokenを投入する
-  //  ※ $apolloHelpersでも、sessionを使っているため、以下のようにチェックする
-  if (loginStore.isLoggedIn) {
-    app.$apolloHelpers.onLogin(loginStore.accessToken)
-  } else {
-    app.$apolloHelpers.onLogout()
-  }
-
-  // 無限ループを防止するため、フラグを使っている
+  // 無限ループを防止するためのフラグ
   const isLoginPage = String(route.name).startsWith('login')
   if (loginStore.isLoggedIn && isLoginPage) {
     redirect('/')
