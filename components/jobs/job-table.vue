@@ -4,7 +4,12 @@
       -
     </template>
     <template v-slot:item.edit="{ item }">
-      <v-btn outlined small color="primary" :to="`jobs/detail?id=${item.id}`">
+      <v-btn
+        outlined
+        small
+        color="primary"
+        :to="`jobs/detail?jobId=${item.id}`"
+      >
         編集
       </v-btn>
     </template>
@@ -19,7 +24,7 @@
           <v-list-item
             v-for="(listitem, index) in jobActions"
             :key="index"
-            @click="listitem.action(item.id)"
+            @click="listitem.action(item)"
           >
             <v-list-item-title v-if="!('alterText' in listitem)">
               {{ listitem.text }}
@@ -36,20 +41,14 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'nuxt-property-decorator'
-import { jobActions, jobHeaders } from '@/constants/list-tables/jobs'
-
-interface JobItem {
-  id: String
-  code: String
-  name: String
-  publishState: String
-  isPublished: Boolean
-}
+// eslint-disable-next-line no-unused-vars
+import { jobHeaders, JobItem } from '@/constants/list-tables/jobs'
 
 @Component
 export default class JobTableVue extends Vue {
   @Prop(Array) jobs: JobItem[]
-  jobActions: TableAction[] = jobActions
+  @Prop(Array) jobActions: TableAction<JobItem>[]
+
   jobHeaders: TableHeader[] = jobHeaders
 }
 </script>

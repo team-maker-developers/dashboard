@@ -1,5 +1,12 @@
 import gql from 'graphql-tag'
-import { jobStore } from '@/store'
+
+export interface JobItem {
+  id: string
+  code: string
+  name: string
+  publishState: string
+  isPublished: boolean
+}
 
 export const jobHeaders: TableHeader[] = [
   {
@@ -14,30 +21,13 @@ export const jobHeaders: TableHeader[] = [
   { text: '', value: 'others' }
 ]
 
-export const jobActions: TableAction[] = [
-  {
-    text: 'LINEでシェア',
-    action: (id: number) => {}
-  },
-  {
-    text: '下書きに戻す',
-    alterText: '公開する',
-    action: (id: number) => {}
-  },
-  {
-    text: '削除',
-    action: (id: number) => {
-      jobStore.deleteJob(id)
-    }
- }
-]
-
 export const getJobs = gql`
   query getJobs {
     jobs {
       id
       code
       name
+      job_content # 公開するを実行しやすいように修正
       publishState
       isPublished
     }
