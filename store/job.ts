@@ -1,13 +1,15 @@
 import { Action, Module, Mutation, VuexModule } from 'vuex-module-decorators'
+import moment from 'moment'
 import { getApolloClient } from '@/libs/get-apollo-client'
 import { getJobs, deleteJob } from '@/constants/list-tables/jobs'
+import { getJob, upsertJob, updateJobPublishAt } from '~/constants/models/job/job';
 
 interface JobState {}
 
 @Module({ stateFactory: true, namespaced: true, name: 'job' })
 export default class Job extends VuexModule implements JobState {
   @Action
-  async deleteJob(id: number) {
+  async deleteJob(id: string) {
     await getApolloClient().mutate({
       mutation: deleteJob,
       variables: { id },
@@ -15,5 +17,44 @@ export default class Job extends VuexModule implements JobState {
         query: getJobs
       }],
     })
+  }
+
+  @Action
+  async upsertJob(job: any) {
+    await getApolloClient().mutate({
+      mutation: upsertJob,
+      variables: {
+        input: job
+      },
+      refetchQueries: ({ data }: any) => [{
+        query: getJob,
+        variables: {
+          id: data.upsertJob.id
+        }
+      }],
+    })
+  }
+
+  @Action
+  async updateJobPublishAt(job: any) {
+    await getApolloClient().mutate({
+      mutation: updateJobPublishAt,
+      variables: {
+        id: job.id,
+        published_at: job.published_at,
+      }
+    })
+  }
+
+  @Action
+  async publishJob(job: any) {
+    job.published_at = moment().format('YYYY-MM-DD 00:00:00')
+    await this.updateJobPublishAt(job)
+  }
+
+  @Action
+  async unpublishJob(job: any) {
+    job.published_at = null
+    await this.updateJobPublishAt(job)
   }
 }

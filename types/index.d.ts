@@ -4,10 +4,10 @@ declare interface TableHeader {
   align?: string
 }
 
-declare interface TableAction {
+declare interface TableAction<model> {
   text: string
   alterText?: string
-  action: (id: number) => void
+  action: (model: model) => void
 }
 
 declare interface MenuItem {
