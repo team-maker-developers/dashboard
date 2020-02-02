@@ -6,6 +6,7 @@ declare interface TableHeader {
 
 declare interface TableAction {
   text: string
+  alterText?: string
   action: (id: number) => void
 }
 
