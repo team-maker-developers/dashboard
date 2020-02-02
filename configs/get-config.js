@@ -2,7 +2,8 @@ require('dotenv').config()
 
 const nodeEnvValues = {
   apiClientId: process.env.API_CLIENT_ID || '',
-  apiClientSecret: process.env.API_CLIENT_SECRET || ''
+  apiClientSecret: process.env.API_CLIENT_SECRET || '',
+  jobBoard: process.env.JOB_BOARD_DOMAIN || 'https://teammaker-jobs/'
 }
 
 // 以下がデフォルト値になる
