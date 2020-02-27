@@ -31,3 +31,6 @@ For detailed explanation on how things work, check out [Nuxt.js docs](https://nu
     - `oauth_clinets`.`password_client`がtrueのレコードの値を入力する
         - API_CLIENT_ID = `oauth_clinets`.`id`
         - API_CLIENT_SECRET = `oauth_clinets`.`secret`
+- 会社番号は以下を入力する
+    - backendで作成したcompanyのunique_idを入力する
+    - getパラメータにunique_idをセットすることで、入力を省略することも可能
