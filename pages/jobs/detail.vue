@@ -75,9 +75,15 @@ export default {
     upsertJobInput() {
       return sanitizer(this.jobValue)
     },
+    page() {
+      if ('page' in this.jobValue) {
+        return this.jobValue.page
+      }
+      return {}
+    },
     isPublished() {
-      if ('isPublished' in this.jobValue) {
-        return this.jobValue.isPublished
+      if ('isReleased' in this.page) {
+        return this.page.isReleased
       }
 
       return false

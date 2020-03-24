@@ -26,9 +26,6 @@ export const getJob = gql`
       id
       code
       name
-      isPublished
-      publishState
-      published_at
       expired_at
       job_content
       employment_category_id
@@ -39,6 +36,11 @@ export const getJob = gql`
       welfare
       industry
       info
+      page {
+        publishState
+        released_at
+        isReleased
+      }
     }
   }
 `
