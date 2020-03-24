@@ -15,7 +15,7 @@ export const jobHeaders: TableHeader[] = [
     value: 'code'
   },
   { text: '求人', value: 'name' },
-  { text: '公開ステータス', value: 'publishState' },
+  { text: '公開ステータス', value: 'page.publishState' },
   { text: '前回シェア日', value: 'sharedAt' },
   { text: '', value: 'edit' },
   { text: '', value: 'others' }
@@ -27,9 +27,10 @@ export const getJobs = gql`
       id
       code
       name
-      job_content # 公開するを実行しやすいように修正
-      publishState
-      isPublished
+      job_content
+      page {
+        publishState
+      }
     }
   }
 `
