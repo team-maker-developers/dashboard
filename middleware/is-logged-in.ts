@@ -9,7 +9,8 @@ const isLoggedIn: Middleware = (context: Context) => {
   if (env.isMock) {
     loginStore.setAccessToken({ 
       access_token: 'dummy_token',
-      refresh_token: 'dummy_token'
+      refresh_token: 'dummy_token',
+      expires_in: '999999999'
     });
     return
   }
@@ -23,6 +24,13 @@ const isLoggedIn: Middleware = (context: Context) => {
   if (!loginStore.isLoggedIn && !isLoginPage) {
     redirect('/login')
   }
+
+  // 期限切れのチェック
+  if (isLoginPage || !loginStore.isExpired) {
+    return 
+  }
+
+  loginStore.logout()
 }
 
 export default isLoggedIn

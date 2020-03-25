@@ -13,7 +13,7 @@ const fetchUniqueId: Middleware = (context: Context) => {
     return
   }
 
-  // ログイン画面もしくは、空の場合のみ、セットする
+  // ログイン画面もしくは、空の場合のみ、クライアントIDをセットする
   if (loginStore.uniqueId === '' ||　String(route.name).startsWith('login')) {
     loginStore.setUniqueId(query.unique_id)
     return

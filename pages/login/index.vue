@@ -1,5 +1,8 @@
 <template>
   <v-container>
+    <v-container v-if="message">
+      <v-alert type="error">{{ message }}</v-alert>
+    </v-container>
     <v-container>
       <v-text-field v-model="uniqueId" label="会社番号" />
     </v-container>
@@ -7,7 +10,7 @@
     <v-container>
       <v-row>
         <v-col>
-          <email-login-form :login-url="emailLoginUrl" />
+          <email-login-form :login-url="emailLoginUrl" @loginError="setError" />
         </v-col>
       </v-row>
     </v-container>
@@ -39,7 +42,8 @@ export default class LoginVue extends Vue {
     return { apiDomain }
   }
 
-  apiDomain: string
+  apiDomain: string = ''
+  message: string = ''
 
   get uniqueId(): string {
     return loginStore.uniqueId
@@ -55,6 +59,21 @@ export default class LoginVue extends Vue {
 
   get loginUrl(): string {
     return `${this.apiDomain}/login/${this.uniqueId}`
+  }
+
+  setError(message: string) {
+    this.message = message
+  }
+
+  created() {
+    if (!loginStore.isExpired) {
+      return
+    }
+
+    // トークンの期限切れの場合は、フラッシュメッセージのように使用する
+    this.message =
+      '認証の有効期限が切れてしまいました。\nお手数ですが、再度ログインしてください。'
+    loginStore.clearExpireAt()
   }
 }
 </script>
