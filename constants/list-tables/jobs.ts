@@ -1,11 +1,16 @@
 import gql from 'graphql-tag'
 
+interface Page {
+  id: string
+  publishState: string
+  isPublished: boolean
+}
+
 export interface JobItem {
   id: string
   code: string
   name: string
-  publishState: string
-  isPublished: boolean
+  page: Page
 }
 
 export const jobHeaders: TableHeader[] = [
@@ -29,7 +34,10 @@ export const getJobs = gql`
       name
       job_content
       page {
+        id
+        published_at
         publishState
+        isPublished
       }
     }
   }

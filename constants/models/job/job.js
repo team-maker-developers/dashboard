@@ -11,7 +11,7 @@ export const getEmploymentCategories = gql`
 
 export const updateJobPublishAt = gql`
   mutation($id: ID!, $published_at: DateTime) {
-    updateJobPublishAt(id: $id, published_at: $published_at) {
+    updatePagePublishAt(id: $id, published_at: $published_at) {
       id
       isPublished
       publishState
@@ -37,9 +37,10 @@ export const getJob = gql`
       industry
       info
       page {
+        id
         publishState
-        released_at
-        isReleased
+        published_at
+        isPublished
       }
     }
   }
@@ -51,9 +52,6 @@ export const upsertJob = gql`
       id
       code
       name
-      isPublished
-      publishState
-      published_at
       expired_at
       job_content
       employment_category_id
@@ -64,6 +62,11 @@ export const upsertJob = gql`
       welfare
       industry
       info
+      page {
+        publishState
+        published_at
+        isPublished
+      }
     }
   }
 `
