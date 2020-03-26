@@ -19,9 +19,9 @@ export default class Job extends VuexModule implements JobState {
     })
   }
 
-  @Action
+  @Action({ rawError: true })
   async upsertJob(job: any) {
-    await getApolloClient().mutate({
+    return await getApolloClient().mutate({
       mutation: upsertJob,
       variables: {
         input: job
