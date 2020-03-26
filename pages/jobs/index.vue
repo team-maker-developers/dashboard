@@ -44,10 +44,10 @@ export default class JobsIndexVue extends Vue {
       text: '下書きに戻す',
       alterText: '公開する',
       action: async (job: JobItem) => {
-        if (job.isPublished) {
-          await jobStore.unpublishJob(job)
+        if (job.page.isPublished) {
+          await jobStore.unpublishJob(job.page)
         } else {
-          await jobStore.publishJob(job)
+          await jobStore.publishJob(job.page)
         }
         this.refetchJobs()
       }

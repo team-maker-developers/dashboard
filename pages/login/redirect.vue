@@ -1,7 +1,9 @@
 <template>
   <v-layout column justify-center align-center>
-    <v-flex xs12 sm8 md6>
-      ログイン中
+    <v-flex ma-5 xs12 sm8 md6>
+      <v-progress-circular indeterminate size="200">
+        ログイン中
+      </v-progress-circular>
     </v-flex>
   </v-layout>
 </template>
@@ -32,11 +34,22 @@ export default class RedirectLoginVue extends Vue {
     return `${this.apiDomain}/api/login/${this.uniqueId}/${this.provider}`
   }
 
-  async mounted() {
-    // mounted後でなければ、formDataが取得できないため、以下に実装
+  async postLogin() {
     await loginStore.postSocialLogin(
       new SocialLoginPost(this.loginUrl, this.code)
     )
+  }
+
+  async mounted() {
+    // mounted後でなければ、formDataが取得できないため、以下に実装
+    try {
+      await this.postLogin()
+    } catch (error) {
+      this.$nuxt.error({
+        statusCode: error.response.status,
+        message: error.response.message
+      })
+    }
 
     if (loginStore.isLoggedIn) {
       this.$router.push('/')

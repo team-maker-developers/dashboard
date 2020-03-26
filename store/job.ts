@@ -19,9 +19,9 @@ export default class Job extends VuexModule implements JobState {
     })
   }
 
-  @Action
+  @Action({ rawError: true })
   async upsertJob(job: any) {
-    await getApolloClient().mutate({
+    return await getApolloClient().mutate({
       mutation: upsertJob,
       variables: {
         input: job
@@ -36,25 +36,25 @@ export default class Job extends VuexModule implements JobState {
   }
 
   @Action
-  async updateJobPublishAt(job: any) {
+  async updateJobPublishAt(page: any) {
     await getApolloClient().mutate({
       mutation: updateJobPublishAt,
       variables: {
-        id: job.id,
-        published_at: job.published_at,
+        id: page.id,
+        published_at: page.published_at,
       }
     })
   }
 
   @Action
-  async publishJob(job: any) {
-    job.published_at = moment().format('YYYY-MM-DD 00:00:00')
-    await this.updateJobPublishAt(job)
+  async publishJob(page: any) {
+    page.published_at = moment().format('YYYY-MM-DD 00:00:00')
+    await this.updateJobPublishAt(page)
   }
 
   @Action
-  async unpublishJob(job: any) {
-    job.published_at = null
-    await this.updateJobPublishAt(job)
+  async unpublishJob(page: any) {
+    page.published_at = null
+    await this.updateJobPublishAt(page)
   }
 }

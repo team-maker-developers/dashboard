@@ -14,7 +14,7 @@ export const menuItems: MenuItem[] = [
       action: (): void => {}
   },
   {
-      icon: 'mdi-account-badge-horizontal',
+      icon: 'mdi-account-details',
       text: '応募者管理',
       link: '/applicants',
       action: (): void => {}

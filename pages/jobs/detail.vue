@@ -33,7 +33,7 @@
               color="primary"
               outlined
               class="mx-2"
-              @click="upsertJob(upsertJobInput)"
+              @click="doUpsertJob(upsertJobInput)"
             >保存する</v-btn>
             <v-btn
               v-if="doUpdate"
@@ -75,9 +75,15 @@ export default {
     upsertJobInput() {
       return sanitizer(this.jobValue)
     },
+    page() {
+      if ('page' in this.jobValue) {
+        return this.jobValue.page
+      }
+      return {}
+    },
     isPublished() {
-      if ('isPublished' in this.jobValue) {
-        return this.jobValue.isPublished
+      if ('isPublished' in this.page) {
+        return this.page.isPublished
       }
 
       return false
@@ -88,13 +94,18 @@ export default {
     return { jobId }
   },
   methods: {
-    async changePublish(upsertJobInput) {
+    async changePublish() {
       if (this.isPublished) {
-        await this.unpublishJob(upsertJobInput)
+        await this.unpublishJob(this.upsertJobInput)
       } else {
-        await this.publishJob(upsertJobInput)
+        await this.publishJob(this.upsertJobInput)
       }
       this.$apollo.queries.job.refetch()
+    },
+    async doUpsertJob() {
+      const { data } = await this.upsertJob(this.upsertJobInput)
+      this.jobId = data.upsertJob.id
+      this.$router.push({ name: 'jobs-detail', query: { jobId: this.jobId } })
     },
     ...mapActions('job', ['upsertJob', 'publishJob', 'unpublishJob'])
   },

@@ -30,7 +30,7 @@
               {{ listitem.text }}
             </v-list-item-title>
             <v-list-item-title v-else>
-              {{ item.isPublished ? listitem.text : listitem.alterText }}
+              {{ item.page.isPublished ? listitem.text : listitem.alterText }}
             </v-list-item-title>
           </v-list-item>
         </v-list>

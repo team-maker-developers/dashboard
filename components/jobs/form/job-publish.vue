@@ -55,14 +55,14 @@ export default {
     },
     publishedAt: {
       get() {
-        if ('published_at' in this.job) {
-          return this.job.published_at
+        if ('page' in this.job && 'published_at' in this.job.page) {
+          return this.job.page.published_at
         }
         return null
       },
       set(publishedAt) {
         const job = { ...this.job }
-        job.published_at = publishedAt
+        job.page.published_at = publishedAt
 
         this.$emit('input', job)
       }

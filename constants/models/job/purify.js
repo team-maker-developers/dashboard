@@ -11,19 +11,38 @@ export const unpertJobInput = [
   'welfare',
   'industry',
   'info',
-  'published_at',
-  'expired_at'
+  'expired_at',
+  'page'
 ]
 
 export const sanitizer = (job) => {
   const sanitizedJob = { ...job }
   Object.keys(job).forEach((key) => {
-    if (unpertJobInput.includes(key)) {
-      return
+    if (!unpertJobInput.includes(key)) {
+      delete sanitizedJob[key]
     }
-
-    delete sanitizedJob[key]
   })
 
+  const page = { ...sanitizedJob.page }
+  sanitizedJob.page = getUpsertPage(page)
+
   return sanitizedJob
+}
+
+export const upsertPage = ['id', 'published_at']
+
+function getUpsertPage(page) {
+  Object.keys(page).forEach((key) => {
+    if (!upsertPage.includes(key)) {
+      delete page[key]
+    }
+  })
+
+  if (!('id' in page)) {
+    page.id = ''
+  }
+
+  return {
+    upsert: page
+  }
 }
