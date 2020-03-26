@@ -63,9 +63,8 @@ export const upsertJob = gql`
       industry
       info
       page {
-        publishState
+        id
         published_at
-        isPublished
       }
     }
   }
