@@ -39,7 +39,7 @@ export default class LoginVue extends Vue {
   asyncData({ env, query }: Context) {
     const apiDomain: string = env.apiDomain
 
-    if ('redirect_to' in query) {
+    if ('redirect_to' in query && typeof query.redirect_to === 'string') {
       loginStore.setRedirectTo(query.redirect_to)
     }
 
