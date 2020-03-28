@@ -2,7 +2,7 @@ import axios from 'axios'
 import moment from 'moment'
 import { rootState } from '@/store'
 import { Action, Module, Mutation, VuexModule } from 'vuex-module-decorators'
-import { LoginPost, EmailLoginPost, SocialLoginPost } from '~/models/login-post'
+import { LoginPost, EmailLoginPost, SocialLoginPost } from '~/constants/models/login/login-post'
 
 interface apiClientData {
   id: string
@@ -26,7 +26,6 @@ export default class Login extends VuexModule implements LoginState {
   accessToken: string = ''
   refreshToken: string = ''
   expiredAt: string = ''
-
   uniqueId: string = ''
   apiClientData: apiClientData|null = null
 

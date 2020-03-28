@@ -12,7 +12,7 @@
 import { Vue, Component } from 'nuxt-property-decorator'
 import { Context } from '@nuxt/types' // eslint-disable-line no-unused-vars
 import { loginStore } from '@/store'
-import { SocialLoginPost } from '@/models/login-post'
+import { SocialLoginPost } from '@/constants/models/login/login-post'
 
 @Component({ middleware: ['initialize-form-data'] })
 export default class RedirectLoginVue extends Vue {
