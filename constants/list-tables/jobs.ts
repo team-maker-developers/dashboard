@@ -21,7 +21,7 @@ export const jobHeaders: TableHeader[] = [
   },
   { text: '求人', value: 'name' },
   { text: '公開ステータス', value: 'page.publishState' },
-  { text: '前回シェア日', value: 'last_announced_at' },
+  { text: '前回の広報日', value: 'last_announced_at' },
   { text: '', value: 'edit' },
   { text: '', value: 'others' }
 ]
