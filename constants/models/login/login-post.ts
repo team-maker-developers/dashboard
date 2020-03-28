@@ -1,5 +1,3 @@
-import Login from "~/store/login";
-
 export abstract class LoginPost {
   url: string
   abstract get formData(): FormData
