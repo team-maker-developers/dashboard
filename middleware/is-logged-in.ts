@@ -2,7 +2,7 @@ import { Context, Middleware } from '@nuxt/types'
 import { loginStore } from '@/store'
 
 const isLoggedIn: Middleware = (context: Context) => {
-  const { app, redirect, route, env } = context
+  const { redirect, route, env } = context
   
   // 本来はアクセストークンを設定せず、モックの時だけisLoggedInの戻り値をTRUEにしたい。
   // しかし、envがisLoggedIn内で参照できないので、暫定的にアクセストークンを設定している
@@ -25,12 +25,13 @@ const isLoggedIn: Middleware = (context: Context) => {
     redirect('/login')
   }
 
-  // 期限切れのチェック
-  if (isLoginPage || !loginStore.isExpired) {
-    return 
+  // 期限切れの場合はログアウトする
+  if (isLoginPage && loginStore.isExpired) {
+    loginStore.logout()
   }
 
-  loginStore.logout()
+  // ログイン後は、redirectToをクリアする
+  loginStore.clearRedirectTo()
 }
 
 export default isLoggedIn

@@ -1,18 +1,12 @@
 <template>
-  <v-layout column justify-center align-center>
-    <v-flex ma-5 xs12 sm8 md6>
-      <v-progress-circular indeterminate size="200">
-        ログイン中
-      </v-progress-circular>
-    </v-flex>
-  </v-layout>
+  <data-loading v-if="true" message="ログイン中" />
 </template>
 
 <script lang="ts">
 import { Vue, Component } from 'nuxt-property-decorator'
 import { Context } from '@nuxt/types' // eslint-disable-line no-unused-vars
 import { loginStore } from '@/store'
-import { SocialLoginPost } from '@/models/login-post'
+import { SocialLoginPost } from '@/constants/models/login/login-post'
 
 @Component({ middleware: ['initialize-form-data'] })
 export default class RedirectLoginVue extends Vue {
@@ -52,7 +46,7 @@ export default class RedirectLoginVue extends Vue {
     }
 
     if (loginStore.isLoggedIn) {
-      this.$router.push('/')
+      this.$router.push(loginStore.redirectToPath)
     }
   }
 }

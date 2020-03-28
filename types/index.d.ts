@@ -8,6 +8,7 @@ declare interface TableAction<model> {
   text: string
   alterText?: string
   action: (model: model) => void
+  visible?: (model: model) => boolean
 }
 
 declare interface MenuItem {

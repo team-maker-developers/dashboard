@@ -8,7 +8,7 @@
         outlined
         small
         color="primary"
-        :to="`jobs/detail?jobId=${item.id}`"
+        :to="`jobs/detail/?jobId=${item.id}`"
       >
         編集
       </v-btn>
@@ -21,18 +21,20 @@
           </v-btn>
         </template>
         <v-list>
-          <v-list-item
-            v-for="(listitem, index) in jobActions"
-            :key="index"
-            @click="listitem.action(item)"
-          >
-            <v-list-item-title v-if="!('alterText' in listitem)">
-              {{ listitem.text }}
-            </v-list-item-title>
-            <v-list-item-title v-else>
-              {{ item.page.isPublished ? listitem.text : listitem.alterText }}
-            </v-list-item-title>
-          </v-list-item>
+          <template v-for="(listitem, index) in jobActions">
+            <v-list-item
+              v-if="!('visible' in listitem) || listitem.visible(item)"
+              :key="index"
+              @click="listitem.action(item)"
+            >
+              <v-list-item-title v-if="!('alterText' in listitem)">
+                {{ listitem.text }}
+              </v-list-item-title>
+              <v-list-item-title v-else>
+                {{ item.page.isPublished ? listitem.text : listitem.alterText }}
+              </v-list-item-title>
+            </v-list-item>
+          </template>
         </v-list>
       </v-menu>
     </template>

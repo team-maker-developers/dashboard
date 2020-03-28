@@ -33,12 +33,16 @@ import EmailLoginForm from '@/components/login/email-login-form.vue'
 import LineLoginBtn from '@/components/login/line-login-btn.vue'
 
 @Component({
-  components: { EmailLoginForm, LineLoginBtn },
-  middleware: ['initialize-form-data']
+  components: { EmailLoginForm, LineLoginBtn }
 })
 export default class LoginVue extends Vue {
-  asyncData({ env }: Context) {
+  asyncData({ env, query }: Context) {
     const apiDomain: string = env.apiDomain
+
+    if ('redirect_to' in query && typeof query.redirect_to === 'string') {
+      loginStore.setRedirectTo(query.redirect_to)
+    }
+
     return { apiDomain }
   }
 

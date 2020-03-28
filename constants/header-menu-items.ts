@@ -1,12 +1,12 @@
 import { loginStore } from '@/store'
 
 export const menuItems: MenuItem[] = [
-  {
-      icon: 'mdi-home',
-      text: 'ホーム',
-      link: '/',
-      action: (): void => {}
-  },
+  // {
+  //     icon: 'mdi-home',
+  //     text: 'ホーム',
+  //     link: '/',
+  //     action: (): void => {}
+  // },
   {
       icon: 'mdi-account-search',
       text: '求人管理',
@@ -14,15 +14,15 @@ export const menuItems: MenuItem[] = [
       action: (): void => {}
   },
   {
-      icon: 'mdi-account-details',
-      text: '応募者管理',
-      link: '/applicants',
+      icon: 'mdi-share-circle',
+      text: 'LINE広報',
+      link: '/announces/create',
       action: (): void => {}
   },
   {
-      icon: 'mdi-share-circle',
-      text: 'その他公報',
-      link: '/gazettes',
+      icon: 'mdi-account-details',
+      text: '応募者管理',
+      link: '/applicants',
       action: (): void => {}
   }
 ]
@@ -51,10 +51,10 @@ export const accountItems: MenuItem[] = [
     action: (): void => {
       loginStore.logout()
     }
-  },
-  {
-    text: 'パスワード変更',
-    link: '/password',
-    action: (): void => {}
   }
+  // {
+  //   text: 'パスワード変更',
+  //   link: '/password',
+  //   action: (): void => {}
+  // }
 ]

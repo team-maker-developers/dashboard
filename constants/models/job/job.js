@@ -38,6 +38,8 @@ export const getJob = gql`
       info
       page {
         id
+        slug
+        refered_url
         publishState
         published_at
         isPublished
