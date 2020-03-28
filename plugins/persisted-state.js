@@ -2,8 +2,9 @@ import createPersistedState from 'vuex-persistedstate'
 
 export default ({ store }) => {
   createPersistedState({
-    store: window.sessionStorage,
-    path: [
+    key: 'tm-app',
+    storage: window.sessionStorage,
+    paths: [
       'login.accessToken',
       'login.refreshToken',
       'login.uniqueId',
