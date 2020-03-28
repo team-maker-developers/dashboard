@@ -8,7 +8,7 @@
         outlined
         small
         color="primary"
-        :to="`jobs/detail?jobId=${item.id}`"
+        :to="`jobs/detail/?jobId=${item.id}`"
       >
         編集
       </v-btn>

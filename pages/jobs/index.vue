@@ -72,7 +72,7 @@ export default class JobsIndexVue extends Vue {
 
   pushAnnounceCreate(id: string) {
     this.$router.push({
-      name: 'announces-create',
+      path: '/announces/create/',
       query: { jobId: id }
     })
   }
