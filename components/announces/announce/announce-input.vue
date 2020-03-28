@@ -20,6 +20,7 @@
             v-model="announce"
             :rules="announceRequired"
             auto-grow
+            autofocus
             rows="7"
             row-height="30"
           >

@@ -44,6 +44,9 @@
 import { mapActions, mapGetters } from 'vuex'
 import jobConfirm from '../job-confirm.vue'
 
+const postAnnounceError = `広報文の送信に失敗いたしました。
+お手数ですが、管理部まで問い合わせてくださいませ。`
+
 export default {
   components: { jobConfirm },
   model: {
@@ -87,9 +90,7 @@ export default {
       try {
         this.announceResult = await this.postAnnounce(this.sharedAnnounce)
       } catch (error) {
-        console.log(error)
-        this.announceResult =
-          '広報文の送信に失敗いたしました。\nお手数ですが、管理部まで問い合わせてくださいませ。'
+        this.announceResult = postAnnounceError
       } finally {
         this.loading = false
       }
