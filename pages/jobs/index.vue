@@ -38,7 +38,7 @@ import jobTable from '@/components/jobs/job-table.vue'
 export default class JobsIndexVue extends Vue {
   jobActions: TableAction<JobItem>[] = [
     {
-      text: 'LINEでシェア',
+      text: 'LINEで広報する',
       action: (job: JobItem) => {
         this.pushAnnounceCreate(job.id)
       },

@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-container>
-      <h2>LINEで広報文を送信する</h2>
+      <h2>LINEで広報する</h2>
       <v-stepper v-model="currentStep">
         <v-stepper-header>
           <v-divider></v-divider>
@@ -10,7 +10,7 @@
           </v-stepper-step>
           <v-divider></v-divider>
           <v-stepper-step :complete="currentStep > 2" step="2">
-            入力内容を確認して、LINEで広報文を送信する
+            入力内容を確認して、LINEで広報する
           </v-stepper-step>
           <v-divider></v-divider>
         </v-stepper-header>
