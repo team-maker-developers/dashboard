@@ -39,6 +39,7 @@ export const getJob = gql`
       page {
         id
         slug
+        refered_url
         publishState
         published_at
         isPublished
