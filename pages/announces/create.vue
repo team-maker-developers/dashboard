@@ -1,20 +1,17 @@
 <template>
-  <v-layout v-if="loading" ma-5 column justify-center align-center>
-    <v-progress-circular indeterminate size="200">
-      読み込み中
-    </v-progress-circular>
-  </v-layout>
+  <data-loading v-if="loading" />
   <announce-form v-else />
 </template>
 
 <script>
 import { mapMutations } from 'vuex'
 import { getJob } from '@/constants/models/announce/announce'
+import DataLoading from '@/components/data-loading.vue'
 import announceForm from '@/components/announces/announce-form.vue'
 
 export default {
   watchQuery: ['jobId'],
-  components: { announceForm },
+  components: { announceForm, DataLoading },
   computed: {
     loading() {
       return this.$apollo.queries.job.loading

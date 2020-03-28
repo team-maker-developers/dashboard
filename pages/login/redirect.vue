@@ -1,11 +1,5 @@
 <template>
-  <v-layout column justify-center align-center>
-    <v-flex ma-5 xs12 sm8 md6>
-      <v-progress-circular indeterminate size="200">
-        ログイン中
-      </v-progress-circular>
-    </v-flex>
-  </v-layout>
+  <data-loading v-if="true" message="ログイン中" />
 </template>
 
 <script lang="ts">
@@ -52,7 +46,7 @@ export default class RedirectLoginVue extends Vue {
     }
 
     if (loginStore.isLoggedIn) {
-      this.$router.push('/')
+      this.$router.push(loginStore.redirectToPath)
     }
   }
 }
