@@ -29,6 +29,8 @@ export default class Login extends VuexModule implements LoginState {
   uniqueId: string = ''
   apiClientData: apiClientData|null = null
 
+  redirectTo: string = ''
+
   @Mutation
   setUniqueId(uniqueId: string) {
     this.uniqueId = uniqueId
@@ -37,31 +39,6 @@ export default class Login extends VuexModule implements LoginState {
   @Mutation
   setClientData(apiClientData: apiClientData) {
     this.apiClientData = apiClientData
-  }
-
-  get isLoggedIn(): boolean {
-    return this.accessToken !== ''
-  }
-
-  get isExpired(): boolean{
-    if (!this.expiredAt) {
-      return false
-    }
-
-    return moment(this.expiredAt).isBefore()
-  }
-
-  get getApiFormData(): (formData: FormData) => FormData {
-    return (formData: FormData) => {
-      if (!this.apiClientData) {
-        throw new Error('環境変数が登録されていません。')
-      }
-  
-      formData.append('client_id', this.apiClientData.id)
-      formData.append('client_secret', this.apiClientData.secret)
-      formData.append('scope', '*')
-      return formData
-    }
   }
 
   @Mutation
@@ -87,6 +64,49 @@ export default class Login extends VuexModule implements LoginState {
   @Mutation
   clearExpireAt() {
     this.expiredAt = ''
+  }
+
+  @Mutation
+  setRedirectTo(redirectTo: string) {
+    this.redirectTo = redirectTo
+  }
+
+  @Mutation
+  clearRedirectTo() {
+    this.redirectTo = ''
+  }
+
+  get redirectToPath(): string {
+    if (this.redirectTo === '') {
+      return '/'
+    }
+
+    return decodeURIComponent(this.redirectTo)
+  }
+
+  get isLoggedIn(): boolean {
+    return this.accessToken !== ''
+  }
+
+  get isExpired(): boolean{
+    if (!this.expiredAt) {
+      return false
+    }
+
+    return moment(this.expiredAt).isBefore()
+  }
+
+  get getApiFormData(): (formData: FormData) => FormData {
+    return (formData: FormData) => {
+      if (!this.apiClientData) {
+        throw new Error('環境変数が登録されていません。')
+      }
+  
+      formData.append('client_id', this.apiClientData.id)
+      formData.append('client_secret', this.apiClientData.secret)
+      formData.append('scope', '*')
+      return formData
+    }
   }
 
   @Action({ rawError: true })

@@ -25,12 +25,13 @@ const isLoggedIn: Middleware = (context: Context) => {
     redirect('/login')
   }
 
-  // 期限切れのチェック
-  if (isLoginPage || !loginStore.isExpired) {
-    return 
+  // 期限切れの場合はログアウトする
+  if (isLoginPage && loginStore.isExpired) {
+    loginStore.logout()
   }
 
-  loginStore.logout()
+  // ログイン後は、redirectToをクリアする
+  loginStore.clearRedirectTo()
 }
 
 export default isLoggedIn

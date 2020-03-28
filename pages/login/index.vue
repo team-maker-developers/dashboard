@@ -36,8 +36,13 @@ import LineLoginBtn from '@/components/login/line-login-btn.vue'
   components: { EmailLoginForm, LineLoginBtn }
 })
 export default class LoginVue extends Vue {
-  asyncData({ env }: Context) {
+  asyncData({ env, query }: Context) {
     const apiDomain: string = env.apiDomain
+
+    if ('redirect_to' in query) {
+      loginStore.setRedirectTo(query.redirect_to)
+    }
+
     return { apiDomain }
   }
 

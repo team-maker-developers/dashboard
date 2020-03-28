@@ -27,7 +27,7 @@ export default class EmailLoginForm extends Vue {
     }
 
     if (loginStore.isLoggedIn) {
-      this.$router.push('/')
+      this.$router.push(loginStore.redirectToPath)
     }
   }
 
