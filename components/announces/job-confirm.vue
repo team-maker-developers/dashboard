@@ -16,7 +16,7 @@
       <h4 class="py-1">広報用の求人URL</h4>
       <v-row justify="center">
         <v-col :lg="9">
-          <p>{{ shareUrl }}</p>
+          <p>{{ announceUrl }}</p>
         </v-col>
       </v-row>
     </v-row>
@@ -36,7 +36,7 @@ export default {
     jobs() {
       return [this.job]
     },
-    ...mapGetters('announce', ['shareUrl']),
+    ...mapGetters('announce', ['announceUrl']),
     ...mapState('announce', ['job'])
   }
 }

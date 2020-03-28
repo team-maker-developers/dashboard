@@ -1,7 +1,7 @@
 import { Action, Mutation, Module, VuexModule } from 'vuex-module-decorators'
 import { getApolloClient } from '@/plugins/apollo/get-apollo-client'
 import { createAnnounce } from '@/constants/models/announce/announce'
-import { rootState } from '@/store'
+import { loginStore } from '@/store'
 
 interface Page {
   slug: string
@@ -40,13 +40,15 @@ export default class Announce extends VuexModule implements AnnounceState {
     return this.job ? this.job.id : ''
   }
 
-  get apiDomain(): string {
-    return rootState.app.context.env.apiDomain
-  }
-
-  get shareUrl(): string {
+  get announceUrl(): string {
     if (this.job) {
-      return `${this.apiDomain}/${this.job.page.slug}`
+      const domain: string = window.location.origin
+      const unique_id: string = loginStore.uniqueId
+
+      const reqirectTo: string = `/jobs/share/?jobId=${this.job.id}`
+      return `${domain}/login/?unique_id=${unique_id}&redirect_to=${encodeURIComponent(
+        reqirectTo
+      )}`
     }
 
     return ''
