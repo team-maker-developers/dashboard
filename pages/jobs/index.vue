@@ -1,12 +1,13 @@
 <template>
-  <!-- eslint-disable -->
   <div>
     <v-container>
       <h2>求人一覧</h2>
       <v-row justify="center">
         <v-col :lg="9">
           <div class="text-right">
-            <v-btn outlined small color="primary" to="jobs/detail/" >新規作成</v-btn>
+            <v-btn outlined small color="primary" to="jobs/detail/">
+              新規作成
+            </v-btn>
           </div>
         </v-col>
       </v-row>
@@ -38,7 +39,12 @@ export default class JobsIndexVue extends Vue {
   jobActions: TableAction<JobItem>[] = [
     {
       text: 'LINEでシェア',
-      action: (id: JobItem) => {}
+      action: (job: JobItem) => {
+        this.pushAnnounceCreate(job.id)
+      },
+      visible: (job: JobItem) => {
+        return job.page.isPublished
+      }
     },
     {
       text: '下書きに戻す',
@@ -62,6 +68,13 @@ export default class JobsIndexVue extends Vue {
 
   refetchJobs() {
     this.$apollo.queries.jobs.refetch()
+  }
+
+  pushAnnounceCreate(id: string) {
+    this.$router.push({
+      name: 'announces-create',
+      query: { jobId: id }
+    })
   }
 }
 </script>
