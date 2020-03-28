@@ -68,7 +68,7 @@ export default {
       }
     },
     publishUrl() {
-      return `${this.$root.context.env.jobBoard}/${this.job.id}`
+      return `${this.$root.context.env.jobBoard}/${this.job.page.slug}`
     }
   }
 }
