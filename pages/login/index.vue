@@ -33,8 +33,7 @@ import EmailLoginForm from '@/components/login/email-login-form.vue'
 import LineLoginBtn from '@/components/login/line-login-btn.vue'
 
 @Component({
-  components: { EmailLoginForm, LineLoginBtn },
-  middleware: ['initialize-form-data']
+  components: { EmailLoginForm, LineLoginBtn }
 })
 export default class LoginVue extends Vue {
   asyncData({ env }: Context) {
