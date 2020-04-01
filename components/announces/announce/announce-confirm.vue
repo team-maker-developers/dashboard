@@ -64,8 +64,8 @@ export default {
   }),
   computed: {
     sharedAnnounce() {
-      if (this.shareUrl) {
-        return `${this.announce}\n${this.shareUrl}`
+      if (this.announceUrl) {
+        return `${this.announce}\n${this.announceUrl}`
       }
 
       return this.announce
@@ -73,7 +73,7 @@ export default {
     dialog() {
       return this.announceResult !== ''
     },
-    ...mapGetters('announce', ['shareUrl'])
+    ...mapGetters('announce', ['announceUrl'])
   },
   methods: {
     changeBeforeStep() {
