@@ -33,7 +33,7 @@
           <v-menu offset-y>
             <template v-slot:activator="{ on }">
               <v-btn icon v-on="on">
-                <v-icon>mdi-settings</v-icon>
+                <v-icon>mdi-cog-outline</v-icon>
               </v-btn>
             </template>
             <v-list>
@@ -47,9 +47,9 @@
             </v-list>
           </v-menu>
         </div>
-        <v-btn icon>
+        <!-- <v-btn icon>
           <v-icon>mdi-bell</v-icon>
-        </v-btn>
+        </v-btn> -->
         <div class="text-center">
           <v-menu offset-y>
             <template v-slot:activator="{ on }">

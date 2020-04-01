@@ -32,17 +32,17 @@ export const settingItems: MenuItem[]  = [
     text: 'ログイン申請',
     link: '/social-accounts',
     action: (): void => {}
-  },
-  {
-    text: 'LINE設定',
-    link: '/line',
-    action: (): void => {}
-  },
-  {
-    text: 'パスワード変更',
-    link: '/password',
-    action: (): void => {}
   }
+  // {
+  //   text: 'LINE設定',
+  //   link: '/line',
+  //   action: (): void => {}
+  // },
+  // {
+  //   text: 'パスワード変更',
+  //   link: '/password',
+  //   action: (): void => {}
+  // }
 ]
 
 export const accountItems: MenuItem[] = [
