@@ -2,13 +2,13 @@ require('dotenv').config()
 
 const nodeEnvValues = {
   apiClientId: process.env.API_CLIENT_ID || '',
-  apiClientSecret: process.env.API_CLIENT_SECRET || '',
-  jobBoard: process.env.JOB_BOARD_DOMAIN || 'https://teammaker-jobs/'
+  apiClientSecret: process.env.API_CLIENT_SECRET || ''
 }
 
 // 以下がデフォルト値になる
 const baseValues = {
   apiDomain: 'http://localhost:8888',
+  jobBoard: 'http://localhost:5000',
   isMock: false
 }
 

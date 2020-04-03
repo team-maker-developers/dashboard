@@ -4,7 +4,7 @@
       <v-alert type="error">{{ message }}</v-alert>
     </v-container>
     <v-container>
-      <v-text-field v-model="uniqueId" label="会社番号" />
+      <v-text-field v-model="uniqueId" label="会社コード" />
     </v-container>
     <v-divider />
     <v-container>

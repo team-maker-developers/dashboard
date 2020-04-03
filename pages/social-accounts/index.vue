@@ -10,7 +10,13 @@
             class="elevation-1"
           >
             <template v-slot:item.image="{ item }">
-              <v-img :src="item.image" aspect-ratio="2" contain></v-img>
+              <v-img
+                v-if="item.image"
+                :src="item.image"
+                aspect-ratio="2"
+                contain
+              />
+              <p v-else>No Image</p>
             </template>
             <template v-slot:item.status="{ item }">
               {{ item.user.is_valid ? '有効' : '無効' }}

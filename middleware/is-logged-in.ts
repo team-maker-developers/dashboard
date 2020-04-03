@@ -31,7 +31,9 @@ const isLoggedIn: Middleware = (context: Context) => {
   }
 
   // ログイン後は、redirectToをクリアする
-  loginStore.clearRedirectTo()
+  if (loginStore.isLoggedIn) {
+    loginStore.clearRedirectTo()
+  }
 }
 
 export default isLoggedIn
