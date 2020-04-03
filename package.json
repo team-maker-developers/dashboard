@@ -10,6 +10,7 @@
     "stage": "cross-env NODE_ENV=\"staging\" nuxt",
     "build": "nuxt build",
     "build:mock": "cross-env NODE_ENV=\"mock\" nuxt build",
+    "build:stage": "cross-env NODE_ENV=\"staging\" nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
     "generate:mock": "cross-env NODE_ENV=\"mock\" nuxt generate",

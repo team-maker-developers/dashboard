@@ -7,8 +7,12 @@ import { Vue, Component } from 'nuxt-property-decorator'
 import { Context } from '@nuxt/types' // eslint-disable-line no-unused-vars
 import { loginStore } from '@/store'
 import { SocialLoginPost } from '@/constants/models/login/login-post'
+import DataLoading from '@/components/data-loading.vue'
 
-@Component({ middleware: ['initialize-form-data'] })
+@Component({
+  middleware: ['initialize-form-data'],
+  components: { DataLoading }
+})
 export default class RedirectLoginVue extends Vue {
   asyncData({ env, query }: Context) {
     return {

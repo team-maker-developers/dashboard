@@ -1,8 +1,8 @@
-import createPersistedState from 'vuex-persistedstate'
+import injectPersistedState from 'vuex-persistedstate'
 
 export default ({ store }) => {
   // sessionStorageに格納したい値を設定する
-  createPersistedState({
+  injectPersistedState({
     key: 'tm-app',
     storage: window.sessionStorage,
     paths: [
@@ -15,7 +15,7 @@ export default ({ store }) => {
 
   // localStorageに格納したい値を設定する
   // セキュリティの都合上、重要な情報は格納しない
-  createPersistedState({
+  injectPersistedState({
     key: 'tm-app-local',
     paths: ['login.redirectTo']
   })(store)
