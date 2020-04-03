@@ -53,8 +53,8 @@
 <script>
 // TODO: #44 TSに置き換える
 import { mapActions } from 'vuex'
-import { getEmploymentCategories, getJob } from '@/constants/models/job/job'
-import { sanitizer } from '@/constants/models/job/purify'
+import { getEmploymentCategories, getJob } from '@/constants/job/job'
+import { sanitizer } from '@/constants/job/purify'
 import jobForm from '@/components/jobs/job-form.vue'
 
 export default {
