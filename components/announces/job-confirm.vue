@@ -25,7 +25,7 @@
 
 <script>
 import { mapGetters, mapState } from 'vuex'
-import { jobHeaders } from '@/constants/list-tables/jobs'
+import { jobHeaders } from '@/constants/jobs/jobs'
 
 export default {
   computed: {

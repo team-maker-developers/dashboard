@@ -9,7 +9,7 @@
 <script lang="ts">
 import { Vue, Component, Prop, Provide } from 'nuxt-property-decorator'
 import { loginStore } from '@/store'
-import { EmailLoginPost } from '@/constants/models/login/login-post'
+import { EmailLoginPost } from '@/constants/login/login-post'
 
 @Component
 export default class EmailLoginForm extends Vue {

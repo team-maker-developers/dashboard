@@ -21,27 +21,31 @@ export const ApplicantsHeaders: TableHeader[] = [
     align: 'left',
     value: 'no'
   },
+  { text: '応募求人', value: '' },
   { text: '名前', value: 'name' },
-  { text: 'フリガナ', value: 'kana' },
-  { text: 'e-mail', value: 'eMail' },
+  { text: 'e-mail', value: 'email' },
+  { text: '応募求人', value: 'job.name' },
   { text: 'ステータス', value: 'status' },
   { text: '', value: 'changeStatus' }
 ]
 
-export const getApplicants = gql`
-  query getApplicants {
-    applicants {
+export const getApplies = gql`
+  query getApplies {
+    applies {
+      id
+      create_at
+      appilicant {
         id
-      name
-      kana
-      eMail
-      status
-      page {
+        name
+        email
+      }      
+      job {
         id
-        slug
-        published_at
-        publishState
-        isPublished
+        name
+      }
+      status {
+        id
+        name
       }
     }
   }

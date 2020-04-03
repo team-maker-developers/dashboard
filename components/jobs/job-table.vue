@@ -44,7 +44,7 @@
 <script lang="ts">
 import { Vue, Component, Prop } from 'nuxt-property-decorator'
 // eslint-disable-next-line no-unused-vars
-import { jobHeaders, JobItem } from '@/constants/list-tables/jobs'
+import { jobHeaders, JobItem } from '@/constants/jobs/jobs'
 
 @Component
 export default class JobTableVue extends Vue {
