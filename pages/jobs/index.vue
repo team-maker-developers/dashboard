@@ -24,7 +24,7 @@
 import { Vue, Component } from 'nuxt-property-decorator'
 import { jobStore } from '@/store'
 // eslint-disable-next-line no-unused-vars
-import { getJobs, JobItem } from '@/constants/list-tables/jobs'
+import { getJobs, JobItem } from '@/constants/jobs/jobs'
 import jobTable from '@/components/jobs/job-table.vue'
 
 @Component({

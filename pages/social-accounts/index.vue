@@ -49,7 +49,7 @@ import {
   socialAccountHeaders,
   getSocialAccountsQuery,
   getUpdateUserMutation
-} from '@/constants/list-tables/social-accounts'
+} from '@/constants/social-accounts/social-accounts'
 
 @Component({
   apollo: {

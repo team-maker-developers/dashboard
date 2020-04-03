@@ -2,7 +2,7 @@ import axios from 'axios'
 import moment from 'moment'
 import { rootState } from '@/store'
 import { Action, Module, Mutation, VuexModule } from 'vuex-module-decorators'
-import { LoginPost, EmailLoginPost, SocialLoginPost } from '~/constants/models/login/login-post'
+import { LoginPost, EmailLoginPost, SocialLoginPost } from '@/constants/login/login-post'
 
 interface apiClientData {
   id: string

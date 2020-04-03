@@ -1,8 +1,8 @@
 import { Action, Module, VuexModule } from 'vuex-module-decorators'
 import moment from 'moment'
 import { getApolloClient } from '@/plugins/apollo/get-apollo-client'
-import { getJobs, deleteJob } from '@/constants/list-tables/jobs'
-import { getJob, upsertJob, updateJobPublishAt } from '@/constants/models/job/job';
+import { getJobs, deleteJob } from '~/constants/jobs/jobs'
+import { getJob, upsertJob, updateJobPublishAt } from '@/constants/jobs/job';
 
 interface JobState {}
 

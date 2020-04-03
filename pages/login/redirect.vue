@@ -6,7 +6,7 @@
 import { Vue, Component } from 'nuxt-property-decorator'
 import { Context } from '@nuxt/types' // eslint-disable-line no-unused-vars
 import { loginStore } from '@/store'
-import { SocialLoginPost } from '@/constants/models/login/login-post'
+import { SocialLoginPost } from '@/constants/login/login-post'
 import DataLoading from '@/components/data-loading.vue'
 
 @Component({

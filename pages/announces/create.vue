@@ -5,7 +5,7 @@
 
 <script>
 import { mapMutations } from 'vuex'
-import { getJob } from '@/constants/models/announce/announce'
+import { getJob } from '@/constants/announce/announce'
 import DataLoading from '@/components/data-loading.vue'
 import announceForm from '@/components/announces/announce-form.vue'
 

@@ -15,7 +15,7 @@ export interface JobItem {
 
 export const jobHeaders: TableHeader[] = [
   {
-    text: 'No',
+    text: '求人コード',
     align: 'left',
     value: 'code'
   },

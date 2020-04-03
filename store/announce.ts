@@ -1,6 +1,6 @@
 import { Action, Mutation, Module, VuexModule } from 'vuex-module-decorators'
 import { getApolloClient } from '@/plugins/apollo/get-apollo-client'
-import { createAnnounce } from '@/constants/models/announce/announce'
+import { createAnnounce } from '@/constants/announce/announce'
 import { loginStore } from '@/store'
 
 interface Page {
