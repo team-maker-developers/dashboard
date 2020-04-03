@@ -6,7 +6,7 @@ interface Page {
   isPublished: boolean
 }
 
-export interface ApplicantsItem {
+export interface AppliesItem {
   id: string
   name: string
   kana: string
@@ -15,33 +15,32 @@ export interface ApplicantsItem {
   page: Page
 }
 
-export const ApplicantsHeaders: TableHeader[] = [
+export const AppliesHeaders: TableHeader[] = [
   {
-    text: 'No',
+    text: 'ID',
     align: 'left',
-    value: 'no'
+    value: 'id'
   },
-  { text: '応募求人', value: '' },
-  { text: '名前', value: 'name' },
-  { text: 'e-mail', value: 'email' },
+  { text: '応募日時', value: 'created_at' },
   { text: '応募求人', value: 'job.name' },
-  { text: 'ステータス', value: 'status' },
-  { text: '', value: 'changeStatus' }
+  { text: '応募者名前', value: 'applicant.name' },
+  { text: 'メールアドレス', value: 'applicant.email' }
+  // { text: '', value: 'changeStatus' }
 ]
 
 export const getApplies = gql`
   query getApplies {
     applies {
       id
-      create_at
-      appilicant {
-        id
-        name
-        email
-      }      
+      created_at      
       job {
         id
         name
+      }
+      applicant {
+        id
+        name
+        email
       }
       status {
         id
