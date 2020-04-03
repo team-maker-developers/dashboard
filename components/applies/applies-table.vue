@@ -1,10 +1,6 @@
 <template>
-  <v-data-table
-    :headers="ApplicantsHeaders"
-    :items="applicants"
-    class="elevation-1"
-  >
-    <template v-slot:item.changeStatus="{ item }">
+  <v-data-table :headers="appliesHeaders" :items="applies" class="elevation-1">
+    <!-- <template v-slot:item.changeStatus="{ item }">
       <v-menu top offset-y>
         <template v-slot:activator="{ on }">
           <v-btn color="secondary" small outlined v-on="on">
@@ -21,21 +17,19 @@
           </v-list-item>
         </v-list>
       </v-menu>
-    </template>
+    </template> -->
   </v-data-table>
 </template>
+
 <script lang="ts">
 import { Vue, Component, Prop } from 'nuxt-property-decorator'
-import {
-  ApplicantsHeaders, // eslint-disable-next-line no-unused-vars
-  ApplicantsItem
-} from '@/constants/list-tables/applicants'
+// eslint-disable-next-line no-unused-vars
+import { AppliesHeaders, AppliesItem } from '@/constants/applies/applies.ts'
 
 @Component
 export default class ApplicantsTableVue extends Vue {
-  @Prop(Array) listitems: any
-  @Prop(Array) applicants: ApplicantsItem[]
+  @Prop(Array) applies: AppliesItem[]
 
-  ApplicantsHeaders: TableHeader[] = ApplicantsHeaders
+  appliesHeaders: TableHeader[] = AppliesHeaders
 }
 </script>
