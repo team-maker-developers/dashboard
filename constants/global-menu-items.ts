@@ -21,8 +21,8 @@ export const menuItems: MenuItem[] = [
   },
   {
       icon: 'mdi-account-details',
-      text: '応募者管理',
-      link: '/applicants',
+      text: '応募管理',
+      link: '/applies',
       action: (): void => {}
   }
 ]
