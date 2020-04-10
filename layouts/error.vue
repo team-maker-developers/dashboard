@@ -13,7 +13,7 @@
         <p v-if="error.statusCode === 404">
           お手数ですが、やり直してください。
         </p>
-        <p v-else>お手数ですが、管理局まで問い合わせてください。</p>
+        <p v-else>お手数ですが、システム窓口まで問い合わせてください。</p>
       </v-container>
       <v-row justify="center">
         <v-btn to="/" class="ma-5">
