@@ -2,7 +2,7 @@
   <data-loading v-if="loading" message="ログイン中" />
   <v-container v-else>
     <v-col>
-      <v-alert type="warning" color="orange" class="text-center">
+      <v-alert type="warning" class="text-center">
         <h1>ログインに失敗しました。</h1>
       </v-alert>
       <v-container>
