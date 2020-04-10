@@ -1,8 +1,8 @@
 <template>
   <v-app dark>
     <v-container>
-      <v-alert type="warning" color="orange" class="text-center">
-        <h1 v-if="error.statusCode === 404">
+      <v-alert type="error" class="text-center">
+        <h1 v-if="isNotFound">
           {{ pageNotFound }}
         </h1>
         <h1 v-else>
@@ -10,7 +10,7 @@
         </h1>
       </v-alert>
       <v-container class="text-center">
-        <p v-if="error.statusCode === 404">
+        <p v-if="isNotFound">
           お手数ですが、やり直してください。
         </p>
         <p v-else>お手数ですが、システム窓口まで問い合わせてください。</p>
@@ -37,17 +37,15 @@ export default {
     }
   },
   head() {
-    const title =
-      this.error.statusCode === 404 ? this.pageNotFound : this.otherError
+    const title = this.isNotFound ? this.pageNotFound : this.otherError
     return {
       title
     }
   },
-  data() {
-    return {
-      pageNotFound: 'ページが見つまりませんでした。',
-      otherError: 'エラーが発生しました。'
-    }
+  computed: {
+    pageNotFound: () => 'ページが見つまりませんでした。',
+    otherError: () => 'エラーが発生しました。',
+    isNotFound: () => this.error.statusCode === 404
   }
 }
 </script>
