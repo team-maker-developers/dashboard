@@ -75,7 +75,7 @@ export default {
           secondary: '#B365A7',
           success: '#78E07D',
           info: '#84C6FA',
-          warning: '#D8E704',
+          warning: '#FF9800',
           error: '#F51212'
         },
         light: {
@@ -84,7 +84,7 @@ export default {
           secondary: '#B365A7',
           success: '#78E07D',
           info: '#84C6FA',
-          warning: '#D8E704',
+          warning: '#FF9800',
           error: '#F51212'
         }
       }
