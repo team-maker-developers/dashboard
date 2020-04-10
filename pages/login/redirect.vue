@@ -3,7 +3,7 @@
   <v-container v-else>
     <v-col>
       <v-alert type="warning" color="orange" class="text-center">
-        ログインに失敗しました。
+        <h1>ログインに失敗しました。</h1>
       </v-alert>
       <v-container>
         <p class="text-center">
