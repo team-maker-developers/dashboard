@@ -45,7 +45,7 @@ export default class Announce extends VuexModule implements AnnounceState {
       const domain: string = window.location.origin
       const unique_id: string = loginStore.uniqueId
 
-      const reqirectTo: string = `/jobs/share/?jobId=${this.job.id}`
+      const reqirectTo: string = `/jobs/share/${this.job.id}`
       return `${domain}/login/?unique_id=${unique_id}&redirect_to=${encodeURIComponent(
         reqirectTo
       )}`
