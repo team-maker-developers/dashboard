@@ -1,6 +1,6 @@
 <template>
   <!-- eslint-disable -->
-  <v-container>
+  <v-container class="job-from">
     <v-row justify="center">
       <job-publish v-if="'id' in job" v-model="job" />
       <v-col cols="12" :lg="9">
@@ -137,3 +137,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.job-from {
+  margin-bottom: 100px;
+}
+</style>

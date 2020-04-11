@@ -13,7 +13,10 @@
         <p v-if="isNotFound">
           お手数ですが、やり直してください。
         </p>
-        <p v-else>お手数ですが、システム窓口まで問い合わせてください。</p>
+        <p v-else>
+          お手数ですが、システム窓口まで問い合わせてください。
+          <br />support@teammaker.info
+        </p>
       </v-container>
       <v-row justify="center">
         <v-btn to="/" class="ma-5">
@@ -43,9 +46,15 @@ export default {
     }
   },
   computed: {
-    pageNotFound: () => 'ページが見つまりませんでした。',
-    otherError: () => 'エラーが発生しました。',
-    isNotFound: () => this.error.statusCode === 404
+    pageNotFound() {
+      return 'ページが見つまりませんでした。'
+    },
+    otherError() {
+      return 'エラーが発生しました。'
+    },
+    isNotFound() {
+      return this.error && this.error.statusCode === 404
+    }
   }
 }
 </script>

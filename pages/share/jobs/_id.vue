@@ -51,7 +51,7 @@ const getJob = gql`
 const description = `新しい求人が登録されました。
 興味がありそうな知人へLINEでシェアしてみませんか？`
 
-const lineShareUrl = 'https://social-plugins.line.me/lineit/share'
+const lineShareUrl = 'https://line.me/R/msg/text/'
 
 export default {
   components: { DataLoading },
@@ -67,13 +67,19 @@ export default {
     },
     lineShareUrl() {
       const referedUrl = this.job.page.refered_url
-      return `${lineShareUrl}?url=${encodeURIComponent(
-        referedUrl
-      )}&text=${encodeURIComponent(this.lead)}`
+
+      // %0AはURLエンコードされた改行コードになる
+      return `${lineShareUrl}?${encodeURIComponent(
+        this.lead
+      )}%0A${encodeURIComponent(referedUrl)}`
     }
   },
-  asyncData({ query, redirect }) {
-    return { jobId: query.jobId }
+  asyncData({ params, error }) {
+    if (params.id === undefined) {
+      error({ statusCode: 404 })
+    }
+
+    return { jobId: params.id }
   },
   apollo: {
     job: {

@@ -8,7 +8,7 @@
             ステータス
           </v-col>
           <v-col cols="8" :sm="10">
-            {{ job.publishState }}
+            {{ job.page.publishState }}
           </v-col>
         </v-row>
         <v-row>
