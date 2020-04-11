@@ -74,7 +74,6 @@ export default class RedirectLoginVue extends Vue {
       await this.postLogin()
     } catch (error) {
       this.catchError(error)
-    } finally {
       this.loading = false
     }
 
