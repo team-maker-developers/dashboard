@@ -50,20 +50,22 @@ export default class Login extends VuexModule implements LoginState {
   }
 
   @Mutation
-  logout() {
+  logout(message: string = '') {
     const uniqueId = this.uniqueId
 
     this.accessToken = ''
     this.refreshToken = ''
     this.uniqueId = ''
+    this.expiredAt = ''
 
     rootState.app.$apolloHelpers.onLogout()
-    rootState.$router.push(`/login/?unique_id=${uniqueId}`)
-  }
 
-  @Mutation
-  clearExpireAt() {
-    this.expiredAt = ''
+    const baseQuery = { unique_id: uniqueId }
+    const query = message === '' ? baseQuery : { 
+      message: encodeURIComponent(message),
+      ...baseQuery
+    }
+    rootState.$router.push({ name: 'login', query })
   }
 
   @Mutation

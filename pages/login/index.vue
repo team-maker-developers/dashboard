@@ -70,14 +70,14 @@ export default class LoginVue extends Vue {
   }
 
   created() {
-    if (!loginStore.isExpired) {
-      return
+    // asyncDataなどの場合、this.messageが使えないため、下記のように実装
+    const query = this.$route.query
+    if ('message' in query && typeof query.message === 'string') {
+      this.message = decodeURIComponent(query.message)
     }
 
-    // トークンの期限切れの場合は、フラッシュメッセージのように使用する
-    this.message =
-      '認証の有効期限が切れてしまいました。\nお手数ですが、再度ログインしてください。'
-    loginStore.clearExpireAt()
+    // フラッシュメッセージのように、文言を消す
+    this.$router.push({ name: 'login', query: { unique_id: this.uniqueId } })
   }
 }
 </script>

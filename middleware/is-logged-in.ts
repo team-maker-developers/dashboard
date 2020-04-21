@@ -26,8 +26,10 @@ const isLoggedIn: Middleware = (context: Context) => {
   }
 
   // 期限切れの場合はログアウトする
-  if (isLoginPage && loginStore.isExpired) {
-    loginStore.logout()
+  if (loginStore.isExpired) {
+    loginStore.logout(
+      '認証の有効期限が切れてしまいました。\r\nお手数ですが、再度ログインしてください。'
+    )
   }
 
   // ログイン後は、redirectToをクリアする
