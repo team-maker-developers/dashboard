@@ -1,9 +1,17 @@
+import { handleGraphQLErrors } from './graphql-errors-handler'
+
 /* eslint-disable no-console */
-// TODO: apolloのエラー処理方法を検討する
-export default (
-  { graphQLErrors, networkError, operation, forward },
-  nuxtContext
-) => {
+export default (errorContext, nuxtContext) => {
+  if (nuxtContext.isDev) {
+    globalLogging(errorContext)
+  }
+
+  if (errorContext.graphQLErrors) {
+    handleGraphQLErrors(errorContext.graphQLErrors)
+  }
+}
+
+const globalLogging = ({ graphQLErrors, networkError, operation, forward }) => {
   console.log('Global error handler')
   console.log(graphQLErrors, networkError, operation, forward)
 }
