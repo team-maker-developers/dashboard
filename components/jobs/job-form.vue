@@ -129,8 +129,8 @@ export default {
       },
       set(employmentCategoryId) {
         this.job = {
-          employmentCategoryId,
-          ...this.job
+          ...this.job,
+          employment_category_id: employmentCategoryId
         }
       }
     }

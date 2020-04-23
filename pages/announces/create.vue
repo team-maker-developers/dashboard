@@ -1,22 +1,15 @@
 <template>
-  <data-loading v-if="loading" />
-  <announce-form v-else />
+  <announce-form />
 </template>
 
 <script>
 import { mapMutations } from 'vuex'
 import { getJob } from '@/constants/announce/announce'
-import DataLoading from '@/components/data-loading.vue'
 import announceForm from '@/components/announces/announce-form.vue'
 
 export default {
   watchQuery: ['jobId'],
-  components: { announceForm, DataLoading },
-  computed: {
-    loading() {
-      return this.$apollo.queries.job.loading
-    }
-  },
+  components: { announceForm },
   asyncData({ query, store }) {
     const jobId = 'jobId' in query ? query.jobId : null
     store.commit('announce/clearJob')

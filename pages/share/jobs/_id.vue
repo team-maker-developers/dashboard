@@ -1,6 +1,5 @@
 <template>
-  <data-loading v-if="loading" />
-  <v-container v-else>
+  <v-container v-if="!loading">
     <h2>求人をシェアする</h2>
     <v-row justify="center">
       <p class="ma-3 job-share-description" v-text="description" />
@@ -32,29 +31,9 @@
 </template>
 
 <script>
-import gql from 'graphql-tag'
-import DataLoading from '@/components/data-loading.vue'
-
-const getJob = gql`
-  query($id: ID!) {
-    job(id: $id) {
-      id
-      name
-      page {
-        id
-        refered_url
-      }
-    }
-  }
-`
-
-const description = `新しい求人が登録されました。
-興味がありそうな知人へLINEでシェアしてみませんか？`
-
-const lineShareUrl = 'https://line.me/R/msg/text/'
+import { getJob, description, lineShareUrl } from '@/constants/share/job.js'
 
 export default {
-  components: { DataLoading },
   data: () => ({
     lead: ''
   }),
