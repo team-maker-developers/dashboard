@@ -1,6 +1,6 @@
 import { Action, Module, VuexModule } from 'vuex-module-decorators'
 import moment from 'moment'
-import { getApolloClient } from '@/plugins/apollo/get-apollo-client'
+import { apolloMutate } from '@/plugins/apollo/get-apollo-client'
 import { getJobs, deleteJob } from '~/constants/jobs/jobs'
 import { getJob, upsertJob, updateJobPublishAt } from '@/constants/jobs/job';
 
@@ -10,7 +10,7 @@ interface JobState {}
 export default class Job extends VuexModule implements JobState {
   @Action
   async deleteJob(id: string) {
-    await getApolloClient().mutate({
+    await apolloMutate({
       mutation: deleteJob,
       variables: { id },
       refetchQueries: [{
@@ -21,7 +21,7 @@ export default class Job extends VuexModule implements JobState {
 
   @Action({ rawError: true })
   async upsertJob(job: any) {
-    return await getApolloClient().mutate({
+    return await apolloMutate({
       mutation: upsertJob,
       variables: {
         input: job
@@ -37,7 +37,7 @@ export default class Job extends VuexModule implements JobState {
 
   @Action
   async updateJobPublishAt(page: any) {
-    await getApolloClient().mutate({
+    await apolloMutate({
       mutation: updateJobPublishAt,
       variables: {
         id: page.id,

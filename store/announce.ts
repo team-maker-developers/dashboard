@@ -1,5 +1,5 @@
 import { Action, Mutation, Module, VuexModule } from 'vuex-module-decorators'
-import { getApolloClient } from '@/plugins/apollo/get-apollo-client'
+import { apolloMutate } from '@/plugins/apollo/get-apollo-client'
 import { createAnnounce } from '@/constants/announce/announce'
 import { loginStore } from '@/store'
 
@@ -66,7 +66,7 @@ export default class Announce extends VuexModule implements AnnounceState {
 
   @Action({ rawError: true })
   async postAnnounce(announce: string) {
-    await getApolloClient().mutate({
+    await apolloMutate({
       mutation: createAnnounce,
       variables: {
         input: getCreateAnnounceInput(announce, this.jobId)
