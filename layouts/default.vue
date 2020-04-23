@@ -1,101 +1,69 @@
 <template>
   <v-app>
-    <v-navigation-drawer v-if="isLoggedIn" v-model="drawer" app clipped>
-      <v-list>
-        <v-list-item-group>
-          <v-list-item
-            v-for="(item, menuIndex) in menuItens"
-            :key="menuIndex"
-            :to="item.link"
-          >
-            <v-list-item-icon>
-              <v-icon v-text="item.icon"></v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title v-text="item.text"></v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list-item-group>
-      </v-list>
-    </v-navigation-drawer>
-    <v-app-bar color="primary" app clipped-left dark>
-      <template v-if="isLoggedIn">
-        <v-app-bar-nav-icon
-          v-show="$vuetify.breakpoint.mdAndDown"
-          @click.stop="drawer = !drawer"
-        />
-      </template>
-      <v-toolbar-title>Team Maker</v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-spacer></v-spacer>
-      <div v-if="isLoggedIn" class="d-flex align-center">
-        <div class="text-center">
-          <v-menu offset-y>
-            <template v-slot:activator="{ on }">
-              <v-btn icon v-on="on">
-                <v-icon>mdi-cog-outline</v-icon>
-              </v-btn>
-            </template>
-            <v-list>
-              <v-list-item
-                v-for="(item, settingIndex) in settingItems"
-                :key="settingIndex"
-                :to="item.link"
-              >
-                <v-list-item-title>{{ item.text }}</v-list-item-title>
-              </v-list-item>
-            </v-list>
-          </v-menu>
-        </div>
-        <!-- <v-btn icon>
-          <v-icon>mdi-bell</v-icon>
-        </v-btn> -->
-        <div class="text-center">
-          <v-menu offset-y>
-            <template v-slot:activator="{ on }">
-              <v-btn icon v-on="on">
-                <v-icon>mdi-account</v-icon>
-              </v-btn>
-            </template>
-            <v-list>
-              <v-list-item
-                v-for="(item, accountIndex) in accountItems"
-                :key="accountIndex"
-                :to="item.link"
-                @click="item.action"
-              >
-                <v-list-item-title>{{ item.text }}</v-list-item-title>
-              </v-list-item>
-            </v-list>
-          </v-menu>
-        </div>
-      </div>
-    </v-app-bar>
-    <v-content>
+    <layout-sidebar v-if="isLoggedIn" :prop-drawer.sync="drawer" />
+    <layout-header :is-logged-in="isLoggedIn" :prop-drawer.sync="drawer" />
+    <!-- nuxtタグにv-showをすると、描画できなくなるため、v-contentを二重にしている -->
+    <v-content v-if="loading">
+      <data-loading />
+    </v-content>
+    <v-content v-show="!loading">
       <nuxt />
     </v-content>
   </v-app>
 </template>
 
 <script lang="ts">
+// eslint-disable-next-line no-unused-vars
+import { NuxtLoading } from '@nuxt/types/app'
 import { Component, Vue } from 'vue-property-decorator'
 import { loginStore } from '@/store'
-import {
-  menuItems,
-  settingItems,
-  accountItems
-} from '@/constants/global-menu-items'
+import layoutSidebar from '@/components/layout/layout-sidebar.vue'
+import layoutHeader from '@/components/layout/layout-header.vue'
+import DataLoading from '@/components/data-loading.vue'
 
-@Component({ middleware: ['fetch-client-id'] })
+interface Loading {
+  loading: boolean
+}
+
+function typeOfLoading(loading: any): loading is Loading {
+  return (
+    loading !== null &&
+    typeof loading === 'object' &&
+    typeof loading.loading === 'boolean'
+  )
+}
+
+@Component({
+  middleware: ['fetch-client-id'],
+  components: { layoutSidebar, layoutHeader, DataLoading }
+})
 export default class DefaultLayout extends Vue {
+  // SPの場合、メニューを非表示にする
+  drawer: Boolean | null = null
+  nuxtLoading: NuxtLoading | null = null
+
   get isLoggedIn(): boolean {
     return loginStore.isLoggedIn
   }
 
-  // SPの場合、メニューを非表示にする
-  drawer: Boolean | null = null
-  menuItens: MenuItem[] = menuItems
-  settingItems: MenuItem[] = settingItems
-  accountItems: MenuItem[] = accountItems
+  // nuxtのプロパティを見て、自動でloadingの判定をする
+  get loading(): boolean {
+    if (typeOfLoading(this.nuxtLoading)) {
+      return this.nuxtLoading.loading
+    }
+
+    if (typeof this.nuxtLoading === 'boolean') {
+      return this.nuxtLoading
+    }
+
+    return false
+  }
+
+  // moutendのタイミングでは、nuxt自体はマウントしていないため、nextTickを使用
+  mounted() {
+    this.$nextTick(() => {
+      this.nuxtLoading = this.$nuxt.$loading
+    })
+  }
 }
 </script>
