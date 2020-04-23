@@ -4,7 +4,7 @@
     <layout-header :is-logged-in="isLoggedIn" :prop-drawer.sync="drawer" />
     <!-- nuxtタグにv-showをすると、描画できなくなるため、v-contentを二重にしている -->
     <v-content v-if="loading">
-      <data-loading />
+      <data-loading :message="loadingText" />
     </v-content>
     <v-content v-show="!loading">
       <nuxt />
@@ -23,13 +23,15 @@ import DataLoading from '@/components/data-loading.vue'
 
 interface Loading {
   loading: boolean
+  loadingText: string
 }
 
 function typeOfLoading(loading: any): loading is Loading {
   return (
     loading !== null &&
     typeof loading === 'object' &&
-    typeof loading.loading === 'boolean'
+    typeof loading.loading === 'boolean' &&
+    typeof loading.loadingText === 'string'
   )
 }
 
@@ -44,6 +46,15 @@ export default class DefaultLayout extends Vue {
 
   get isLoggedIn(): boolean {
     return loginStore.isLoggedIn
+  }
+
+  // loading中の文言を変更可能にする
+  get loadingText(): string {
+    if (this.loading && typeOfLoading(this.nuxtLoading)) {
+      return this.nuxtLoading.loadingText
+    }
+
+    return '読み込み中'
   }
 
   // nuxtのプロパティを見て、自動でloadingの判定をする
