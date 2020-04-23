@@ -23,9 +23,9 @@ export default {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
   /*
-   ** Customize the progress-bar color
+   ** ステートのみの管理に修正
    */
-  loading: { color: '#fff' },
+  loading: '@/components/loading/loading.js',
   /*
    ** Global CSS
    */
@@ -33,7 +33,10 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [{ src: '@/plugins/persisted-state.js', ssr: false }],
+  plugins: [
+    { src: '@/plugins/persisted-state.js', ssr: false },
+    { src: '@/plugins/apollo/persited-cache.js', ssr: false }
+  ],
   /*
    ** Nuxt.js dev-modules
    */
@@ -53,7 +56,8 @@ export default {
         httpEndpoint: `${envValues.apiDomain}/graphql`
       }
     },
-    errorHandler: '@/plugins/apollo/error-handler.js'
+    errorHandler: '@/plugins/apollo/error-handler.js',
+    watchLoading: '@/plugins/apollo/loading-handler.js'
   },
 
   axios: {
