@@ -1,8 +1,19 @@
 <template>
-  <v-stepper-content step="2">
+  <v-stepper-content step="3">
     <h3 class="py-5">
       以下の広報文を社員に送信します。よろしいですか？
     </h3>
+    <h4 class="py-1">広報先</h4>
+    <v-row v-for="channel in channels" :key="channel.id" justify="center">
+      <v-col :lg="9">
+        <v-checkbox
+          v-model="channels"
+          :label="channel.name"
+          :value="channel"
+          disabled
+        />
+      </v-col>
+    </v-row>
     <h4 class="py-1">広報文</h4>
     <v-row justify="center">
       <v-col :lg="9">
@@ -17,85 +28,43 @@
         </v-textarea>
       </v-col>
     </v-row>
-    <job-confirm />
-    <div class="text-right">
-      <v-btn text @click="changeBeforeStep">キャンセル</v-btn>
-      <v-btn :disabled="loading" color="primary" @click="doAnnounce">
-        {{ loading ? '送信中' : 'OK' }}
-      </v-btn>
-      <v-dialog v-model="dialog" width="500">
-        <v-card class="py-8">
-          <v-card-title class="headline py-8" primary-title>
-            {{ announceResult }}
-          </v-card-title>
-          <v-card-actions>
-            <v-spacer></v-spacer>
-            <v-btn color="primary" @click="clearDialog">
-              OK
-            </v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-dialog>
-    </div>
+    <job-confirm :job="job" />
+    <announce-actions
+      :announce="sharedAnnounce"
+      :channels="channels"
+      @changeBeforeStep="changeBeforeStep"
+    />
   </v-stepper-content>
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { getAnnounceUrl } from '@/constants/announces/models.ts'
 import jobConfirm from '../job-confirm.vue'
-
-const postAnnounceError = `広報文の送信に失敗いたしました。
-お手数ですが、管理部まで問い合わせてくださいませ。`
+import announceActions from './announce-actions.vue'
+import announceStepMixin from './announce-step-mixin'
 
 export default {
-  components: { jobConfirm },
-  model: {
-    prop: 'announce'
-  },
+  components: { jobConfirm, announceActions },
+  mixins: [announceStepMixin],
   props: {
     announce: {
       type: String,
       required: true
+    },
+    channels: {
+      type: Array,
+      required: true
     }
   },
-  data: () => ({
-    announceResult: '',
-    loading: false
-  }),
   computed: {
     sharedAnnounce() {
       if (this.announceUrl) {
-        return `${this.announce}\n${this.announceUrl}`
+        const announceUrl = getAnnounceUrl(this.job)
+        return `${this.announce}\n${announceUrl}`
       }
 
       return this.announce
-    },
-    dialog() {
-      return this.announceResult !== ''
-    },
-    ...mapGetters('announce', ['announceUrl'])
-  },
-  methods: {
-    changeBeforeStep() {
-      this.changeStep(1)
-    },
-    changeStep(step) {
-      this.$emit('changeStep', step)
-    },
-    clearDialog() {
-      this.announceResult = ''
-    },
-    async doAnnounce() {
-      this.loading = true
-      try {
-        this.announceResult = await this.postAnnounce(this.sharedAnnounce)
-      } catch (error) {
-        this.announceResult = postAnnounceError
-      } finally {
-        this.loading = false
-      }
-    },
-    ...mapActions('announce', ['postAnnounce'])
+    }
   }
 }
 </script>
