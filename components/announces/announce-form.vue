@@ -3,20 +3,28 @@
     <v-container>
       <h2>LINEで広報する</h2>
       <v-stepper v-model="currentStep">
-        <v-stepper-header>
-          <v-divider></v-divider>
-          <v-stepper-step :complete="currentStep > 1" step="1">
-            広報文を入力する
-          </v-stepper-step>
-          <v-divider></v-divider>
-          <v-stepper-step :complete="currentStep > 2" step="2">
-            入力内容を確認して、LINEで広報する
-          </v-stepper-step>
-          <v-divider></v-divider>
-        </v-stepper-header>
+        <announce-step-header :current-step="currentStep" />
         <v-stepper-items>
-          <announce-input v-model="announce" @changeStep="changeStep" />
-          <announce-confirm v-model="announce" @changeStep="changeStep" />
+          <choose-channel
+            v-model="channels"
+            :job="job"
+            :step="1"
+            @changeStep="changeStep"
+          />
+          <announce-input
+            v-model="announce"
+            :channels="channels"
+            :step="2"
+            :job="job"
+            @changeStep="changeStep"
+          />
+          <announce-confirm
+            :channels="channels"
+            :announce="announce"
+            :job="job"
+            :step="3"
+            @changeStep="changeStep"
+          />
         </v-stepper-items>
       </v-stepper>
     </v-container>
@@ -24,13 +32,27 @@
 </template>
 
 <script>
-import announceInput from '@/components/announces/announce/announce-input.vue'
-import announceConfirm from '@/components/announces/announce/announce-confirm.vue'
+import announceConfirm from './announce/announce-confirm.vue'
+import announceInput from './announce/announce-input.vue'
+import announceStepHeader from './announce-steps/announce-step-header.vue'
+import chooseChannel from './announce/choose-channel.vue'
 
 export default {
-  components: { announceConfirm, announceInput },
+  components: {
+    announceConfirm,
+    announceInput,
+    announceStepHeader,
+    chooseChannel
+  },
+  props: {
+    job: {
+      type: Object,
+      default: null
+    }
+  },
   data: () => ({
     announce: '',
+    channels: [],
     currentStep: 1,
     dialog: false
   }),

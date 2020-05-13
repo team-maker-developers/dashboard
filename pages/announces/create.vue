@@ -1,25 +1,30 @@
 <template>
-  <announce-form />
+  <announce-form :job="jobValue" />
 </template>
 
 <script>
 import { mapMutations } from 'vuex'
-import { getJob } from '@/constants/announce/announce'
+import { getChannels, getJob } from '@/constants/announces/announce.ts'
 import announceForm from '@/components/announces/announce-form.vue'
 
 export default {
   watchQuery: ['jobId'],
   components: { announceForm },
+  data: () => ({ jobValue: null }),
   asyncData({ query, store }) {
     const jobId = 'jobId' in query ? query.jobId : null
-    store.commit('announce/clearJob')
-
     return { jobId }
   },
   methods: {
-    ...mapMutations('announce', ['setJob'])
+    ...mapMutations('announce', ['setChannels'])
   },
   apollo: {
+    channels: {
+      query: getChannels,
+      result({ data }) {
+        this.setChannels(data.channels)
+      }
+    },
     job: {
       query: getJob,
       variables() {
@@ -31,7 +36,7 @@ export default {
         return this.jobId === null
       },
       result({ data }) {
-        this.setJob(data.job)
+        this.jobValue = data.job
       }
     }
   }
