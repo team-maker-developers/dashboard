@@ -24,10 +24,16 @@
 </template>
 
 <script>
-import { mapGetters, mapState } from 'vuex'
 import { jobHeaders } from '@/constants/jobs/jobs'
+import { getAnnounceUrl } from '@/constants/announces/models.ts'
 
 export default {
+  props: {
+    job: {
+      type: Object,
+      default: null
+    }
+  },
   computed: {
     headers() {
       return jobHeaders
@@ -36,8 +42,9 @@ export default {
     jobs() {
       return [this.job]
     },
-    ...mapGetters('announce', ['announceUrl']),
-    ...mapState('announce', ['job'])
+    announceUrl() {
+      return getAnnounceUrl(this.job)
+    }
   }
 }
 </script>
