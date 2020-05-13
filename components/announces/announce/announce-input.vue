@@ -1,6 +1,6 @@
 <template>
-  <v-stepper-content step="1">
-    <h3 class="py-3">社員へ送信する広報文を入力しましょう。</h3>
+  <v-stepper-content step="2">
+    <h3 class="py-3">社員へ送信する広報文を入力してください。</h3>
     <h4 class="py-1">広報文</h4>
     <v-row justify="center">
       <v-col :lg="9">
@@ -18,7 +18,7 @@
         <v-form ref="leadForm" v-model="valid">
           <v-textarea
             v-model="announce"
-            :rules="announceRequired"
+            :rules="[(value) => !!value || '広報文を入力してください。']"
             auto-grow
             autofocus
             rows="7"
@@ -28,20 +28,23 @@
         </v-form>
       </v-col>
     </v-row>
-    <job-confirm />
+    <job-confirm :job="job" />
     <div class="text-right">
       <v-btn color="primary" justify-end :disabled="!valid" @click="changeStep">
         次へ
       </v-btn>
+      <v-btn text @click="changeBeforeStep">戻る</v-btn>
     </div>
   </v-stepper-content>
 </template>
 
 <script>
 import jobConfirm from '../job-confirm.vue'
+import announceStepMixin from './announce-step-mixin.js'
 
 export default {
   components: { jobConfirm },
+  mixins: [announceStepMixin],
   props: {
     value: {
       type: String,
@@ -49,8 +52,7 @@ export default {
     }
   },
   data: () => ({
-    valid: false,
-    announceRequired: [(announce) => !!announce || '広報文を入力してください。']
+    valid: false
   }),
   computed: {
     announce: {
@@ -60,11 +62,6 @@ export default {
       set(lead) {
         this.$emit('input', lead)
       }
-    }
-  },
-  methods: {
-    changeStep() {
-      this.$emit('changeStep', 2)
     }
   }
 }
