@@ -7,6 +7,9 @@
       "hosting": {
         "admin": [
           "teammaker-admin"
+        ],
+        "stage-admin": [
+          "stage-teammaker-admin"
         ]
       }
     }
