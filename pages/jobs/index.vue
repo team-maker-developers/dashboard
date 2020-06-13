@@ -5,7 +5,7 @@
       <v-row justify="center">
         <v-col :lg="9">
           <div class="text-right">
-            <v-btn outlined small color="primary" to="jobs/create/">
+            <v-btn outlined small color="primary" to="/jobs/create/">
               新規作成
             </v-btn>
           </div>

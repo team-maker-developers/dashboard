@@ -4,7 +4,7 @@
       -
     </template>
     <template v-slot:item.edit="{ item }">
-      <v-btn outlined small color="primary" :to="`jobs/${item.id}`">
+      <v-btn outlined small color="primary" :to="`/jobs/${item.id}`">
         編集
       </v-btn>
     </template>
