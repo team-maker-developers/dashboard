@@ -25,6 +25,7 @@ export interface LoginState {
   uniqueId: string
   accessToken: string
   apiClientData: apiClientData | null
+  loginScope: string
 }
 
 @Module({ stateFactory: true, namespaced: true, name: 'login' })
@@ -36,6 +37,7 @@ export default class Login extends VuexModule implements LoginState {
   apiClientData: apiClientData | null = null
 
   redirectTo: string = ''
+  loginScope: string = ''
 
   @Mutation
   setUniqueId(uniqueId: string) {
@@ -63,24 +65,32 @@ export default class Login extends VuexModule implements LoginState {
     this.refreshToken = ''
     this.uniqueId = ''
     this.expiredAt = ''
+    this.loginScope = ''
 
     rootState.app.$apolloHelpers.onLogout()
 
-    const baseQuery = { unique_id: uniqueId }
-
-    const hasMessage = message !== ''
-    const query = hasMessage
-      ? baseQuery
-      : {
+    const query = { unique_id: uniqueId }
+    if (message !== '') {
+      rootState.$router.push({ name: 'login', query })
+    } else {
+      rootState.$router.push({
+        name: 'login',
+        query: {
           message: encodeURIComponent(message),
-          ...baseQuery
+          ...query
         }
-    rootState.$router.push({ name: 'login', query })
+      })
+    }
   }
 
   @Mutation
   setRedirectTo(redirectTo: string) {
     this.redirectTo = redirectTo
+  }
+
+  @Mutation
+  setLoginScope(loginScope: string) {
+    this.loginScope = loginScope
   }
 
   @Mutation
