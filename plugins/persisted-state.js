@@ -9,7 +9,8 @@ export default ({ store }) => {
       'login.accessToken',
       'login.refreshToken',
       'login.uniqueId',
-      'login.expiredAt'
+      'login.expiredAt',
+      'login.loginScope'
     ]
   })(store)
 
