@@ -23,7 +23,7 @@ export default {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
   /*
-   ** ステートのみの管理に修正
+   ** ステートを管理する
    */
   loading: '@/components/loading/loading.js',
   /*
