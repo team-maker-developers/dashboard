@@ -58,7 +58,7 @@ export default {
   },
   computed: {
     sharedAnnounce() {
-      if (this.announceUrl) {
+      if (this.job) {
         const announceUrl = getAnnounceUrl(this.job)
         return `${this.announce}\n${announceUrl}`
       }
