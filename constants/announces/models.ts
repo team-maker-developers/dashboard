@@ -1,4 +1,5 @@
 import { loginStore } from '@/store'
+import { scopes } from '@/constants/scopes'
 
 export interface Channel {
   id: string
@@ -46,7 +47,7 @@ export const getAnnounceUrl = (job: Job) => {
     const reqirectTo = `/share/jobs/${job.id}`
     return `${domain}/login/?unique_id=${
       loginStore.uniqueId
-    }&redirect_to=${encodeURIComponent(reqirectTo)}`
+    }&redirect_to=${encodeURIComponent(reqirectTo)}&scope=${scopes.shareJob}`
   }
 
   return ''
