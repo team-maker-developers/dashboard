@@ -33,10 +33,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [
-    { src: '@/plugins/persisted-state.js', ssr: false },
-    { src: '@/plugins/apollo/persited-cache.js', ssr: false }
-  ],
+  plugins: [{ src: '@/plugins/persisted-state.js', mode: 'client' }],
   /*
    ** Nuxt.js dev-modules
    */
