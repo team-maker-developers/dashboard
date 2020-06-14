@@ -8,26 +8,26 @@ export const menuItems: MenuItem[] = [
   //     action: (): void => {}
   // },
   {
-      icon: 'mdi-account-search',
-      text: '求人管理',
-      link: '/jobs',
-      action: (): void => {}
+    icon: 'mdi-account-search',
+    text: '求人管理',
+    link: '/jobs',
+    action: (): void => {}
   },
   {
-      icon: 'mdi-share-circle',
-      text: 'LINE広報',
-      link: '/announces/create',
-      action: (): void => {}
+    icon: 'mdi-share-circle',
+    text: 'LINE広報',
+    link: '/announces/create',
+    action: (): void => {}
   },
   {
-      icon: 'mdi-account-details',
-      text: '応募管理',
-      link: '/applies',
-      action: (): void => {}
+    icon: 'mdi-account-details',
+    text: '応募管理',
+    link: '/applies',
+    action: (): void => {}
   }
 ]
 
-export const settingItems: MenuItem[]  = [
+export const settingItems: MenuItem[] = [
   {
     text: 'ログイン申請',
     link: '/social-accounts',

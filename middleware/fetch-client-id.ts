@@ -1,8 +1,8 @@
-import { Context, Middleware } from '@nuxt/types'
+import { Context, Middleware } from '@nuxt/types' // eslint-disable-line no-unused-vars
 import { loginStore } from '@/store'
 
 const fetchUniqueId: Middleware = (context: Context) => {
-  const { app, query, route, redirect } = context
+  const { query, route, redirect } = context
   // クライアントIDが存在しない場合は処理なし
   if (!('unique_id' in query && typeof query.unique_id === 'string')) {
     return
@@ -14,7 +14,7 @@ const fetchUniqueId: Middleware = (context: Context) => {
   }
 
   // ログイン画面もしくは、空の場合のみ、クライアントIDをセットする
-  if (loginStore.uniqueId === '' ||　String(route.name).startsWith('login')) {
+  if (loginStore.uniqueId === '' || String(route.name).startsWith('login')) {
     loginStore.setUniqueId(query.unique_id)
     return
   }

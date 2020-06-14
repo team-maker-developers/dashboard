@@ -1,4 +1,4 @@
-import { Context, Middleware } from '@nuxt/types'
+import { Context, Middleware } from '@nuxt/types' // eslint-disable-line no-unused-vars
 
 const redirectJobs: Middleware = ({ redirect }: Context) => {
   redirect('/jobs')

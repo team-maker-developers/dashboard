@@ -20,7 +20,7 @@ export interface Job {
   id: string
   code: string
   name: string
-  last_announced_at: string
+  last_announced_at: string // eslint-disable-line camelcase
   page: Page
 }
 
@@ -38,7 +38,6 @@ export const getCreateAnnounceInput = (
     }
   }
 }
-
 
 export const getAnnounceUrl = (job: Job) => {
   if (job) {

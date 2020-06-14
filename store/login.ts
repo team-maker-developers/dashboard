@@ -1,8 +1,14 @@
 import axios from 'axios'
 import moment from 'moment'
-import { rootState } from '@/store'
 import { Action, Module, Mutation, VuexModule } from 'vuex-module-decorators'
-import { LoginPost, EmailLoginPost, SocialLoginPost } from '@/constants/login/login-post'
+import { rootState } from '@/store'
+/* eslint-disable no-unused-vars */
+import {
+  LoginPost,
+  EmailLoginPost,
+  SocialLoginPost
+} from '@/constants/login/login-post'
+/* eslint-enable no-unused-vars */
 
 interface apiClientData {
   id: string
@@ -10,15 +16,15 @@ interface apiClientData {
 }
 
 interface loginToken {
-  access_token: string
-  refresh_token: string
-  expires_in: string
+  accessToken: string
+  refreshToken: string
+  expiresIn: string
 }
 
 export interface LoginState {
   uniqueId: string
   accessToken: string
-  apiClientData: apiClientData|null
+  apiClientData: apiClientData | null
 }
 
 @Module({ stateFactory: true, namespaced: true, name: 'login' })
@@ -27,7 +33,7 @@ export default class Login extends VuexModule implements LoginState {
   refreshToken: string = ''
   expiredAt: string = ''
   uniqueId: string = ''
-  apiClientData: apiClientData|null = null
+  apiClientData: apiClientData | null = null
 
   redirectTo: string = ''
 
@@ -42,10 +48,10 @@ export default class Login extends VuexModule implements LoginState {
   }
 
   @Mutation
-  setAccessToken( token: loginToken ) {
-    this.accessToken = token.access_token
-    this.refreshToken = token.refresh_token
-    this.expiredAt = moment().add(token.expires_in, 'seconds').format()
+  setAccessToken(token: loginToken) {
+    this.accessToken = token.accessToken
+    this.refreshToken = token.refreshToken
+    this.expiredAt = moment().add(token.expiresIn, 'seconds').format()
     rootState.app.$apolloHelpers.onLogin(this.accessToken)
   }
 
@@ -61,10 +67,14 @@ export default class Login extends VuexModule implements LoginState {
     rootState.app.$apolloHelpers.onLogout()
 
     const baseQuery = { unique_id: uniqueId }
-    const query = message === '' ? baseQuery : { 
-      message: encodeURIComponent(message),
-      ...baseQuery
-    }
+
+    const hasMessage = message !== ''
+    const query = hasMessage
+      ? baseQuery
+      : {
+          message: encodeURIComponent(message),
+          ...baseQuery
+        }
     rootState.$router.push({ name: 'login', query })
   }
 
@@ -90,7 +100,7 @@ export default class Login extends VuexModule implements LoginState {
     return this.accessToken !== ''
   }
 
-  get isExpired(): boolean{
+  get isExpired(): boolean {
     if (!this.expiredAt) {
       return false
     }
@@ -103,7 +113,7 @@ export default class Login extends VuexModule implements LoginState {
       if (!this.apiClientData) {
         throw new Error('環境変数が登録されていません。')
       }
-  
+
       formData.append('client_id', this.apiClientData.id)
       formData.append('client_secret', this.apiClientData.secret)
       formData.append('scope', '*')
@@ -117,7 +127,11 @@ export default class Login extends VuexModule implements LoginState {
     const response = await axios.post(loginPost.url, formData)
     const { data } = response
 
-    this.setAccessToken(data)
+    this.setAccessToken({
+      accessToken: data.access_token,
+      refreshToken: data.refresh_token,
+      expiresIn: data.expires_in
+    })
     return data.access_token
   }
 

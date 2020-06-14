@@ -39,12 +39,6 @@ export default {
       default: null
     }
   },
-  head() {
-    const title = this.isNotFound ? this.pageNotFound : this.otherError
-    return {
-      title
-    }
-  },
   computed: {
     pageNotFound() {
       return 'ページが見つまりませんでした。'
@@ -54,6 +48,12 @@ export default {
     },
     isNotFound() {
       return this.error && this.error.statusCode === 404
+    }
+  },
+  head() {
+    const title = this.isNotFound ? this.pageNotFound : this.otherError
+    return {
+      title
     }
   }
 }

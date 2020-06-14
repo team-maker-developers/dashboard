@@ -34,21 +34,23 @@ export const getSocialAccountsQuery = gql`
   }
 `
 
-export const getUpdateUserMutation = (userId: string, changedIsValid: boolean) => {
+export const getUpdateUserMutation = (
+  userId: string,
+  changedIsValid: boolean
+) => {
   return {
     mutation: gql`
-    mutation($id: ID!, $isValid: Boolean) {
-      updateUser(id: $id, is_valid: $isValid) {
-        id
-        is_valid
+      mutation($id: ID!, $isValid: Boolean) {
+        updateUser(id: $id, is_valid: $isValid) {
+          id
+          is_valid
+        }
       }
-    }
-  `,
-  variables: {
-    id: userId,
-    isValid: changedIsValid
-  },
-  refetchQueries: [{ query: getSocialAccountsQuery }]
-
+    `,
+    variables: {
+      id: userId,
+      isValid: changedIsValid
+    },
+    refetchQueries: [{ query: getSocialAccountsQuery }]
   }
 }

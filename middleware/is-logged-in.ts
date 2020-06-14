@@ -1,17 +1,17 @@
-import { Context, Middleware } from '@nuxt/types'
+import { Context, Middleware } from '@nuxt/types' // eslint-disable-line no-unused-vars
 import { loginStore } from '@/store'
 
 const isLoggedIn: Middleware = (context: Context) => {
   const { redirect, route, env } = context
-  
+
   // 本来はアクセストークンを設定せず、モックの時だけisLoggedInの戻り値をTRUEにしたい。
   // しかし、envがisLoggedIn内で参照できないので、暫定的にアクセストークンを設定している
   if (env.isMock) {
-    loginStore.setAccessToken({ 
-      access_token: 'dummy_token',
-      refresh_token: 'dummy_token',
-      expires_in: '999999999'
-    });
+    loginStore.setAccessToken({
+      accessToken: 'dummy_token',
+      refreshToken: 'dummy_token',
+      expiresIn: '999999999'
+    })
     return
   }
 

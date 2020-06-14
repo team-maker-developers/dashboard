@@ -1,7 +1,6 @@
-import { loginStore } from '@/store'
 import { handleGraphQLErrors } from './errors-handlers/graphql-errors-handler'
+import { loginStore } from '@/store'
 
-/* eslint-disable no-console */
 export default (errorContext, nuxtContext) => {
   if (nuxtContext.isDev) {
     globalLogging(errorContext)
@@ -16,10 +15,12 @@ export default (errorContext, nuxtContext) => {
   }
 }
 
+/* eslint-disable no-console */
 const globalLogging = ({ graphQLErrors, networkError, operation, forward }) => {
   console.log('Global error handler')
   console.log(graphQLErrors, networkError, operation, forward)
 }
+/* eslint-enable no-console */
 
 const handleNetworkError = (networkError) => {
   if (networkError.statusCode === 401) {

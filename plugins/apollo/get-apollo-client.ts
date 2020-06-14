@@ -1,11 +1,11 @@
 import { ApolloProvider } from 'vue-apollo'
-import { ApolloClient } from 'apollo-client'
+import { ApolloClient } from 'apollo-client' // eslint-disable-line no-unused-vars
 import { rootState } from '@/store'
 
 const getApolloClient = (): ApolloClient<any> => {
   const apolloProvider = rootState.app.apolloProvider
   if (!(apolloProvider instanceof ApolloProvider)) {
-    throw new Error('Apolloの設定が未実装です。')
+    throw new TypeError('Apolloの設定が未実装です。')
   }
 
   return apolloProvider.defaultClient
