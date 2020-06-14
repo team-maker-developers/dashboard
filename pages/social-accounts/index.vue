@@ -50,6 +50,7 @@ import {
   getSocialAccountsQuery,
   getUpdateUserMutation
 } from '@/constants/social-accounts/social-accounts'
+import { apolloMutate } from '@/plugins/apollo/get-apollo-client'
 
 @Component({
   apollo: {
@@ -63,8 +64,7 @@ export default class ScialAccountsIndexVue extends Vue {
 
   async updateUserIsValid(userId: string, changedIsValid: boolean) {
     const updateUserMutation = getUpdateUserMutation(userId, changedIsValid)
-    // TODO: #39 エラー処理の方法を検討する
-    await this.$apollo.mutate(updateUserMutation)
+    await apolloMutate(updateUserMutation)
   }
 }
 </script>
