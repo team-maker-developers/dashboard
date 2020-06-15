@@ -93,7 +93,11 @@ export default {
   },
 
   router: {
-    middleware: ['initialize-form-data', 'is-logged-in']
+    middleware: [
+      'initialize-form-data',
+      'is-logged-in',
+      'check-scope'
+    ]
   },
 
   env: envValues,
@@ -110,6 +114,17 @@ export default {
      */
     extend(config, ctx) {},
     babel: {
+      presets({ isServer }) {
+        return [
+          [
+            require.resolve('@nuxt/babel-preset-app'),
+            {
+              buildTarget: isServer ? 'server' : 'client',
+              corejs: { version: 3 }
+            }
+          ]
+        ]
+      },
       plugins: [
         ['@babel/plugin-proposal-decorators', { legacy: true }],
         ['@babel/plugin-proposal-class-properties', { loose: true }]

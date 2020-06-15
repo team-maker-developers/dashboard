@@ -1,7 +1,14 @@
 import { Action, Mutation, Module, VuexModule } from 'vuex-module-decorators'
 import { apolloMutate } from '@/plugins/apollo/get-apollo-client'
 import { createAnnounce } from '~/constants/announces/announce'
-import { Channel, Job, AnnounceInput, getCreateAnnounceInput } from '~/constants/announces/models'
+/* eslint-disable no-unused-vars */
+import {
+  Channel,
+  Job,
+  AnnounceInput,
+  getCreateAnnounceInput
+} from '~/constants/announces/models'
+/* eslint-enable no-unused-vars */
 
 interface AnnounceState {
   jobId: string | null
@@ -28,11 +35,7 @@ export default class Announce extends VuexModule implements AnnounceState {
     await apolloMutate({
       mutation: createAnnounce,
       variables: {
-        input: getCreateAnnounceInput(
-          announce,
-          channels,
-          this.jobId
-        )
+        input: getCreateAnnounceInput(announce, channels, this.jobId)
       }
     })
     return '広報文の送信に成功いたしました。'

@@ -32,7 +32,7 @@ export const getApplies = gql`
   query getApplies {
     applies {
       id
-      created_at      
+      created_at
       job {
         id
         name

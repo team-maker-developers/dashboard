@@ -12,7 +12,7 @@ export class EmailLoginPost extends LoginPost {
   password: string
 
   get formData(): FormData {
-    const formData = new FormData
+    const formData = new FormData()
     formData.append('grant_type', 'password')
     formData.append('username', this.email)
     formData.append('password', this.password)
@@ -30,7 +30,7 @@ export class SocialLoginPost extends LoginPost {
   code: string
 
   get formData(): FormData {
-    const formData = new FormData
+    const formData = new FormData()
     formData.append('grant_type', 'socialite')
     formData.append('code', this.code)
     return formData

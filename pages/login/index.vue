@@ -43,6 +43,13 @@ export default class LoginVue extends Vue {
       loginStore.setRedirectTo(query.redirect_to)
     }
 
+    if ('scope' in query && typeof query.scope === 'string') {
+      loginStore.setLoginScope(query.scope)
+    } else {
+      // デフォルトのスコープは、*にする
+      loginStore.setLoginScope('*')
+    }
+
     return { apiDomain }
   }
 

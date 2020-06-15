@@ -1,14 +1,17 @@
 <template>
   <v-app>
-    <layout-sidebar v-if="isLoggedIn" :prop-drawer.sync="drawer" />
-    <layout-header :is-logged-in="isLoggedIn" :prop-drawer.sync="drawer" />
+    <layout-sidebar v-if="canAccessAdmin" :prop-drawer.sync="drawer" />
+    <layout-header
+      :can-access-admin="canAccessAdmin"
+      :prop-drawer.sync="drawer"
+    />
     <!-- nuxtタグにv-showをすると、描画できなくなるため、v-contentを二重にしている -->
-    <v-content v-if="loading">
+    <v-main v-if="loading">
       <data-loading :message="loadingText" />
-    </v-content>
-    <v-content v-show="!loading">
+    </v-main>
+    <v-main v-show="!loading">
       <nuxt />
-    </v-content>
+    </v-main>
   </v-app>
 </template>
 
@@ -20,6 +23,7 @@ import { loginStore } from '@/store'
 import layoutSidebar from '@/components/layout/layout-sidebar.vue'
 import layoutHeader from '@/components/layout/layout-header.vue'
 import DataLoading from '@/components/data-loading.vue'
+import { canAccessAdmin } from '@/constants/scopes.ts'
 
 interface Loading {
   loading: boolean
@@ -43,6 +47,14 @@ export default class DefaultLayout extends Vue {
   // SPの場合、メニューを非表示にする
   drawer: Boolean | null = null
   nuxtLoading: NuxtLoading | null = null
+
+  get canAccessAdmin(): boolean {
+    if (!this.isLoggedIn) {
+      return false
+    }
+
+    return canAccessAdmin()
+  }
 
   get isLoggedIn(): boolean {
     return loginStore.isLoggedIn
