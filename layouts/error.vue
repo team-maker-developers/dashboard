@@ -1,16 +1,19 @@
 <template>
   <v-app dark>
     <v-container>
-      <v-alert type="error" class="text-center">
+      <v-row justify="center" class="ma-2 red--text text-center">
         <h1 v-if="isNotFound">
-          {{ pageNotFound }}
+          ページが見つかりませんでした。
+        </h1>
+        <h1 v-else-if="isForbidden">
+          アクセスできないページです。
         </h1>
         <h1 v-else>
-          {{ otherError }}
+          エラーが発生しました。
         </h1>
-      </v-alert>
-      <v-container class="text-center">
-        <p v-if="isNotFound">
+      </v-row>
+      <v-container class="my-10 text-center">
+        <p v-if="isNotFound || isForbidden">
           お手数ですが、やり直してください。
         </p>
         <p v-else>
@@ -40,14 +43,11 @@ export default {
     }
   },
   computed: {
-    pageNotFound() {
-      return 'ページが見つまりませんでした。'
-    },
-    otherError() {
-      return 'エラーが発生しました。'
-    },
     isNotFound() {
       return this.error && this.error.statusCode === 404
+    },
+    isForbidden() {
+      return this.error && this.error.statusCode === 403
     }
   },
   head() {
