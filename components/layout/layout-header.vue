@@ -1,6 +1,6 @@
 <template>
   <v-app-bar color="primary" app clipped-left dark>
-    <template v-if="isLoggedIn">
+    <template v-if="canAccessAdmin">
       <v-app-bar-nav-icon
         v-show="$vuetify.breakpoint.mdAndDown"
         @click.stop="drawer = !drawer"
@@ -9,8 +9,8 @@
     <v-toolbar-title>Team Maker</v-toolbar-title>
     <v-spacer></v-spacer>
     <v-spacer></v-spacer>
-    <div v-if="isLoggedIn" class="d-flex align-center">
-      <div class="text-center">
+    <div class="d-flex align-center">
+      <div v-if="canAccessAdmin" class="text-center">
         <v-menu offset-y>
           <template v-slot:activator="{ on }">
             <v-btn icon v-on="on">
@@ -31,7 +31,7 @@
       <!-- <v-btn icon>
         <v-icon>mdi-bell</v-icon>
       </v-btn> -->
-      <div class="text-center">
+      <div v-if="isLoggedIn" class="text-center">
         <v-menu offset-y>
           <template v-slot:activator="{ on }">
             <v-btn icon v-on="on">
@@ -56,13 +56,18 @@
 
 <script lang="ts">
 import { Component, Vue, Prop, PropSync } from 'vue-property-decorator'
+import { loginStore } from '@/store'
 import { settingItems, accountItems } from '@/constants/global-menu-items'
 
 @Component
 export default class LayoutHeader extends Vue {
-  @Prop() isLoggedIn: Boolean
+  @Prop() canAccessAdmin: Boolean
   @PropSync('propDrawer', { required: true })
   drawer!: Boolean
+
+  get isLoggedIn(): boolean {
+    return loginStore.isLoggedIn
+  }
 
   settingItems: MenuItem[] = settingItems
   accountItems: MenuItem[] = accountItems
