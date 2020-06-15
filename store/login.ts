@@ -126,7 +126,7 @@ export default class Login extends VuexModule implements LoginState {
 
       formData.append('client_id', this.apiClientData.id)
       formData.append('client_secret', this.apiClientData.secret)
-      formData.append('scope', '*')
+      formData.append('scope', this.loginScope)
       return formData
     }
   }
