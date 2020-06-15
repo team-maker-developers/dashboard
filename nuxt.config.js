@@ -93,7 +93,11 @@ export default {
   },
 
   router: {
-    middleware: ['initialize-form-data', 'is-logged-in']
+    middleware: [
+      'initialize-form-data',
+      'is-logged-in',
+      'check-scope'
+    ]
   },
 
   env: envValues,
