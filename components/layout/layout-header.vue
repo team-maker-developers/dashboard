@@ -6,8 +6,8 @@
         @click.stop="drawer = !drawer"
       />
     </template>
-    <v-toolbar-title>Team Maker</v-toolbar-title>
-    <v-spacer></v-spacer>
+    <v-icon>icon-favicon</v-icon>
+    <v-icon>icon-title</v-icon>
     <v-spacer></v-spacer>
     <div v-if="isLoggedIn" class="d-flex align-center">
       <div class="text-center">
@@ -57,6 +57,7 @@
 <script lang="ts">
 import { Component, Vue, Prop, PropSync } from 'vue-property-decorator'
 import { settingItems, accountItems } from '@/constants/global-menu-items'
+import '@/static/webicon/style.css'
 
 @Component
 export default class LayoutHeader extends Vue {

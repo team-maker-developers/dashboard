@@ -9,3 +9,7 @@ Thus you'd want to delete this README.md before deploying to production.
 Example: `/static/robots.txt` is mapped as `/robots.txt`.
 
 More information about the usage of this directory in [the documentation](https://nuxtjs.org/guide/assets#static).
+
+# faviconとtitleの色を指定する方法
+
+- `/webicon/style.css` の中にある `color` にて色を指定できます
