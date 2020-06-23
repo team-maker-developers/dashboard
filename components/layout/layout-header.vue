@@ -8,6 +8,16 @@
     </template>
     <v-icon>icon-favicon</v-icon>
     <v-icon>icon-title</v-icon>
+    <!--<v-card color="primary" flat width="150">
+      <v-row no-gutters>
+        <v-col cols="12" align="center">
+          <v-icon>icon-favicon</v-icon>
+        </v-col>
+        <v-col cols="12" align="center">
+          <v-icon>icon-title</v-icon>
+        </v-col>
+      </v-row>
+    </v-card>-->
     <v-spacer></v-spacer>
     <div v-if="isLoggedIn" class="d-flex align-center">
       <div class="text-center">
