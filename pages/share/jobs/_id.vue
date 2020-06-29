@@ -20,7 +20,7 @@
       <v-card flat tile width="100%">
         <v-card-text>
           <v-row :justify="$vuetify.breakpoint.mdAndDown ? 'center' : 'end'">
-            <v-btn @click="doShare" x-large class="mx-2" color="primary">
+            <v-btn x-large class="mx-2" color="primary" @click="doShare">
               LINEでシェアする
             </v-btn>
           </v-row>
@@ -62,9 +62,10 @@ export default {
     }
   },
   methods: {
-    async doShare() {
-      await createUserShareJobConversion(this.job)
-      window.location.href = this.lineShareUrl
+    doShare() {
+      createUserShareJobConversion(this.job, false)
+      // コンバージョン登録が完了するように、別タブで開くようにする
+      window.open(this.lineShareUrl, '_blank')
     }
   },
   apollo: {
