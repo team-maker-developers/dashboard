@@ -11,11 +11,27 @@ const getApolloClient = (): ApolloClient<any> => {
   return apolloProvider.defaultClient
 }
 
-export const apolloMutate: any = async (mutate: any) => {
+const loadingExecute = async (mutation: any) => {
   // $nuxtを利用するために、windowをanyで宣言している
   const globalWindow = window as any
   globalWindow.$nuxt.$loading.start('保存中')
-  const result = await getApolloClient().mutate(mutate)
+  const result = await mutation()
   globalWindow.$nuxt.$loading.finish()
+
   return result
+}
+
+export const apolloMutate: any = async (
+  mutate: any,
+  withLoading: boolean = true
+) => {
+  const mutation = async () => {
+    return await getApolloClient().mutate(mutate)
+  }
+
+  if (withLoading) {
+    return await loadingExecute(mutation)
+  }
+
+  return await mutation()
 }
