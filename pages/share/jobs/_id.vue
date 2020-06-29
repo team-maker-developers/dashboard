@@ -20,7 +20,7 @@
       <v-card flat tile width="100%">
         <v-card-text>
           <v-row :justify="$vuetify.breakpoint.mdAndDown ? 'center' : 'end'">
-            <v-btn :href="lineShareUrl" x-large class="mx-2" color="primary">
+            <v-btn @click="doShare" x-large class="mx-2" color="primary">
               LINEでシェアする
             </v-btn>
           </v-row>
@@ -32,6 +32,10 @@
 
 <script>
 import { getJob, description, lineShareUrl } from '@/constants/share/job.js'
+import {
+  createUserShowJobConversion,
+  createUserShareJobConversion
+} from '@/constants/conversions/conversion.ts'
 
 export default {
   asyncData({ params, error }) {
@@ -57,6 +61,12 @@ export default {
       )}%0A${encodeURIComponent(referedUrl)}`
     }
   },
+  methods: {
+    async doShare() {
+      await createUserShareJobConversion(this.job)
+      window.location.href = this.lineShareUrl
+    }
+  },
   apollo: {
     job: {
       query: getJob,
@@ -64,6 +74,9 @@ export default {
         return {
           id: this.jobId
         }
+      },
+      result({ data }) {
+        createUserShowJobConversion(data.job, false)
       }
     }
   }
