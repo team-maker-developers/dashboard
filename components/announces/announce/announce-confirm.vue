@@ -32,6 +32,7 @@
     <announce-actions
       :announce="sharedAnnounce"
       :channels="channels"
+      :job="job"
       @changeBeforeStep="changeBeforeStep"
     />
   </v-stepper-content>

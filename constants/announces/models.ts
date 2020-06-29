@@ -15,6 +15,7 @@ interface Page {
 export interface AnnounceInput {
   announce: string
   channels: Channel[]
+  jobId: number
 }
 
 export interface Job {
@@ -28,7 +29,7 @@ export interface Job {
 export const getCreateAnnounceInput = (
   announce: string,
   channels: Channel[],
-  jobId: string
+  jobId: number
 ) => {
   const channelCreates = channels.map((channel) => ({ channel_id: channel.id }))
   return {

@@ -33,6 +33,10 @@ export default {
     channels: {
       type: Array,
       required: true
+    },
+    job: {
+      type: Object,
+      default: null
     }
   },
   data: () => ({
@@ -53,10 +57,13 @@ export default {
     },
     async doAnnounce() {
       this.loading = true
+      const jobId = this.job ? this.job.id : null
+
       try {
         this.announceResult = await this.postAnnounce({
           announce: this.announce,
-          channels: this.channels
+          channels: this.channels,
+          jobId
         })
       } catch (error) {
         this.announceResult = postAnnounceError
