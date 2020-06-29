@@ -4,10 +4,8 @@ import { apolloMutate } from '@/plugins/apollo/get-apollo-client'
 import { getJobs, deleteJob } from '~/constants/jobs/jobs'
 import { getJob, upsertJob, updateJobPublishAt } from '@/constants/jobs/job'
 
-interface JobState {}
-
 @Module({ stateFactory: true, namespaced: true, name: 'job' })
-export default class Job extends VuexModule implements JobState {
+export default class Job extends VuexModule {
   @Action
   async deleteJob(id: string) {
     await apolloMutate({
