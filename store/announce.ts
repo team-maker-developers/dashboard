@@ -4,26 +4,18 @@ import { createAnnounce } from '~/constants/announces/announce'
 /* eslint-disable no-unused-vars */
 import {
   Channel,
-  Job,
   AnnounceInput,
   getCreateAnnounceInput
 } from '~/constants/announces/models'
 /* eslint-enable no-unused-vars */
 
 interface AnnounceState {
-  jobId: string | null
-  job: Job | null
   channels: Channel[]
 }
 
 @Module({ stateFactory: true, namespaced: true, name: 'announce' })
 export default class Announce extends VuexModule implements AnnounceState {
-  job: Job | null = null
   channels: Channel[] = []
-
-  get jobId(): string {
-    return this.job ? this.job.id : ''
-  }
 
   @Mutation
   setChannels(channels: Channel[]) {
@@ -31,11 +23,11 @@ export default class Announce extends VuexModule implements AnnounceState {
   }
 
   @Action({ rawError: true })
-  async postAnnounce({ announce, channels }: AnnounceInput) {
+  async postAnnounce({ announce, channels, jobId }: AnnounceInput) {
     await apolloMutate({
       mutation: createAnnounce,
       variables: {
-        input: getCreateAnnounceInput(announce, channels, this.jobId)
+        input: getCreateAnnounceInput(announce, channels, jobId)
       }
     })
     return '広報文の送信に成功いたしました。'

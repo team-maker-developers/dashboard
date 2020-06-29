@@ -1,5 +1,5 @@
 <template>
-  <v-container v-if="!loading">
+  <v-container v-if="job">
     <h2>求人をシェアする</h2>
     <v-row justify="center">
       <p class="ma-3 job-share-description" v-text="description" />
@@ -20,7 +20,7 @@
       <v-card flat tile width="100%">
         <v-card-text>
           <v-row :justify="$vuetify.breakpoint.mdAndDown ? 'center' : 'end'">
-            <v-btn :href="lineShareUrl" x-large class="mx-2" color="primary">
+            <v-btn x-large class="mx-2" color="primary" @click="doShare">
               LINEでシェアする
             </v-btn>
           </v-row>
@@ -32,6 +32,10 @@
 
 <script>
 import { getJob, description, lineShareUrl } from '@/constants/share/job.js'
+import {
+  createUserShowJobConversion,
+  createUserShareJobConversion
+} from '@/constants/conversions/conversion.ts'
 
 export default {
   asyncData({ params, error }) {
@@ -45,9 +49,6 @@ export default {
     lead: ''
   }),
   computed: {
-    loading() {
-      return this.$apollo.queries.job.loading
-    },
     description() {
       return description
     },
@@ -60,6 +61,13 @@ export default {
       )}%0A${encodeURIComponent(referedUrl)}`
     }
   },
+  methods: {
+    doShare() {
+      createUserShareJobConversion(this.job, false)
+      // コンバージョン登録が完了するように、別タブで開くようにする
+      window.open(this.lineShareUrl, '_blank')
+    }
+  },
   apollo: {
     job: {
       query: getJob,
@@ -67,6 +75,9 @@ export default {
         return {
           id: this.jobId
         }
+      },
+      result({ data }) {
+        createUserShowJobConversion(data.job, false)
       }
     }
   }
