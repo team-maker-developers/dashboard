@@ -2,9 +2,9 @@
   <data-loading v-if="loading" message="ログイン中" />
   <v-container v-else>
     <v-col>
-      <v-alert type="warning" class="text-center">
+      <v-row justify="center" class="ma-2 red--text text-center">
         <h1>ログインに失敗しました。</h1>
-      </v-alert>
+      </v-row>
       <v-container>
         <p class="text-center">
           承認されていないアカウントのため、ログインできません。
@@ -83,3 +83,9 @@ export default class RedirectLoginVue extends Vue {
   }
 }
 </script>
+
+<style scoped>
+h1 {
+  font-size: 20px;
+}
+</style>
