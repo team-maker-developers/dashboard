@@ -1,5 +1,5 @@
 <template>
-  <v-container v-if="!loading">
+  <v-container v-if="job">
     <h2>求人をシェアする</h2>
     <v-row justify="center">
       <p class="ma-3 job-share-description" v-text="description" />
@@ -45,9 +45,6 @@ export default {
     lead: ''
   }),
   computed: {
-    loading() {
-      return this.$apollo.queries.job.loading
-    },
     description() {
       return description
     },
