@@ -4,7 +4,6 @@ import { createAnnounce } from '~/constants/announces/announce'
 /* eslint-disable no-unused-vars */
 import {
   Channel,
-  Job,
   AnnounceInput,
   getCreateAnnounceInput
 } from '~/constants/announces/models'
