@@ -14,6 +14,11 @@ export default {
     label: {
       type: String,
       required: true
+    },
+    jsonPropertyName: {
+      type: String,
+      required: false,
+      default: 'value'
     }
   },
   computed: {

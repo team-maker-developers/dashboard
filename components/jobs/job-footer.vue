@@ -60,6 +60,17 @@ export default {
       }
 
       return false
+    },
+    metatags() {
+      return function(meta) {
+        const metatags = JSON.parse(meta)
+        metatags.title = this.job.name
+        metatags.ogTitle = this.job.name
+        metatags.ogDescription = metatags.description
+        metatags.ogType = 'article:job-board'
+
+        return JSON.stringify(metatags)
+      }
     }
   },
   methods: {
@@ -73,6 +84,7 @@ export default {
       this.$emit('update')
     },
     async doUpsertJob() {
+      this.job.page.meta = this.metatags(this.page.meta)
       const { data } = await this.upsertJob(this.upsertJobInput)
       this.$router.push({
         name: 'jobs-id',

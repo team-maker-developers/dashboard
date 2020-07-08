@@ -2,16 +2,16 @@ export const unpertJobInput = [
   'id',
   'code',
   'name',
+  'expired_at',
   'job_content',
+  'welfare',
   'employment_category_id',
   'contract_period',
   'place',
   'work_datetime',
   'salary',
-  'welfare',
   'industry',
   'info',
-  'expired_at',
   'page'
 ]
 
@@ -29,7 +29,7 @@ export const sanitizer = (job) => {
   return sanitizedJob
 }
 
-export const upsertPage = ['id', 'published_at']
+export const upsertPage = ['id', 'meta', 'content', 'published_at', 'slug']
 
 function getUpsertPage(page) {
   Object.keys(page).forEach((key) => {

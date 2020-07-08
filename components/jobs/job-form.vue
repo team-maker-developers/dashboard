@@ -79,6 +79,18 @@
           <v-card-title class="headline">その他情報</v-card-title>
           <v-card-text>
             <job-json
+              v-model="job.page"
+              property="meta"
+              label="リンクがシェアされた時の説明文"
+              json-property-name="description"
+            />
+            <job-json
+              v-model="job.page"
+              property="meta"
+              label="リンクがシェアされた時に表示する画像"
+              json-property-name="image"
+            />
+            <job-json
               v-model="job"
               property="info"
               label="その他"

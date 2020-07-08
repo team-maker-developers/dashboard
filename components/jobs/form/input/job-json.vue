@@ -1,5 +1,10 @@
 <template>
-  <job-text v-model="jsonValue" property="value" :label="label" textarea />
+  <job-text
+    v-model="jsonValue"
+    :property="jsonPropertyName"
+    :label="label"
+    textarea
+  />
 </template>
 
 <script>
