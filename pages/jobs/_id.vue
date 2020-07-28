@@ -1,7 +1,6 @@
 <template>
   <div>
     <job-form
-      v-if="!loading"
       v-model="jobValue"
       :employment-categories="employmentCategories"
     />

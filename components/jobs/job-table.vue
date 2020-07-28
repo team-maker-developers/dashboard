@@ -1,8 +1,5 @@
 <template>
   <v-data-table :headers="jobHeaders" :items="jobs" class="elevation-1">
-    <template v-slot:item.sharedAt="{}">
-      -
-    </template>
     <template v-slot:item.edit="{ item }">
       <v-btn outlined small color="primary" :to="`/jobs/${item.id}`">
         編集
@@ -22,11 +19,8 @@
               :key="index"
               @click="listitem.action(item)"
             >
-              <v-list-item-title v-if="!('alterText' in listitem)">
+              <v-list-item-title>
                 {{ listitem.text }}
-              </v-list-item-title>
-              <v-list-item-title v-else>
-                {{ item.page.isPublished ? listitem.text : listitem.alterText }}
               </v-list-item-title>
             </v-list-item>
           </template>

@@ -36,14 +36,6 @@ export const getJob = gql`
       welfare
       industry
       info
-      page {
-        id
-        slug
-        refered_url
-        publishState
-        published_at
-        isPublished
-      }
     }
   }
 `
@@ -64,10 +56,6 @@ export const upsertJob = gql`
       welfare
       industry
       info
-      page {
-        id
-        published_at
-      }
     }
   }
 `

@@ -7,13 +7,6 @@ export default {
   data: () => ({
     jobValue: {}
   }),
-  computed: {
-    loading() {
-      const queries = this.$apollo.queries
-      const jobLoading = 'job' in queries && queries.job.loading
-      return jobLoading || queries.employmentCategories.loading
-    }
-  },
   apollo: {
     employmentCategories: {
       query: getEmploymentCategories

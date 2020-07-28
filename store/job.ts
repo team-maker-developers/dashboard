@@ -37,6 +37,7 @@ export default class Job extends VuexModule {
     })
   }
 
+  // TODO: published_at周りを、別のstoreに移す
   @Action
   async updateJobPublishAt(page: any) {
     await apolloMutate({

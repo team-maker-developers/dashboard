@@ -2,7 +2,6 @@
   <!-- eslint-disable -->
   <v-container class="job-from">
     <v-row justify="center">
-      <job-publish v-if="'id' in job" v-model="job" />
       <v-col cols="12" :lg="9">
         <v-card outlined>
           <v-card-title class="headline">求人情報</v-card-title>
@@ -91,13 +90,11 @@
 </template>
 
 <script>
-import jobPublish from './form/job-publish.vue'
 import jobText from './form/input/job-text.vue'
 import jobJson from './form/input/job-json.vue'
 
 export default {
   components: {
-    jobPublish,
     jobText,
     jobJson
   },
