@@ -39,10 +39,10 @@
 </template>
 
 <script>
+import { getAnnounceUrl } from '@/constants/announces/models.ts'
 import jobConfirm from '../job-confirm.vue'
 import announceActions from './announce-actions.vue'
 import announceStepMixin from './announce-step-mixin'
-import { getAnnounceUrl } from '@/constants/announces/models.ts'
 
 export default {
   components: { jobConfirm, announceActions },

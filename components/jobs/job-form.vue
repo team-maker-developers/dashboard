@@ -32,21 +32,13 @@
               property="contract_period"
               label="契約期間"
             />
-            <job-json
-              v-model="job"
-              property="place"
-              label="勤務地"
-            />
+            <job-json v-model="job" property="place" label="勤務地" />
             <job-json
               v-model="job"
               property="work_datetime"
               label="勤務時間や休日など"
             />
-            <job-json
-              v-model="job"
-              property="salary"
-              label="給与"
-            />
+            <job-json v-model="job" property="salary" label="給与" />
             <job-text
               v-model="job"
               property="welfare"
@@ -79,10 +71,18 @@
           <v-card-title class="headline">その他情報</v-card-title>
           <v-card-text>
             <job-json
-              v-model="job"
-              property="info"
-              label="その他"
+              v-model="job.page"
+              property="meta"
+              label="リンクがシェアされた時の説明文"
+              json-property-name="description"
             />
+            <job-json
+              v-model="job.page"
+              property="meta"
+              label="リンクがシェアされた時に表示する画像"
+              json-property-name="image"
+            />
+            <job-json v-model="job" property="info" label="その他" />
           </v-card-text>
         </v-card>
       </v-col>

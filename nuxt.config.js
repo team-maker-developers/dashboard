@@ -20,7 +20,7 @@ export default {
         content: process.env.npm_package_description || ''
       }
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/png/favicon.png' }]
   },
   /*
    ** ステートを管理する
@@ -93,11 +93,7 @@ export default {
   },
 
   router: {
-    middleware: [
-      'initialize-form-data',
-      'is-logged-in',
-      'check-scope'
-    ]
+    middleware: ['initialize-form-data', 'is-logged-in', 'check-scope']
   },
 
   env: envValues,

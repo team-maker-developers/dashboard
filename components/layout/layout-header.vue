@@ -6,8 +6,18 @@
         @click.stop="drawer = !drawer"
       />
     </template>
-    <v-toolbar-title>Team Maker</v-toolbar-title>
-    <v-spacer></v-spacer>
+    <v-icon>icon-favicon</v-icon>
+    <v-icon>icon-title</v-icon>
+    <!--<v-card color="primary" flat width="150">
+      <v-row no-gutters>
+        <v-col cols="12" align="center">
+          <v-icon>icon-favicon</v-icon>
+        </v-col>
+        <v-col cols="12" align="center">
+          <v-icon>icon-title</v-icon>
+        </v-col>
+      </v-row>
+    </v-card>-->
     <v-spacer></v-spacer>
     <div class="d-flex align-center">
       <div v-if="canAccessAdmin" class="text-center">
@@ -58,6 +68,7 @@
 import { Component, Vue, Prop, PropSync } from 'vue-property-decorator'
 import { loginStore } from '@/store'
 import { settingItems, accountItems } from '@/constants/global-menu-items'
+import '@/static/webicon/style.css'
 
 @Component
 export default class LayoutHeader extends Vue {
