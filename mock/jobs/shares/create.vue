@@ -23,11 +23,7 @@
                   社員が拡散したくなるようなリード文を入力しましょう。
                 </p>
                 <p
-                  class="
-                  text-right
-                  caption
-                  font-weight-thin
-                  mb-1"
+                  class="text-right caption font-weight-thin mb-1"
                   style="text-decoration-line: underline;"
                 >
                   デフォルト文を編集する
