@@ -38,6 +38,13 @@ import {
 } from '@/constants/conversions/conversion.ts'
 
 export default {
+  asyncData({ params, error }) {
+    if (params.id === undefined) {
+      error({ statusCode: 404 })
+    }
+
+    return { jobId: params.id }
+  },
   data: () => ({
     lead: ''
   }),
@@ -53,13 +60,6 @@ export default {
         this.lead
       )}%0A${encodeURIComponent(referedUrl)}`
     }
-  },
-  asyncData({ params, error }) {
-    if (params.id === undefined) {
-      error({ statusCode: 404 })
-    }
-
-    return { jobId: params.id }
   },
   methods: {
     doShare() {

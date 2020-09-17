@@ -1,4 +1,4 @@
-export const unpertJobInput = [
+export const upsertJobInput = [
   'id',
   'code',
   'name',
@@ -12,13 +12,14 @@ export const unpertJobInput = [
   'industry',
   'info',
   'expired_at',
+  'image_url',
   'page'
 ]
 
 export const sanitizer = (job) => {
   const sanitizedJob = { ...job }
   Object.keys(job).forEach((key) => {
-    if (!unpertJobInput.includes(key)) {
+    if (!upsertJobInput.includes(key)) {
       delete sanitizedJob[key]
     }
   })

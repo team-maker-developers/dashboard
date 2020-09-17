@@ -31,6 +31,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import { mapActions } from 'vuex'
 import { sanitizer } from '@/constants/jobs/purify'
 
@@ -62,7 +63,7 @@ export default {
       return false
     },
     metatags() {
-      return function(meta) {
+      return function (meta) {
         const metatags = JSON.parse(meta)
         metatags.title = this.job.name
         metatags.ogTitle = this.job.name
@@ -83,11 +84,32 @@ export default {
       this.$emit('update')
     },
     async doUpsertJob() {
-      this.job.page.meta = this.metatags(this.page.meta)
+      if (this.job.image) {
+        this.job.image_url = await this.uploadImage(this.job.image)
+      }
+      if (this.page.meta) {
+        this.job.page.meta = this.metatags(this.page.meta)
+      }
       const { data } = await this.upsertJob(this.upsertJobInput)
       this.$router.push({
         name: 'jobs-id',
         params: { id: data.upsertJob.id }
+      })
+    },
+    uploadImage(imageObject) {
+      const formData = new FormData()
+      formData.append('image', imageObject)
+      formData.append('title', imageObject.name)
+
+      return new Promise((resolve, reject) => {
+        axios
+          .post('http://localhost:8888/api/v0/image', formData)
+          .then((response) => {
+            if (response.status === 200) {
+              resolve(response.data.url)
+            }
+            resolve('')
+          })
       })
     },
     ...mapActions('job', ['upsertJob', 'publishJob', 'unpublishJob'])

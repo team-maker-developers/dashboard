@@ -36,6 +36,7 @@ export const getJob = gql`
       welfare
       industry
       info
+      image_url
       page {
         id
         meta
@@ -65,6 +66,7 @@ export const upsertJob = gql`
       welfare
       industry
       info
+      image_url
       page {
         id
         published_at

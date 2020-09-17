@@ -32,13 +32,21 @@
               property="contract_period"
               label="契約期間"
             />
-            <job-json v-model="job" property="place" label="勤務地" />
+            <job-json
+              v-model="job"
+              property="place"
+              label="勤務地"
+            />
             <job-json
               v-model="job"
               property="work_datetime"
               label="勤務時間や休日など"
             />
-            <job-json v-model="job" property="salary" label="給与" />
+            <job-json
+              v-model="job"
+              property="salary"
+              label="給与"
+            />
             <job-text
               v-model="job"
               property="welfare"
@@ -76,13 +84,24 @@
               label="リンクがシェアされた時の説明文"
               json-property-name="description"
             />
+            <v-file-input
+              v-model="job.image"
+              accept="image/*"
+              chips
+              label="画像をアップロード"
+              prepend-icon
+            ></v-file-input>
+            <p v-if="existsImageUrl" class="body-2">
+              現在アップロードされている画像
+              <br />
+              {{ job.image_url }}
+            </p>
+            <p v-else>現在画像はアップロードされていません</p>
             <job-json
-              v-model="job.page"
-              property="meta"
-              label="リンクがシェアされた時に表示する画像"
-              json-property-name="image"
+              v-model="job"
+              property="info"
+              label="その他"
             />
-            <job-json v-model="job" property="info" label="その他" />
           </v-card-text>
         </v-card>
       </v-col>
@@ -132,6 +151,11 @@ export default {
           ...this.job,
           employment_category_id: employmentCategoryId
         }
+      }
+    },
+    existsImageUrl: {
+      get() {
+        return Boolean(this.job.image_url)
       }
     }
   }
