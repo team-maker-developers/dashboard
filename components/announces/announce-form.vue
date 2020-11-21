@@ -9,21 +9,21 @@
             v-model="channels"
             :job="job"
             :step="1"
-            @changeStep="changeStep"
+            @change-step="changeStep"
           />
           <announce-input
             v-model="announce"
             :channels="channels"
             :step="2"
             :job="job"
-            @changeStep="changeStep"
+            @change-step="changeStep"
           />
           <announce-confirm
             :channels="channels"
             :announce="announce"
             :job="job"
             :step="3"
-            @changeStep="changeStep"
+            @change-step="changeStep"
           />
         </v-stepper-items>
       </v-stepper>

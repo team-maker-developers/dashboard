@@ -31,7 +31,7 @@
       :announce="sharedAnnounce"
       :channels="channels"
       :job="job"
-      @changeBeforeStep="changeBeforeStep"
+      @change-before-step="changeBeforeStep"
     />
   </v-stepper-content>
 </template>

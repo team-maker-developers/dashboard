@@ -10,7 +10,10 @@
     <v-container>
       <v-row>
         <v-col>
-          <email-login-form :login-url="emailLoginUrl" @loginError="setError" />
+          <email-login-form
+            :login-url="emailLoginUrl"
+            @login-error="setError"
+          />
         </v-col>
       </v-row>
     </v-container>
