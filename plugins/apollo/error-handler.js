@@ -1,5 +1,5 @@
-import { handleGraphQLErrors } from './errors-handlers/graphql-errors-handler'
 import { loginStore } from '@/store'
+import { handleGraphQLErrors } from './errors-handlers/graphql-errors-handler'
 
 export default (errorContext, nuxtContext) => {
   if (nuxtContext.isDev) {

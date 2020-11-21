@@ -1,13 +1,11 @@
 <template>
   <v-stepper-content step="3">
-    <h3 class="py-5">
-      以下の広報文を社員に送信します。よろしいですか？
-    </h3>
+    <h3 class="py-5">以下の広報文を社員に送信します。よろしいですか？</h3>
     <h4 class="py-1">広報先</h4>
-    <v-row v-for="channel in channels" :key="channel.id" justify="center">
+    <v-row v-for="channel in channelOptions" :key="channel.id" justify="center">
       <v-col :lg="9">
         <v-checkbox
-          v-model="channels"
+          v-model="channelOptions"
           :label="channel.name"
           :value="channel"
           disabled
@@ -39,10 +37,10 @@
 </template>
 
 <script>
+import { getAnnounceUrl } from '@/constants/announces/models.ts'
 import jobConfirm from '../job-confirm.vue'
 import announceActions from './announce-actions.vue'
 import announceStepMixin from './announce-step-mixin'
-import { getAnnounceUrl } from '@/constants/announces/models.ts'
 
 export default {
   components: { jobConfirm, announceActions },
@@ -58,6 +56,9 @@ export default {
     }
   },
   computed: {
+    channelOptions() {
+      return this.channels
+    },
     sharedAnnounce() {
       if (this.job) {
         const announceUrl = getAnnounceUrl(this.job)

@@ -25,16 +25,12 @@
       ]
     },
     "types": [
-      "@types/node",
       "@nuxt/types",
       "@nuxtjs/apollo",
-      "@nuxtjs/axios",
       "vue-apollo",
       "vue-cli-plugin-apollo"
     ],
-    "typeRoots": [
-      "types"
-    ]
+    "typeRoots": ["types", "node_modules/@types"]
   },
   "exclude": [
     "node_modules"

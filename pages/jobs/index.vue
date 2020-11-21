@@ -22,8 +22,8 @@
 
 <script lang="ts">
 import { Vue, Component } from 'nuxt-property-decorator'
+import { TableAction } from '@/types'
 import { jobStore } from '@/store'
-// eslint-disable-next-line no-unused-vars
 import { getJobs, JobItem } from '@/constants/jobs/jobs'
 import jobTable from '@/components/jobs/job-table.vue'
 

@@ -18,7 +18,7 @@ export default class EmailLoginForm extends Vue {
   @Provide() password: string = ''
 
   async login() {
-    this.$emit('loginError', '')
+    this.$emit('login-error', '')
 
     try {
       await this.postLogin()
@@ -40,7 +40,7 @@ export default class EmailLoginForm extends Vue {
   errorHandler(error: any) {
     if (error.response.status === 400) {
       this.$emit(
-        'loginError',
+        'login-error',
         'メールアドレス、またはパスワードが正しくありません。'
       )
       return

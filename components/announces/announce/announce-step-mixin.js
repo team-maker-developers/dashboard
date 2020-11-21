@@ -11,10 +11,10 @@ export default {
   },
   methods: {
     changeStep() {
-      this.$emit('changeStep', this.step + 1)
+      this.$emit('change-step', this.step + 1)
     },
     changeBeforeStep() {
-      this.$emit('changeStep', this.step - 1)
+      this.$emit('change-step', this.step - 1)
     }
   }
 }
