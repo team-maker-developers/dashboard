@@ -23,7 +23,7 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'nuxt-property-decorator'
-// eslint-disable-next-line no-unused-vars
+import { TableHeader } from '@/types'
 import { AppliesHeaders, AppliesItem } from '@/constants/applies/applies.ts'
 
 @Component

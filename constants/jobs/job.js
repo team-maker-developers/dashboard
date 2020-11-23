@@ -1,14 +1,6 @@
 import gql from 'graphql-tag'
 
-export const getEmploymentCategories = gql`
-  query {
-    employmentCategories {
-      id
-      name
-    }
-  }
-`
-
+// TODO: constatnts/pages配下に移動する
 export const updateJobPublishAt = gql`
   mutation($id: ID!, $published_at: DateTime) {
     updatePagePublishAt(id: $id, published_at: $published_at) {
@@ -34,15 +26,15 @@ export const getJob = gql`
       work_datetime
       salary
       welfare
-      industry
-      info
-      page {
+      industry_id
+      industry {
         id
-        slug
-        refered_url
-        publishState
-        published_at
-        isPublished
+        name
+      }
+      occupation_id
+      occupation {
+        id
+        name
       }
     }
   }
@@ -64,10 +56,6 @@ export const upsertJob = gql`
       welfare
       industry
       info
-      page {
-        id
-        published_at
-      }
     }
   }
 `

@@ -22,6 +22,7 @@
 <script lang="ts">
 import { Component, Vue, PropSync } from 'vue-property-decorator'
 import { menuItems } from '@/constants/global-menu-items'
+import { MenuItem } from '@/types'
 
 @Component
 export default class LayoutSidebar extends Vue {

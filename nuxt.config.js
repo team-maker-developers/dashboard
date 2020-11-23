@@ -4,7 +4,7 @@ const environment = process.env.NODE_ENV || 'development'
 const envValues = getConfig(environment)
 
 export default {
-  mode: 'spa',
+  ssr: false,
   /*
    ** Headers of the page
    */
@@ -46,7 +46,7 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: ['@nuxtjs/apollo', '@nuxtjs/pwa'],
+  modules: ['@nuxtjs/apollo'],
   apollo: {
     clientConfigs: {
       default: {

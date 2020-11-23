@@ -2,7 +2,6 @@
   <!-- eslint-disable -->
   <v-container class="job-from">
     <v-row justify="center">
-      <job-publish v-if="'id' in job" v-model="job" />
       <v-col cols="12" :lg="9">
         <v-card outlined>
           <v-card-title class="headline">求人情報</v-card-title>
@@ -19,6 +18,27 @@
               property="name"
               placeholder="【例】港区・渋谷区で働く訪問看護師"
             />
+            <v-row>
+              <v-col cols="12">
+                <v-select
+                  v-model="employmentCategoryId"
+                  :items="employmentCategories"
+                  label="就業形態"
+                  item-text="name"
+                  item-value="id"
+                ></v-select>
+              </v-col>
+            </v-row>
+            <job-nested-select
+              v-model="industryId"
+              :items="industries"
+              label="業種"
+            />
+            <job-nested-select
+              v-model="occupationId"
+              :items="occupations"
+              label="職種"
+            />
             <job-text
               v-model="job"
               property="job_content"
@@ -29,8 +49,8 @@
             />
             <job-json
               v-model="job"
-              property="contract_period"
-              label="契約期間"
+              property="salary"
+              label="給与"
             />
             <job-json
               v-model="job"
@@ -44,8 +64,8 @@
             />
             <job-json
               v-model="job"
-              property="salary"
-              label="給与"
+              property="contract_period"
+              label="契約期間"
             />
             <job-text
               v-model="job"
@@ -55,34 +75,6 @@
               textarea
               required
             />
-            <job-json
-              v-model="job"
-              property="industry"
-              label="業界、業種、職種"
-            />
-            <v-row>
-              <v-col cols="12">
-                <v-select
-                  v-model="employmentCategoryId"
-                  :items="employmentCategories"
-                  label="就業形態"
-                  item-text="name"
-                  item-value="id"
-                ></v-select>
-              </v-col>
-            </v-row>
-          </v-card-text>
-        </v-card>
-      </v-col>
-      <v-col cols="12" :lg="9">
-        <v-card outlined>
-          <v-card-title class="headline">その他情報</v-card-title>
-          <v-card-text>
-            <job-json
-              v-model="job"
-              property="info"
-              label="その他"
-            />
           </v-card-text>
         </v-card>
       </v-col>
@@ -91,50 +83,10 @@
 </template>
 
 <script>
-import jobPublish from './form/job-publish.vue'
-import jobText from './form/input/job-text.vue'
-import jobJson from './form/input/job-json.vue'
+import jobFormMixins from './form/job-form-mixins'
 
 export default {
-  components: {
-    jobPublish,
-    jobText,
-    jobJson
-  },
-  model: {
-    prop: 'jobValue'
-  },
-  props: {
-    jobValue: {
-      type: Object,
-      required: true
-    },
-    employmentCategories: {
-      type: Array,
-      required: true
-    }
-  },
-  computed: {
-    job: {
-      get() {
-        return this.jobValue
-      },
-      set(job) {
-        this.$emit('input', job)
-      }
-    },
-    employmentCategoryId: {
-      get() {
-        return this.job.employment_category_id
-      },
-      set(employmentCategoryId) {
-        this.job = {
-          ...this.job,
-          employment_category_id: employmentCategoryId
-        }
-      }
-    }
-  }
+  mixins: [jobFormMixins]
 }
 </script>
 

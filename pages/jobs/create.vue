@@ -4,6 +4,8 @@
       v-if="!loading"
       v-model="jobValue"
       :employment-categories="employmentCategories"
+      :industries="industries"
+      :occupations="occupations"
     />
     <job-footer :job="jobValue" />
   </div>

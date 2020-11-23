@@ -1,4 +1,5 @@
 import gql from 'graphql-tag'
+import { TableHeader } from '@/types'
 
 export const socialAccountHeaders: TableHeader[] = [
   {

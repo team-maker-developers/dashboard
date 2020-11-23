@@ -1,17 +1,17 @@
-declare interface TableHeader {
+export interface TableHeader {
   text: string
   value: string
   align?: string
 }
 
-declare interface TableAction<model> {
+export interface TableAction<model> {
   text: string
   alterText?: string
   action: (model: model) => void
   visible?: (model: model) => boolean
 }
 
-declare interface MenuItem {
+export interface MenuItem {
   text: string
   icon?: string
   link?: string

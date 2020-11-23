@@ -1,4 +1,5 @@
 import gql from 'graphql-tag'
+import { TableHeader } from '@/types'
 
 interface Page {
   id: string
@@ -20,8 +21,6 @@ export const jobHeaders: TableHeader[] = [
     value: 'code'
   },
   { text: '求人', value: 'name' },
-  { text: '公開ステータス', value: 'page.publishState' },
-  { text: '前回の広報日', value: 'last_announced_at' },
   { text: '', value: 'edit' },
   { text: '', value: 'others' }
 ]
@@ -33,14 +32,6 @@ export const getJobs = gql`
       code
       name
       job_content
-      last_announced_at
-      page {
-        id
-        slug
-        published_at
-        publishState
-        isPublished
-      }
     }
   }
 `

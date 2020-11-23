@@ -11,16 +11,6 @@
           >
             保存する
           </v-btn>
-          <v-btn
-            v-if="canUpdate"
-            color="primary"
-            class="mx-2"
-            outlined
-            x-large
-            @click="changePublish(upsertJobInput)"
-          >
-            {{ isPublished ? '下書きに戻す' : '公開する' }}
-          </v-btn>
           <v-btn x-large color="primary" outlined class="mx-2" to="/jobs">
             キャンセル
           </v-btn>
@@ -63,15 +53,6 @@ export default {
     }
   },
   methods: {
-    async changePublish() {
-      if (this.isPublished) {
-        await this.unpublishJob(this.upsertJobInput)
-      } else {
-        await this.publishJob(this.upsertJobInput)
-      }
-
-      this.$emit('update')
-    },
     async doUpsertJob() {
       const { data } = await this.upsertJob(this.upsertJobInput)
       this.$router.push({

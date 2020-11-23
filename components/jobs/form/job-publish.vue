@@ -1,4 +1,5 @@
 <template>
+  <!-- TODO: pageに載せ替える -->
   <v-col cols="12" :lg="9">
     <v-card outlined>
       <v-card-title class="headline">公開設定</v-card-title>

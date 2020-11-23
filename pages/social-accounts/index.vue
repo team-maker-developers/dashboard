@@ -9,7 +9,7 @@
             :items="socialAccounts"
             class="elevation-1"
           >
-            <template v-slot:item.image="{ item }">
+            <template #[`item.image`]="{ item }">
               <v-img
                 v-if="item.image"
                 :src="item.image"
@@ -18,10 +18,10 @@
               />
               <p v-else>No Image</p>
             </template>
-            <template v-slot:item.status="{ item }">
+            <template #[`item.status`]="{ item }">
               {{ item.user.is_valid ? '有効' : '無効' }}
             </template>
-            <template v-slot:item.changeValid="{ item }">
+            <template #[`item.changeValid`]="{ item }">
               <v-btn
                 outlined
                 small
@@ -51,6 +51,7 @@ import {
   getUpdateUserMutation
 } from '@/constants/social-accounts/social-accounts'
 import { apolloMutate } from '@/plugins/apollo/get-apollo-client'
+import { TableHeader } from '@/types'
 
 @Component({
   apollo: {

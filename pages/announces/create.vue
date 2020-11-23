@@ -8,13 +8,13 @@ import { getChannels, getJob } from '@/constants/announces/announce.ts'
 import announceForm from '@/components/announces/announce-form.vue'
 
 export default {
-  watchQuery: ['jobId'],
   components: { announceForm },
   asyncData({ query, store }) {
     const jobId = 'jobId' in query ? query.jobId : null
     return { jobId }
   },
   data: () => ({ jobValue: null }),
+  watchQuery: ['jobId'],
   methods: {
     ...mapMutations('announce', ['setChannels'])
   },

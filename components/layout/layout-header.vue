@@ -12,7 +12,7 @@
     <div class="d-flex align-center">
       <div v-if="canAccessAdmin" class="text-center">
         <v-menu offset-y>
-          <template v-slot:activator="{ on }">
+          <template #activator="{ on }">
             <v-btn icon v-on="on">
               <v-icon>mdi-cog-outline</v-icon>
             </v-btn>
@@ -33,7 +33,7 @@
       </v-btn> -->
       <div v-if="isLoggedIn" class="text-center">
         <v-menu offset-y>
-          <template v-slot:activator="{ on }">
+          <template #activator="{ on }">
             <v-btn icon v-on="on">
               <v-icon>mdi-account</v-icon>
             </v-btn>
@@ -58,6 +58,7 @@
 import { Component, Vue, Prop, PropSync } from 'vue-property-decorator'
 import { loginStore } from '@/store'
 import { settingItems, accountItems } from '@/constants/global-menu-items'
+import { MenuItem } from '@/types'
 
 @Component
 export default class LayoutHeader extends Vue {

@@ -1,7 +1,7 @@
 import { Action, Module, VuexModule } from 'vuex-module-decorators'
 import moment from 'moment'
 import { apolloMutate } from '@/plugins/apollo/get-apollo-client'
-import { getJobs, deleteJob } from '~/constants/jobs/jobs'
+import { getJobs, deleteJob } from '@/constants/jobs/jobs'
 import { getJob, upsertJob, updateJobPublishAt } from '@/constants/jobs/job'
 
 @Module({ stateFactory: true, namespaced: true, name: 'job' })
@@ -37,6 +37,7 @@ export default class Job extends VuexModule {
     })
   }
 
+  // TODO: published_at周りを、別のstoreに移す
   @Action
   async updateJobPublishAt(page: any) {
     await apolloMutate({
