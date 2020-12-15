@@ -6,11 +6,9 @@
   "private": true,
   "scripts": {
     "dev": "nuxt",
-    "mock": "cross-env NODE_ENV=\"mock\" nuxt",
     "stage": "cross-env NODE_ENV=\"staging\" nuxt",
     "prod": "cross-env NODE_ENV=\"production\" nuxt",
     "build": "nuxt build",
-    "build:mock": "cross-env NODE_ENV=\"mock\" nuxt build",
     "build:stage": "cross-env NODE_ENV=\"staging\" nuxt build",
     "build:prod": "cross-env NODE_ENV=\"production\" nuxt",
     "deploy:stage": "yarn build:stage && firebase deploy --only hosting:stage-admin",

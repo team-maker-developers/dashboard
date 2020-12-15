@@ -1,8 +1,10 @@
+import jobPublish from './job-publish.vue'
 import jobText from './input/job-text.vue'
 import jobJson from './input/job-json.vue'
 
 export default {
   components: {
+    jobPublish,
     jobText,
     jobJson
   },

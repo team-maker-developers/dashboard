@@ -2,6 +2,7 @@
   <!-- eslint-disable -->
   <v-container class="job-from">
     <v-row justify="center">
+      <job-publish v-if="'id' in job" v-model="job" />
       <v-col cols="12" :lg="9">
         <v-card outlined>
           <v-card-title class="headline">求人情報</v-card-title>
