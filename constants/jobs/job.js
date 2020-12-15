@@ -26,16 +26,6 @@ export const getJob = gql`
       work_datetime
       salary
       welfare
-      industry_id
-      industry {
-        id
-        name
-      }
-      occupation_id
-      occupation {
-        id
-        name
-      }
     }
   }
 `

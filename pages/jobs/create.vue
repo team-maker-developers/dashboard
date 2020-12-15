@@ -1,11 +1,9 @@
 <template>
   <div>
     <job-form
-      v-if="!loading"
+      v-if="!$apollo.loading"
       v-model="jobValue"
       :employment-categories="employmentCategories"
-      :industries="industries"
-      :occupations="occupations"
     />
     <job-footer :job="jobValue" />
   </div>

@@ -29,16 +29,6 @@
                 ></v-select>
               </v-col>
             </v-row>
-            <job-nested-select
-              v-model="industryId"
-              :items="industries"
-              label="業種"
-            />
-            <job-nested-select
-              v-model="occupationId"
-              :items="occupations"
-              label="職種"
-            />
             <job-text
               v-model="job"
               property="job_content"
@@ -61,19 +51,6 @@
               v-model="job"
               property="work_datetime"
               label="勤務時間や休日など"
-            />
-            <job-json
-              v-model="job"
-              property="contract_period"
-              label="契約期間"
-            />
-            <job-text
-              v-model="job"
-              property="welfare"
-              label="福利厚生"
-              placeholder="【例】労災保険、健康保険、厚生年金、雇用保険"
-              textarea
-              required
             />
           </v-card-text>
         </v-card>
