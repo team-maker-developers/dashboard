@@ -1,8 +1,6 @@
 <template>
   <v-data-table :headers="jobHeaders" :items="jobs" class="elevation-1">
-    <template #[`item.sharedAt`]="{}">	
-      -	
-    </template>
+    <template #[`item.sharedAt`]="{}">-</template>
     <template #[`item.edit`]="{ item }">
       <v-btn outlined small color="primary" :to="`/jobs/${item.id}`">
         編集
