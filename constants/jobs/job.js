@@ -18,23 +18,18 @@ export const getJob = gql`
       id
       code
       name
-      expired_at
       job_content
       employment_category_id
-      contract_period
       place
       work_datetime
       salary
-      welfare
-      industry_id
-      industry {
+      page {
         id
-        name
-      }
-      occupation_id
-      occupation {
-        id
-        name
+        slug
+        refered_url
+        publishState
+        published_at
+        isPublished
       }
     }
   }
@@ -46,16 +41,15 @@ export const upsertJob = gql`
       id
       code
       name
-      expired_at
       job_content
       employment_category_id
-      contract_period
       place
       work_datetime
       salary
-      welfare
-      industry
-      info
+      page {
+        id
+        published_at
+      }
     }
   }
 `

@@ -38,6 +38,27 @@ import jobTable from '@/components/jobs/job-table.vue'
 export default class JobsIndexVue extends Vue {
   jobActions: TableAction<JobItem>[] = [
     {
+      text: 'LINEで広報する',
+      action: (job: JobItem) => {
+        this.pushAnnounceCreate(job.id)
+      },
+      visible: (job: JobItem) => {
+        return job.page.isPublished
+      }
+    },
+    {
+      text: '下書きに戻す',
+      alterText: '公開する',
+      action: async (job: JobItem) => {
+        if (job.page.isPublished) {
+          await jobStore.unpublishJob(job.page)
+        } else {
+          await jobStore.publishJob(job.page)
+        }
+        this.refetchJobs()
+      }
+    },
+    {
       text: '削除',
       action: ({ id }: JobItem) => {
         jobStore.deleteJob(id)
