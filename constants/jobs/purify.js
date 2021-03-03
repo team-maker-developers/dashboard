@@ -29,7 +29,7 @@ export const sanitizer = (job) => {
   return sanitizedJob
 }
 
-export const upsertPage = ['id', 'published_at']
+export const upsertPage = ['id', 'content', 'published_at']
 
 function getUpsertPage(page) {
   Object.keys(page).forEach((key) => {
