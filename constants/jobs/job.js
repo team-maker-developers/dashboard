@@ -26,6 +26,7 @@ export const getJob = gql`
       page {
         id
         slug
+        content
         refered_url
         publishState
         published_at
@@ -48,6 +49,7 @@ export const upsertJob = gql`
       salary
       page {
         id
+        content
         published_at
       }
     }

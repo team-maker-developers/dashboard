@@ -1,0 +1,47 @@
+#post-editor-menu {
+  margin-bottom: 0.5rem;
+
+  button {
+    height: 2rem;
+    width: 2.5rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+    font-weight: bold;
+
+    &.is-active {
+      background-color: rgba(0, 0, 0, 0.1);
+    }  
+  }
+}
+
+#post-editor {
+  color: rgba(0, 0, 0, 0.87);
+  font-size: 16px;
+
+  > div {
+    border-bottom: 1px solid rgb(118, 118, 118);
+    min-height: 8rem;
+
+    &:focus {
+      outline: none;
+      border-bottom: 2px solid #EC6D81;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      margin: 2rem 0;
+    }
+  
+    h2 {
+      font-size: 1.2rem;
+      margin: 2rem 0;
+      padding: 2px 8px 0;
+      border-left: 4px solid #EC6D81;
+      border-right: 4px solid #EC6D81;
+    }
+  
+    p {
+      margin: 20px 20px 15px;
+    }
+  }
+}
