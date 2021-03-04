@@ -5,7 +5,7 @@ import jobFooter from './job-footer.vue'
 export default {
   components: { jobForm, jobFooter },
   data: () => ({
-    jobValue: {}
+    jobValue: { page: { content: null } }
   }),
   apollo: {
     employmentCategories: {

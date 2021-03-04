@@ -16,7 +16,7 @@
                 <v-icon v-if="doEditImage" color="primary" @click="doEditImage = false">
                   mdi-close
                 </v-icon>
-                <v-icon v-else color="primary" @click="doEditImage = true">
+                <v-icon v-else-if="headerImageUrl" color="primary" @click="doEditImage = true">
                   mdi-pencil
                 </v-icon>
               </div>
