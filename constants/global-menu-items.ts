@@ -30,20 +30,20 @@ export const menuItems: MenuItem[] = [
 
 export const settingItems: MenuItem[] = [
   {
+    text: '会社情報',
+    link: '/company',
+    action: (): void => {}
+  },
+  {
     text: 'ログイン申請',
     link: '/social-accounts',
     action: (): void => {}
+  },
+  {
+    text: 'LINE連携',
+    link: '/company#social-configs',
+    action: (): void => {}
   }
-  // {
-  //   text: 'LINE設定',
-  //   link: '/line',
-  //   action: (): void => {}
-  // },
-  // {
-  //   text: 'パスワード変更',
-  //   link: '/password',
-  //   action: (): void => {}
-  // }
 ]
 
 export const accountItems: MenuItem[] = [
