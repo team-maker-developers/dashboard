@@ -1,6 +1,6 @@
 <template>
   <v-stepper-content step="3">
-    <h3 class="py-5">以下の広報文を社員に送信します。よろしいですか？</h3>
+    <h3 class="py-5">以下の広報文を送信します。よろしいですか？</h3>
     <h4 class="py-1">広報先</h4>
     <v-row v-for="channel in channelOptions" :key="channel.id" justify="center">
       <v-col :lg="9">

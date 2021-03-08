@@ -1,7 +1,6 @@
 <template>
   <v-stepper-content step="1">
     <h3 class="py-3">広報先を選択してください。</h3>
-    <h4 class="py-1">広報先を選ぶ</h4>
     <v-form ref="channelForm" v-model="isValid">
       <v-container class="ml-2">
         <v-row>

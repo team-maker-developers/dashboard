@@ -1,7 +1,6 @@
 <template>
   <v-stepper-content step="2">
-    <h3 class="py-3">社員へ送信する広報文を入力してください。</h3>
-    <h4 class="py-1">広報文</h4>
+    <h3 class="py-3">広報文を入力してください。</h3>
     <v-row justify="center">
       <v-col :lg="9">
         <!-- TODO: #52 リード文のデフォルト値を設定可能にする -->
