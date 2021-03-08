@@ -11,6 +11,10 @@ export const createAnnounce = gql`
       channelNotifications {
         id
         channel_id
+        channel {
+          id
+          name
+        }
         suceeded
         error
       }
