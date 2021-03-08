@@ -9,7 +9,7 @@ import announceForm from '@/components/announces/announce-form.vue'
 
 export default {
   components: { announceForm },
-  asyncData({ query, store }) {
+  asyncData({ query }) {
     const jobId = 'jobId' in query ? query.jobId : null
     return { jobId }
   },
