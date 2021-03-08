@@ -18,6 +18,13 @@ export interface AnnounceInput {
   jobId: number
 }
 
+export interface ChannelNotifications {
+  id: string
+  channel: Channel
+  suceeded: boolean
+  error: string
+}
+
 export interface Job {
   id: string
   code: string
