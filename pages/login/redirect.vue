@@ -6,10 +6,7 @@
         <h1>ログインに失敗しました。</h1>
       </v-row>
       <v-container>
-        <p class="text-center">
-          承認されていないアカウントのため、ログインできません。
-          <br />お手数ですが、人事担当者の方が承認するまで、お待ちくださいませ。
-        </p>
+        <p class="error_message text-center">{{ message }}</p>
       </v-container>
       <v-row justify="center">
         <v-btn to="/">ログイン画面に戻る</v-btn>
@@ -58,14 +55,18 @@ export default class RedirectLoginVue extends Vue {
   }
 
   catchError(error: any) {
-    if (error.response.status === 401) {
+    if (error.response.status !== 401) {
+      this.$nuxt.error({
+        statusCode: error.response.status,
+        message: error.response.message
+      })
       return
     }
 
-    this.$nuxt.error({
-      statusCode: error.response.status,
-      message: error.response.message
-    })
+    const errorData = error.response.data
+    const message =
+      'hint' in errorData ? errorData.hint : errorData.error_description
+    this.message = message
   }
 
   async mounted() {
@@ -87,5 +88,8 @@ export default class RedirectLoginVue extends Vue {
 <style scoped>
 h1 {
   font-size: 20px;
+}
+.error_message {
+  white-space: pre-wrap;
 }
 </style>
