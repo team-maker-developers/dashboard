@@ -5,7 +5,8 @@ import { createAnnounce } from '~/constants/announces/announce'
 import {
   Channel,
   AnnounceInput,
-  getCreateAnnounceInput
+  getCreateAnnounceInput,
+  ChannelNotifications as Result
 } from '~/constants/announces/models'
 /* eslint-enable no-unused-vars */
 
@@ -23,13 +24,18 @@ export default class Announce extends VuexModule implements AnnounceState {
   }
 
   @Action({ rawError: true })
-  async postAnnounce({ announce, channels, jobId }: AnnounceInput) {
-    await apolloMutate({
+  async postAnnounce({
+    announce,
+    channels,
+    jobId
+  }: AnnounceInput): Promise<Result[]> {
+    const { data } = await apolloMutate({
       mutation: createAnnounce,
       variables: {
         input: getCreateAnnounceInput(announce, channels, jobId)
       }
     })
-    return '広報文の送信に成功いたしました。'
+
+    return data.createAnnounce.channelNotifications as Result[]
   }
 }

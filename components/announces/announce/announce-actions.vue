@@ -7,8 +7,23 @@
     <v-dialog v-model="dialog" width="500">
       <v-card class="py-8">
         <v-card-title class="headline py-8" primary-title>
-          {{ announceResult }}
+          広報の送信結果
         </v-card-title>
+        <v-card-text class="announce_results">
+          <ul>
+            <li v-for="result in announceResults" :key="result.id" class="mb-2">
+              <div>
+                {{ result.channel.name }}:
+                {{ result.suceeded ? '成功しました' : '失敗しました' }}
+              </div>
+              <!-- eslint-disable prettier/prettier -->
+              <div v-if="!result.suceeded" class="error_message ml-2">{{
+                JSON.parse(result.error).message
+              }}</div>
+              <!-- eslint-enable prettier/prettier -->
+            </li>
+          </ul>
+        </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="primary" @click="clearDialog">OK</v-btn>
@@ -20,7 +35,6 @@
 
 <script>
 import { mapActions } from 'vuex'
-import { postAnnounceError } from '@/constants/announces/announce.ts'
 
 export default {
   props: {
@@ -38,17 +52,17 @@ export default {
     }
   },
   data: () => ({
-    announceResult: '',
+    announceResults: null,
     loading: false
   }),
   computed: {
     dialog() {
-      return this.announceResult !== ''
+      return this.announceResults !== null
     }
   },
   methods: {
     clearDialog() {
-      this.announceResult = ''
+      this.announceResults = null
     },
     changeBeforeStep() {
       this.$emit('change-before-step')
@@ -58,13 +72,18 @@ export default {
       const jobId = this.job ? this.job.id : null
 
       try {
-        this.announceResult = await this.postAnnounce({
+        this.announceResults = await this.postAnnounce({
           announce: this.announce,
           channels: this.channels,
           jobId
         })
       } catch (error) {
-        this.announceResult = postAnnounceError
+        // eslint-disable-next-line no-console
+        console.log(error)
+        this.$nuxt.error({
+          statusCode: error.response.status,
+          message: error.response.message
+        })
       } finally {
         this.loading = false
       }
@@ -73,3 +92,15 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.announce_results {
+  font-size: 1.2rem;
+
+  .error_message {
+    color: red;
+    white-space: pre-wrap;
+    font-size: 1rem;
+  }
+}
+</style>
